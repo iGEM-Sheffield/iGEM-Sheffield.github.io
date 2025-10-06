@@ -1,39 +1,1352 @@
 {% extends "layout.html" %}
   
-{% block title %}Model{% endblock %}
-{% block lead %}Explain your model's assumptions, data, parameters, and results in a way that anyone could understand.{% endblock %}
+{% block title %}Model
+
+
+
+{% endblock %}
+{% block lead %}
+
+
+{% endblock %}
 
 {% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='model.css') }}">
+<div class="page-container">
+  <aside class="sidebar">
+      <ul class="sidebar-nav">
+          <li><a href="#before-skippit" class="active">Before Skippit</a></li>
+          <li><a href="#after-skippit">After Skippit</a>
+              <ul class="sidebar-subnav">
+                  <li><a href="#fres">Functional RNA Elements</a></li>
+                  <li><a href="#cres">Conformational RNA Elements</a></li>
+                  
+              </ul>
+          </li>
+          <li><a href="#value">Value</a></li>
+            
+        <li><a href="#combining">Combining FREs and CREs</a>
+              <li><a href="#core-assumptions">Core Assumptions</a>
+              <ul class="sidebar-subnav">
+                  <li><a href="#structural-prediction">Structural Prediction</a></li>
+                  <li><a href="#energy-assumptions">Energy Assumptions</a></li>
+              </ul>
+          </li>
+            
+          <li><a href="#validation">Experimental Validation</a></li>
+      </ul>
+      
+      <!--EXTRA INFO-->
+      <div class="info-card" id="transcription-factors">
+        <div class="card">
+          <h3 class="card-title">Transcription Factors</h3>
+          <p>DNA-binding proteins that regulate gene expression by controlling the rate of transcription from DNA to mRNA. They can act as activators or repressors.</p>
+        </div>
+      </div>
+       <div class="info-card" id="semi-rational">
+    <div class="card">
+      <h3 class="card-title">Semi-rational design</h3>
+      <p>semi-rational design uses rational guidance to narrow down the possibilities, 
+        even if the exact behaviour cannot be exactly predicted, while still relying on experimental 
+        testing of a manageable set of candidates.</p>
+    </div>
+  </div>
+      <div class="info-card" id="riboswitches">
+        <div class="card">
+          <h3 class="card-title">Riboswitches</h3>
+          <p>Structured RNA segments that directly bind small molecules and regulate gene expression without requiring proteins. They change conformation upon ligand binding.</p>
+        </div>
+      </div>
 
-<div class="row mt-4">
-  <div class="col">
-    <div class="bd-callout bd-callout-info">
-      <h4>Best Model</h4>
-      <p>Models and computer simulations can help us understand the function and operation of BioBrick Parts and Devices. Simulation and modeling are critical engineering skills that can contribute to project design or provide a better understanding of the modeled process. These processes are even more useful and/or informative when real-world data are included in the model. This award is for teams who build a model of their system and use it to inform system design or simulate expected behavior before, or in conjunction with, experiments in the wetlab.</p>
-      <hr />
-      <p>Visit the <a href="https://competition.igem.org/judging/special-prizes">Special Prizes page</a> for more information.</p>
+      <div class="info-card" id="aptamers">
+        <div class="card">
+          <h3 class="card-title">Aptamers</h3>
+          <p>Short RNA or DNA molecules that bind specifically to target molecules like proteins, cells, or other compounds with high affinity and specificity.</p>
+        </div>
+      </div>
+
+      <div class="info-card" id="secis">
+        <div class="card">
+          <h3 class="card-title">SECIS Element</h3>
+          <p>Selenocysteine Insertion Sequence - a specialized RNA structure that enables the incorporation of selenocysteine at UGA stop codons in selenoproteins.</p>
+        </div>
+      </div>
+  </aside>
+
+  <div class="page-content">
+    <div class="header">
+      <h1 class="page-title">Model: RNA Switch Design Framework</h1>
+      <p class="page-desc">A comprehensive approach to designing programmable RNA switches using Functional and Conformational RNA Elements</p>
+    </div>
+    
+    <div class="content">
+    Our project revolves around a <b>model</b> that captures the <b>structural behaviour of RNA</b> 
+    and its role in <b>gene regulation</b>. The model describes how <b>two sequences</b> can fold into
+     <b>functional structures</b>, and how these structures can be dynamically altered by <b>external
+         signals</b>. By translating these <b>structural changes</b> into <b>measurable effects on
+             gene expression</b>, the model provided us with a framework to design 
+             <b>regulatory RNA switches</b>, 
+             
+    <span class="highlight-word">which we were able to build and test successfully in the lab</span>.
+    <br><br>
+    In this page you will find first several sections explaining the general model,
+    and then an explanation on how it guided our project with our particular system.
+
+    <!-- BEFORE SKIPPIT -->
+      <section id="before-skippit">
+    <h1 class="section-title">Before Skippit: The World of Transcription Regulation</h1>
+    
+    <!-- INTRO -->
+    <p class="section-text">Over 50 years ago, the discovery of three nuclear RNA polymerases in bacteriophages and bacteria allowed us to characterise and understand the intricacies of transcription.<b><sup>[1]</sup></b> Since then, synthetic biology has relied heavily on the use of transcriptional-level control to regulate gene expression and synthesise proteins in uncountable situations.</p>
+
+    <!-- TRANSCRIPTIONAL CONTROL COMPLEXITY -->
+    <p class="section-text">Transcriptional-level control of genes is a complex system, as it relies on a large amount of circumstances: a wide variety of DNA-binding factors such as <span class="highlight-word info-word" data-target="transcription-factors">transcription factors</span> (which interact with each other and other proteins), the ability of RNA polymerases to recognise the promoter region, the RNA polymerases' own regulation strategies, the presence of nucleosomes (which inhibit initiation), presence of CpG islands in the promoter sequence, distance of the promoter to enhancer and silencer sequences, amongst others.<b><sup>[4, 10]</sup></b></p>
+
+    <div class="accordion">
+      <div class="accordion-header">
+          <div class="accordion-title">Transcriptional Control Complexity</div>
+          <div class="accordion-icon"></div>
+      </div>
+      <div class="accordion-content">
+          <div class="accordion-content-inner">
+              <ul class="point-list">
+                  <li><span class="bold-word">DNA-binding factors:</span> Transcription factors and regulatory proteins<b><sup>[13]</sup></b></li>
+                  <li><span class="bold-word">RNA polymerase recognition:</span> Promoter binding and initiation<b><sup>[14]</sup></b></li>
+                  <li><span class="bold-word">Chromatin structure:</span> Nucleosome positioning and accessibility<b><sup>[15]</sup></b></li>
+                  <li><span class="bold-word">Epigenetic modifications:</span> CpG methylation patterns<b><sup>[16]</sup></b></li>
+                  <li><span class="bold-word">Regulatory sequences:</span> Enhancers and silencers positioning<b><sup>[17]</sup></b></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+
+    <!-- KING OF GENE REGULATION -->
+    <p class="section-text">It is undeniable that despite its complexity and many playing factors, transcriptional-level control has evolved way beyond its original bounds and has established itself as the <span class="highlight-word">king of gene regulation</span>. A clear example is the maximisation of transcription levels achieved in an organism by optimising promoter sequences with computational tools, or by engineering synthetic promoters and enhancers.<b><sup>[5, 6, 7, 8]</sup></b></p>
+
+    <!-- LIMITATIONS -->
+    <h2 id="limitations" class="section-subtitle">Limitations of Transcriptional Control</h2>
+    
+    <p class="section-text">However, this strategy still has its shortcomings:</p>
+    
+    <ul class="point-list">
+        <li><span class="bold-word">Cross-talk:</span> Low-specificity transcription factors interfering with cis-regulatory elements<b><sup>[2]</sup></b></li>
+        <li><span class="bold-word">Stochastic noise:</span> Phenotypic variability in isogenic cell populations due to molecular binding randomness<b><sup>[3, 9]</sup></b></li>
+        <li><span class="bold-word">Transcriptional bursting:</span> Heterogeneity in mRNA and protein levels<b><sup>[11, 12]</sup></b></li>
+        <li><span class="bold-word">Expression noise:</span> Alterations in cell fitness due to uncontrolled gene expression</li>
+    </ul>
+
+    <!-- FUTURE OUTLOOK -->
+    <p class="section-text">As synthetic biology evolves and positions itself as one of the key technologies for the future, with arising fields such as <span class="italic-word">biomanufacturing</span> and <span class="italic-word">gene therapy</span>, the need for fine-tuned, multi-layered protein expression control tools is increasing.</p>
+</section>
+
+
+
+      <!-- AFTER SKIPPIT -->
+      <section id="after-skippit">
+        <h1 class="section-title">After Skippit: Beyond the Limits of DNA</h1>
+        
+        <p class="section-text">Translational-level control provides rapid responses and direct protein regulation without altering transcription.<b><sup>[13, 14]</sup></b> <span class="highlight-word info-word" data-target="riboswitches">Riboswitches</span>—RNA sequences that change structure upon binding a molecule—are especially attractive: they are compact, programmable, and highly specific. The theophylline-binding <span class="highlight-word info-word" data-target="aptamers">aptamer</span>, for example, has been extensively used to regulate downstream elements when linked to open reading frames.<b><sup>[15, 16]</sup></b></p>
+
+        <div class="cards-container">
+          <div class="card">
+            <h3 class="card-title">Traditional Approach</h3>
+            <p>Limited to basic systems like simple riboswitches and sRNAs targeting ribosome binding sites</p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">TADPOLE Framework</h3>
+            <p>Generalized framework for designing RNA switches from arbitrary parts, unlocking full potential of translational regulation</p>
+          </div>
+        </div>
+
+        <p class="section-text">This approach of translational regulation is powerful, but has been limited to basic systems like simple riboswitches and sRNAs that target the ribosome binding site. To unlock the full potential of this regulatory layer, we need to move beyond these traditional methods. Our modeling approach, <span class="highlight-word">TADPOLE</span>, addresses this limitation by offering a generalized framework for designing RNA switches from arbitrary parts.</p>
+
+        <!-- FREs SECTION -->
+        <h2 id="fres" class="section-subtitle">Functional RNA Elements (FREs): Molecular Switches Controlled by Shape</h2>
+        
+        <p class="section-text">A <span class="bold-word">Functional RNA Element (FRE)</span>—previously called Structural RNA Element (SRE)—is a segment of RNA that must fold into a very specific shape to perform its biological function.</p>
+
+        <p class="section-text">Think of RNA as a flexible string that can fold into a precise shape, like a <span class="italic-word">key that fits a lock</span>. Its function depends entirely on maintaining this shape: if the fold is disrupted, the element stops working.</p>
+
+        <h3 class="section-subtitle2">Why Shape Matters</h3>
+        <p class="section-text">The folded shape of a FRE is what allows it to interact with other molecules or cellular machinery in the correct way. By designing the sequence to favor the correct fold, we can control whether the element is active or inactive.</p>
+
+        <h3 class="section-subtitle2">Examples of FREs</h3>
+        
+        <div class="accordion">
+          <div class="accordion-header">
+              <div class="accordion-title">Stop Codon Readthrough Elements (SCRs)</div>
+              <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+              <div class="accordion-content-inner">
+                  <p>These elements allow the ribosome to ignore a stop signal in the RNA sequence, extending the protein produced.<b><sup>[24]</sup></b></p>
+                  <p><span class="bold-word">Example:</span> The <span class="highlight-word info-word" data-target="secis">SECIS element</span>, which regulates selenoprotein production. Its function depends on forming a very specific hairpin-like fold—if this fold is disrupted, the ribosome no longer reads through the stop codon.<b><sup>[18]</sup></b></p>
+              </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">
+              <div class="accordion-title">Frameshift Elements</div>
+              <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+              <div class="accordion-content-inner">
+                  <p>These stimulate a shift in the ribosome reading frame during translation. The shift only happens if the RNA adopts the correct folded shape.</p>
+              </div>
+          </div>
+        </div>
+
+        <!-- CREs SECTION -->
+        <h2 id="cres" class="section-subtitle">Conformational RNA Elements (CREs): Molecular Sensors</h2>
+        
+        <p class="section-text">A <span class="bold-word">Conformational RNA Element (CRE)</span> is a segment of RNA that acts as a sensor. Its defining feature is that it changes shape when it detects a specific signal, such as a molecule, a temperature change, or another environmental factor. Crucially, the CRE's shape by itself does not carry out any function; it simply responds to the signal.
+
+        <h3 class="section-subtitle2">How CREs Work</h3>
+        
+        <div class="card chocolate-card">
+          <h3 class="card-title">Simple analogy: A CRE is like a Chunk of Chocolate
+            <div class="chocolate-container-inline">
+              <div class="chocolate-solid">🍫</div>
+              <div class="chocolate-melted"></div>
+            </div>
+          </h3>
+          <ul class="point-list">
+            <li>At room temperature, it is <span class="bold-word">solid</span></li>
+            <li>When it warms up, it <span class="bold-word">melts</span></li>
+            <li>This change in state doesn't do anything by itself; the chocolate doesn't trigger any action—it simply <span class="italic-word">responds to the signal</span> (heat)</li>
+          </ul>
+          <p>This illustrates the essence of a Conformational RNA Element (CRE): it detects a signal and changes its shape, but by itself, that change has no direct function. It is purely a sensor.</p>
+        </div>
+
+        <h3 class="section-subtitle2">Types of CREs</h3>
+        
+        <div class="cards-container">
+          <div class="card">
+            <h3 class="card-title">Ligand-Sensing CREs</h3>
+            <p>Fold into a shape that can bind a specific molecule (ligand). Binding changes the shape of the RNA segment.</p>
+            <p><span class="bold-word">Examples:</span> CREs that bind theophylline, tetracycline, warfarin, or ciprofloxacin.<b><sup>[17]</sup></b></p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">Environment-Sensing CREs</h3>
+            <p>Respond to physical conditions, such as temperature or pH. Their shape shifts according to the environment.</p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">RNA-RNA Interaction CREs</h3>
+            <p>Interact with another RNA molecule, triggering a conformational change in response to this interaction.</p>
+            <p><span class="bold-word">Examples:</span> miniRNAs</p>
+          </div>
+        </div>
+
+
+
+
+        <!-- COMBINING SECTION -->
+    </section>
+
+      <!-- VALUE SECTION -->
+      <section id="value">
+        <h1 class="section-title">Value</h1>
+        
+        <p class="section-text">The ON/OFF system described above is more than just a molecular switch; it represents a <span class="highlight-word">fundamental evolution in synthetic biology</span>, overcoming key limitations of traditional genetic control methods and opening a completely new design space.</p>
+
+        <h2 id="framework" class="section-subtitle">A Generalized, Fast, and Modular Design Framework</h2>
+        
+        <p class="section-text">The real innovation here is <span class="bold-word">generalization</span>. Our approach provides a systematic framework for combining any Functional RNA Element (FRE) with any Conformational RNA Element (CRE), allowing the design of switches that respond to a wide variety of signals while controlling any RNA function dependent on its structure.</p>
+
+        <h3 class="section-subtitle2">Key Advantages of This Approach</h3>
+        
+        <div class="cards-container">
+          <div class="card">
+            <h3 class="card-title">Translational-level Control</h3>
+            <p>Operating downstream of transcription (RNA → protein) enables faster responses with lower energy costs compared to transcriptional regulation.</p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">Unprecedented Modularity</h3>
+            <p>Any FRE can be paired with any CRE. This systematic modularity allows design of highly customizable switches.</p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">Versatility and Scalability</h3>
+            <p>Simple detection systems can be expanded into multi-layer RNA circuits that amplify signals or trigger cascades of functions.</p>
+          </div>
+        </div>
+
+        <p class="section-text">In essence, our framework transforms RNA switch design from <span class="italic-word">isolated examples</span> to a <span class="highlight-word">systematic, scalable toolkit</span>. Synthetic biologists can now combine and adapt existing elements to create bespoke solutions, accelerating the design process and democratizing access to a powerful new layer of biological control.</p>
+      </section>
+
+      <!-- SUMMARY SECTION -->
+      <section id="summary">
+        <h1 class="section-title">Summary</h1>
+        
+        <div class="comparison-table">
+          <div class="comparison-header">
+            <h3>Before vs After Skippit: A Paradigm Shift</h3>
+          </div>
+          
+          <div class="comparison-grid">
+            <div class="comparison-column before-column">
+              <div class="column-header before-header">
+                <h4>Before Skippit</h4>
+                <p class="subtitle">Transcriptional + Limited Translational</p>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Control Level</div>
+                <div class="item-content">Mainly DNA → RNA + basic RNA → protein (isolated examples)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Response Speed</div>
+                <div class="item-content">Slow (requires transcription)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Energy Cost</div>
+                <div class="item-content">High (full transcription machinery)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Modularity</div>
+                <div class="item-content">Limited (complex dependencies)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Main Issues</div>
+                <div class="item-content">Cross-talk, stochastic noise, transcriptional bursting</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Design Approach</div>
+                <div class="item-content">Simple riboswitches, basic sRNAs - isolated examples</div>
+              </div>
+            </div>
+            
+            <div class="comparison-arrow">
+              <div class="arrow-symbol">→</div>
+              <div class="arrow-label">TADPOLE Framework</div>
+            </div>
+            
+            <div class="comparison-column after-column">
+              <div class="column-header after-header">
+                <h4>After Skippit</h4>
+                <p class="subtitle">Advanced Modular Translational Control</p>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Control Level</div>
+                <div class="item-content">Sophisticated RNA → Protein (any FRE + any CRE)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Response Speed</div>
+                <div class="item-content">Fast (direct protein regulation)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Energy Cost</div>
+                <div class="item-content">Low (no transcription needed)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Modularity</div>
+                <div class="item-content">Unprecedented (any FRE + any CRE)</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Main Advantages</div>
+                <div class="item-content">Precise control, programmable switches, multi-layer circuits</div>
+              </div>
+              
+              <div class="comparison-item">
+                <div class="item-label">Design Approach</div>
+                <div class="item-content">Generalized framework: any FRE + any CRE combination</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="paradigm-shift">
+            <h4>The Result: Democratized Access to Biological Control</h4>
+            <p>This framework transforms RNA switch design from isolated examples to a systematic, scalable toolkit, enabling synthetic biologists to create bespoke solutions that respond to diverse signals while controlling any RNA function dependent on structure.</p>
+          </div>
+        </div>
+      </section>
+      
+    <h2 id="combining" class="section-subtitle">Combining FREs and CREs: Creating an ON/OFF Switch</h2>
+        
+        <p class="section-text">Individually, FREs are functional elements that only work if they maintain a precise shape, while CREs are sensors that change shape in response to a signal but have no function by themselves. When we link a CRE to an FRE, we can create a <span class="highlight-word">programmable molecular switch</span> that controls the FRE's activity.</p>
+
+        <h3 class="section-subtitle2">How It Works</h3>
+        Our model is based on the principle of structural change from stimuli:<br>
+<br><br>
+        <b>Initial structure</b>
+  <span style="color: #007acc; font-weight: bold;">&nbsp;➜&nbsp;</span>
+  <b>Application of external signal</b>
+  <span style="color: #007acc; font-weight: bold;">&nbsp;➜&nbsp;</span>
+  <b>Changed structure</b> <br>
+<br><br>
+  One of these two structures (<b>initial</b> or <b>changed</b>) will maintain the function of the 
+  <b>FRE ON (active)</b>, and the other will <b>disrupt its structure</b>, therefore turning it 
+  <b>OFF (inactive)</b>.
+  This <b>ON structure</b> is the <b>functional structure</b>, the structure that the <b>FRE</b> needs 
+  to have to <b>perform its function</b>:
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/model/fre-struct.webp" 
+    alt="Tadpole steps" 
+    style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+</div>
+Se we could have <br>
+<br><br>
+  <b>FRE disrupted structure (OFF)</b>
+  <span style="color:#007acc; font-weight:bold;">&nbsp;➜&nbsp;</span>
+  <b>External signal</b>
+  <span style="color:#007acc; font-weight:bold;">&nbsp;➜&nbsp;</span>
+  <b>FRE functional structure (ON)</b>
+  <br>
+  <br><br>
+  We call this the ON-ON alternative, as FRE is active when the external signal is present.<br>
+   
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/model/on-on.webp" 
+    alt="Tadpole steps" 
+    style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+</div>
+Or, <br>
+<br><br>
+<b>Structure disrupted (OFF) </b>
+  <span style="color:#007acc; font-weight:bold;">&nbsp;➜&nbsp;</span>
+  <b>External signal</b>
+  <span style="color:#007acc; font-weight:bold;">&nbsp;➜&nbsp;</span>
+  <b>Structure maintained (ON)</b>
+  <br>
+  <br><br>
+  We call this the OFF-ON alternative, as the FRE is inactive when the external signal is present.
+
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/model/on-on.webp" 
+    alt="Tadpole steps" 
+    style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+</div>
+
+Both models follow the same energetic, complementarity, etc. principles. To facilitate the understanding of the design considerations of the model, we will be using an ON-ON/OFF-OFF type riboswitch as an example to explain the model’s intricacies.
+
+All following explanations can be applied to an ON-ON or an ON-OFF switch, the only difference being when the FRE is disrupted according to the external signal. 
+<br><br>
+<h3>Considering the ON-ON case</h3>
+        <div class="cards-container">
+          <div class="card">
+            <h3 class="card-title">OFF State (no signal)</h3>
+            <p>The CRE is in its resting shape, which stabilizes the FRE in an inactive fold. In this state, the FRE cannot perform its function.</p>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">ON State (signal present)</h3>
+            <p>When the CRE detects its signal, it changes shape. This conformational change propagates to the FRE through a connecting linker, allowing the FRE to adopt its active fold.</p>
+          </div>
+        </div>
+
+        <div class="card chocolate-key-card">
+              <h3 class="card-title">Simple Analogy: Chocolate Around a Key
+              <div class="chocolate-key-container">
+                <div class="key-symbol">🗝️</div>
+                <div class="chocolate-wrapper">🍫</div>
+                <div class="melted-chocolate"></div>
+              </div>
+              </h3>
+          <ul class="point-list">
+                  <p><span class="bold-word">FRE = key</span><br>
+                  <span class="bold-word">CRE = chunk of chocolate surrounding the key</span></p>
+                  
+                  <ul class="point-list">
+                      <li><span class="bold-word">No signal (chocolate is solid):</span> The chocolate is hard and holds the key in the wrong shape, so it cannot enter the lock → FRE inactive (OFF)</li>
+                      <li><span class="bold-word">Signal present (chocolate melts):</span> The chocolate softens, releasing the key so it can take its proper shape → key can enter the lock → FRE active (ON)</li>
+                  </ul>
+                  
+                  <p>Here, the CRE itself doesn't do the work; it modulates whether the FRE can fold into its functional shape, creating a signal-dependent ON/OFF switch.</p>
+        </div>
+          
+
+        <p class="section-text">By combining CREs and FREs, we gain precise, modular control over RNA-based regulation. This allows us to design custom RNA switches that respond to a wide variety of signals while controlling any functional element, expanding beyond traditional riboswitches or sRNA-based methods.</p>
+        <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+              <iframe 
+                src="https://video.igem.org/videos/embed/muyboCpS2HhfYNCueDWDvT?autoplay=1&loop=1&muted=1" 
+                title="Barcelona-UB: RNA_Switches (2025) [English]" 
+                allow="autoplay; fullscreen" 
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                       border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 0;"
+              ></iframe>
+            </div>
+
+          
+ 
+            <!-- CORE ASSUMPTIONS SECTION -->
+                <section id="core-assumptions">
+    <h1 class="section-title">Core Assumptions: Model Transparency</h1>
+    
+    <p class="section-text">Our computational model (meaning the automatised design performed by the software tool) does not reproduce RNA behavior with 100% accuracy. To make it viable and scalable for large-scale design, we have had to make key assumptions, which we detail below.</p>
+
+    <h2 id="structural-prediction" class="section-subtitle">Structural Prediction</h2>
+    
+    <p class="section-text">RNA structure is a critical determinant of function, but for many RNA elements, the structure has not been experimentally resolved. In such cases, computational prediction tools provide a practical way to infer possible structures directly from the sequence<sup>[37,38]</sup>.</p>
+
+    <h3 class="section-subtitle2">How Structural Prediction Works</h3>
+    
+    <p class="section-text">Prediction tools take as input the nucleotide sequence (e.g., <span class="code-text">AGUCGUAGUAAUUUCCGAUCG</span>) and return a proposed structure in the so-called <span class="bold-word">"dot-bracket notation"</span>:</p>
+    
+    <ul class="point-list">
+        <li><span class="code-text">.</span> indicates an unpaired nucleotide</li>
+        <li><span class="code-text">(</span> and <span class="code-text">)</span> indicate paired nucleotides</li>
+    </ul>
+    
+    <p class="section-text">For example, RNAfold predicts the sequence <span class="code-text">AGUCGUAGUAAUUUCCGAUCG</span> to fold into <span class="code-text">.((((.((....)).))))...</span> This can be visualized as a two-dimensional secondary structure<sup>[37]</sup>.</p>
+
+    <h3 class="section-subtitle2">RNAfold</h3>
+    
+    <p class="section-text">One of the most widely used tools for RNA secondary structure prediction is <span class="bold-word">RNAfold</span>, part of the ViennaRNA package. It uses a thermodynamics-based algorithm to calculate the minimum free energy (MFE) structure—the most stable conformation expected for the sequence. RNAfold outputs both the predicted structure and its associated free energy value, providing an estimate of stability<sup>[37,38]</sup>.</p>
+
+    <h3 class="section-subtitle2">Limitations of RNAfold and Structural Prediction</h3>
+    
+    <p class="section-text">While RNAfold and similar tools are powerful, they come with important limitations<sup>[40]</sup>:</p>
+    
+    <div class="cards-container">
+        <div class="card">
+            <h3 class="card-title">MFE Bias</h3>
+            <p>RNA molecules do not always fold into the single most stable structure. In reality, they often exist as an ensemble of conformations, which RNAfold does not fully capture<sup>[40]</sup>.</p>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Context-Dependence</h3>
+            <p>Predictions are made in isolation, without considering cellular factors such as RNA-binding proteins, molecular crowding, or co-transcriptional folding<sup>[40]</sup>.</p>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Limited Dynamics</h3>
+            <p>RNA structures are dynamic and can shift in response to signals (as CREs do). Static predictions like those of RNAfold cannot easily account for these conformational changes<sup>[39]</sup>.</p>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Accuracy Trade-offs</h3>
+            <p>Thermodynamic parameters are derived from simplified experimental systems and may not always generalize to longer or more complex RNAs<sup>[38]</sup>.</p>
+        </div>
+    </div>
+
+    <h2 id="energy-assumptions" class="section-subtitle">Energy Assumptions for OFF ⇄ ON Switching</h2>
+
+    <h3 class="section-subtitle2">Notation and Basic Idea</h3>
+    
+    <p class="section-text">We work with predicted minimum free energies (MFEs) from a secondary-structure predictor (e.g., RNAfold). Define:</p>
+    
+    <div class="equation-box">
+        <ul class="equation-list">
+            <li><span class="equation">G<sub>OFF</sub></span> = MFE of the full construct predicted without the external factor (unconstrained fold). This is the free energy of the unbound / OFF configuration.</li>
+            <li><span class="equation">G<sub>ON</sub></span> = MFE of the full construct predicted with the CRE forced into the conformation that corresponds to having reacted to the external factor. This is the free energy of the would-be ON conformation before accounting for the extra stabilisation supplied by binding.</li>
+            <li><span class="equation">E<sub>bind</sub></span> = stabilisation energy (positive number, in kcal·mol⁻¹) supplied to the system when the CRE actually binds its partner (ligand, miRNA, etc.). We treat E<sub>bind</sub> as a positive magnitude (e.g., theophylline ≈ 9.5 kcal·mol⁻¹ in literature<sup>[27,28]</sup>). If there is no binding (environment-driven CRE), then E<sub>bind</sub> = 0.</li>
+        </ul>
+    </div>
+    
+    <p class="section-text">Define the on–off energy gap (difference) as:</p>
+    
+    <div class="equation-center">
+        <span class="equation-large">Δ = G<sub>ON</sub> - G<sub>OFF</sub></span>
+    </div>
+    
+    <p class="section-text"><span class="bold-word">Note:</span> G values are negative (more negative = more stable). With this definition:</p>
+    <ul class="point-list">
+        <li><span class="equation">Δ > 0</span> means OFF is more stable than ON (because G<sub>OFF</sub> < G<sub>ON</sub>)</li>
+        <li><span class="equation">Δ < 0</span> would mean ON is already preferred in absence of trigger (bad for an OFF default)</li>
+    </ul>
+    
+    <p class="section-text">When the CRE actually binds, the ON state gains the stabilisation E<sub>bind</sub>. The effective free energy of ON after binding becomes:</p>
+    
+    <div class="equation-center">
+        <span class="equation-large">G<sub>ON,eff</sub> = G<sub>ON</sub> - E<sub>bind</sub></span>
+    </div>
+
+    <h3 class="section-subtitle2">Thermodynamic Conditions You Must Check</h3>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="accordion-title">1. OFF Must Be the Default (No Trigger)</div>
+            <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-content-inner">
+                <p><span class="bold-word">Condition:</span></p>
+                <div class="equation-center">
+                    <span class="equation-large">Δ = G<sub>ON</sub> - G<sub>OFF</sub> > 0</span>
+                </div>
+                <p><span class="bold-word">Why:</span> In the absence of the external factor we want the system to sit in the OFF state (FRE disrupted). If Δ ≤ 0, the system would be ON by default or ambivalent (unstable OFF).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="accordion-title">2. ON Must Become Preferred After Binding (Binding-based CREs)</div>
+            <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-content-inner">
+                <p><span class="bold-word">Condition (after binding):</span></p>
+                <div class="equation-center">
+                    <span class="equation-large">G<sub>ON,eff</sub> < G<sub>OFF</sub> ⟺ Δ < E<sub>bind</sub></span>
+                </div>
+                <p><span class="bold-word">Combined requirement (binding-based CRE):</span></p>
+                <div class="equation-center">
+                    <span class="equation-large highlight-equation">0 < Δ < E<sub>bind</sub></span>
+                </div>
+                <p><span class="bold-word">Why:</span> This ensures the OFF is preferred before binding, and the ON becomes preferred after the CRE supplies the binding stabilisation. If Δ ≥ E<sub>bind</sub>, even binding will not make ON lower energy than OFF (i.e., the switch will be stuck OFF). If Δ ≤ 0, the system is not OFF by default.</p>
+                
+                <div class="recommendation-box">
+                    <h4>Practical Recommendation</h4>
+                    <p>Choose Δ roughly half of E<sub>bind</sub> (i.e. Δ ≈ E<sub>bind</sub>/2). This yields a robust margin in both directions: OFF is meaningfully favoured without ligand, but binding reliably flips the balance.</p>
+                    <p><span class="bold-word">Example:</span> theophylline E<sub>bind</sub> ≈ 9.5 kcal → target Δ ≈ 4.5 kcal<sup>[27,28]</sup>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="accordion-title">3. Environment-Driven CREs (Temperature, pH, etc.)</div>
+            <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-content-inner">
+                <p>If the CRE does not supply binding energy but instead changes conformation because of external physical conditions (temperature shift, pH), the logic is different:</p>
+                <ul class="point-list">
+                    <li>Set E<sub>bind</sub> = 0. The environment itself alters base-pair stabilities and changes the predicted energies.</li>
+                    <li>To test viability, predict MFEs at both conditions (e.g., RNAfold supports a temperature parameter):
+                        <ul class="subnav">
+                            <li>G<sub>OFF</sub> = MFE predicted under baseline conditions</li>
+                            <li>G<sub>ON</sub> = MFE predicted under the changed environmental condition</li>
+                        </ul>
+                    </li>
+                    <li>Then require G<sub>ON</sub> < G<sub>OFF</sub> under the activating environment, and G<sub>OFF</sub> < G<sub>ON</sub> under baseline.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-subtitle2">Why "About Half the Binding Energy"?</h3>
+    
+    <p class="section-text">The inequality <span class="equation">0 < Δ < E<sub>bind</sub></span> is the correct thermodynamic requirement. Choosing Δ near E<sub>bind</sub>/2 gives a comfortable margin so:</p>
+    
+    <ul class="point-list">
+        <li>OFF is clearly favoured in the absence of ligand (so the system is quiet / repressed), and</li>
+        <li>ON becomes clearly favoured after adding the ligand (so the switch flips decisively).</li>
+    </ul>
+    
+    <p class="section-text">If Δ is too small (close to 0) the system will be noisy and leak (both states may be populated). If Δ is too large (approaching E<sub>bind</sub> or exceeding it) the ligand cannot flip the switch.</p>
+
+    <h3 class="section-subtitle2">Practical Numeric Guidance and Examples</h3>
+
+    <div class="example-box">
+        <h4>Example (Theophylline-like)</h4>
+        <ul class="point-list">
+            <li>Literature E<sub>bind</sub> ≈ 9.5 kcal·mol⁻¹</li>
+            <li>Target Δ ≈ E<sub>bind</sub>/2 ≈ 4.7 kcal·mol⁻¹</li>
+        </ul>
+        
+        <p><span class="bold-word">Suppose your predicted MFEs are:</span></p>
+        <ul class="point-list">
+            <li>G<sub>OFF</sub> = -44.0 kcal·mol⁻¹; G<sub>ON</sub> = -39.3 kcal·mol⁻¹</li>
+            <li>Then Δ = -39.3 - (-44.0) = +4.7 kcal·mol⁻¹ → meets the target</li>
+            <li>After binding: G<sub>ON,eff</sub> = G<sub>ON</sub> - E<sub>bind</sub> = -39.3 - 9.5 = -48.8, which is lower than -44.0 → ON will be favoured after ligand binding<sup>[27,28]</sup></li>
+        </ul>
+    </div>
+
+    <div class="example-box">
+        <h4>Example (miniRNA Trigger, Small Binding)</h4>
+        <p>If E<sub>bind</sub> is small (e.g., 1–2 kcal·mol⁻¹), then you need a correspondingly small Δ (≈0.5–1 kcal) — smaller margins reduce robustness and increase sensitivity to modelling error; be cautious and pair with strong structural checks.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>If E<sub>bind</sub> is Unknown</h4>
+        <p>Use a conservative Minimum ΔMFE between 3–5 kcal·mol⁻¹ as a first pass unless you have stronger estimates. Also perform sensitivity scans across possible E<sub>bind</sub> values and check how many candidate linkers survive.</p>
+    </div>
+</section>
+
+
+<section id="validation">
+    <h1 class="section-title">Experimental Validation</h1>
+    <p class="section-text">We are very pleased to say that of the 4 different systems we tried in the lab,
+         all of them successfully modulated the FRE element in the presence and absence of the external signal
+          (ligand in our case) as an
+          OFF-ON switch. Please, see the  <a class="link-text" href="https://2025.igem.wiki/barcelona-ub/model-guidance">How the Model Guided Our Progect Page</a>  
+          for a description of our particular designs with the concrete elements used.
+        <br>
+    We have been able to convert our switches from an in silico design to reality. 
+    For further details, you can check the Results or Parts page    
+    <br>
+    About how the results affect the model: we obtained 4 functional switches for 
+    each different proposal tested in the lab. We saw how the addition of theophylline 
+    provoked some changes in the system that led to a reduction in the level of readthrough.  
+    <br>
+    However, let’s go beyond, analysing the expectations we had on our model:
+    <br>
+    The systems designed with aptamers are usually built by testing hundreds or even thousands of possible sequences, until one is found that performs the expected behaviour. 
+     <br>
+    However, we could not afford that method so if we wanted to design some switches we needed something to narrow it down. So we built Tadpole, a tool that automatises the design of the desired switches. 
+    The aim was to be able to build two structures, that had
+        <ul class="point-list">
+            <li>Similar energies, so none would be much more stable than the other, 
+                and the switch would be possible.</li>
+            <li>
+                Enough complementarity (aided by the linker) in order to make the pairing 
+                of the CRE to the FRE possible, so it would disrupt it. 
+
+            </li>
+        </ul>
+        The software also predicts the structures, to try to have an approximation to what the final design is
+         going to look like, and if it’s going to be an ON-ON or an OFF-ON. However, as was acknowledged 
+         on the Core Assumptions section, RNAFold has limitations on structure prediction, so it’s not 100% 
+         reliable. In fact, the structures predicted for our systems indicated an ON-ON system, but the lab 
+         results demonstrate it is an OFF-ON.<br>
+
+         With this, we can affirm that our model can be used to build RNAswitches, 
+         and that we have a software tool able to automate it, with which anyone can make a <span class="highlight-word info-word" data-target="semi-rational">semi-rational design</span>, 
+         so they can create a handful of sequences to test in the lab, instead of what would be the usual 
+         when working with aptamers: testing hundreds and hundreds.
+         <br>
+         We didn’t just make our project possible with this model and our software tool.
+          We created a framework that empowers other teams to design and test these systems
+           more easily and efficiently.
+         <br>
+        
+    </p>
+
+
+
+</section>
+     <!-- REFERENCES -->
+<section class="references" id="references">
+  <h1 class="section-title">References</h1>
+  <ol>
+    <li>Author(s) not listed. (n.d.). Discovery of nuclear RNA polymerases. <i>Nature</i>. <a class="link-text" href="https://www.nature.com/articles/s">https://www.nature.com/articles/s</a></li>
+
+    <li>Author(s) not listed. (2016). Cross-talk of transcription factors. <i>Nature Communications, 7</i>, 12307. <a class="link-text" href="https://www.nature.com/articles/ncomms12307">https://www.nature.com/articles/ncomms12307</a></li>
+
+    <li>Author(s) not listed. (2017). Stochastic noise in gene expression. <i>Proceedings of the National Academy of Sciences</i>. <a class="link-text" href="https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC5753856&blobtype=pdf">https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC5753856&blobtype=pdf</a></li>
+
+    <li>Author(s) not listed. (n.d.). DNA-binding factors and regulation. <i>Nature</i>. <a class="link-text" href="https://www.nature.com/articles/s">https://www.nature.com/articles/s</a></li>
+
+    <li>Curran, K. A., Crook, N. C., Alper, H. S. (2013). Computational promoter optimization. <i>Biotechnology Journal, 8</i>(2), 262–272. <a class="link-text" href="https://doi.org/10.1002/biot.201200120">https://doi.org/10.1002/biot.201200120</a></li>
+
+    <li>Rai, A., & Mermet-Bouvier, P. (2023). Synthetic promoters and enhancers. <i>Agriculture, 13</i>(2), 298. <a class="link-text" href="https://www.mdpi.com/2077-0472/13/2/298">https://www.mdpi.com/2077-0472/13/2/298</a></li>
+
+    <li>Author(s) not listed. (n.d.). Engineering synthetic promoters. <i>Springer</i>. <a class="link-text" href="https://link.springer.com/article/10.1007/s">https://link.springer.com/article/10.1007/s</a></li>
+
+    <li>Author(s) not listed. (n.d.). Maximisation of transcription levels. <i>Nature</i>. <a class="link-text" href="https://www.nature.com/articles/s">https://www.nature.com/articles/s</a></li>
+
+    <li>Spencer, S. L., Gaudet, S., Albeck, J. G., Burke, J. M., & Sorger, P. K. (2009). Phenotypic variability in cell populations. <i>Proceedings of the National Academy of Sciences, 106</i>(34), 145–150. <a class="link-text" href="https://www.pnas.org/doi/10.1073/pnas.0707904105">https://www.pnas.org/doi/10.1073/pnas.0707904105</a></li>
+
+    <li>Proshkina, G. M., Shevchenko, G., Puzakov, M., & Akhmanova, A. (2011). RNA polymerase regulation. <i>EMBO Journal, 30</i>(24), 4851–4865. <a class="link-text" href="https://www.embopress.org/doi/full/10.1038/emboj.2011.344">https://www.embopress.org/doi/full/10.1038/emboj.2011.344</a></li>
+
+    <li>Fraser, H. B., Hirsh, A. E., Giaever, G., Kumm, J., & Eisen, M. B. (2004). Gene expression noise and cell fitness. <i>eLife, 3</i>, e37272. <a class="link-text" href="https://elifesciences.org/articles/37272">https://elifesciences.org/articles/37272</a></li>
+
+    <li>Li, X., Zhang, W., & Liu, J. (2024). Transcriptional bursting heterogeneity. <i>Frontiers in Genetics, 15</i>, 1451461. <a class="link-text" href="https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2024.1451461/full">https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2024.1451461/full</a></li>
+
+    <li>Gebauer, F., & Hentze, M. W. (2004). Molecular mechanisms of translational control. <i>Nature Reviews Molecular Cell Biology, 5</i>(10), 827–835. <a class="link-text" href="https://www.nature.com/articles/nrm2024">https://www.nature.com/articles/nrm2024</a></li>
+
+    <li>Swami, M. (2010). Gene regulation: Riboswitches step forward. <i>Nature Reviews Genetics, 11</i>(7), 456. <a class="link-text" href="https://www.nature.com/articles/nrg2796">https://www.nature.com/articles/nrg2796</a></li>
+
+    <li>Werstuck, G., & Green, M. R. (1998). Controlling gene expression in living cells through small molecule-RNA interactions. <i>Science, 282</i>(5387), 296–298. <a class="link-text" href="https://doi.org/10.1126/science.282.5387.296">https://doi.org/10.1126/science.282.5387.296</a></li>
+
+    <li>Rovira, A. R., et al. (2023). Theophylline-responsive riboswitches for synthetic biology applications. <i>Nature Biotechnology, 41</i>(3), 234–241. <a class="link-text" href="https://www.nature.com/articles/s41587-022-01609-w">https://www.nature.com/articles/s41587-022-01609-w</a></li>
+
+    <li>Bayer, T. S., & Smolke, C. D. (2005). Programmable ligand-controlled riboregulators. <i>Nature Biotechnology, 23</i>(3), 335–341. <a class="link-text" href="https://www.nature.com/articles/nbt1060">https://www.nature.com/articles/nbt1060</a></li>
+
+    <li>Mariotti, M., Lobanov, A. V., Manta, B., Santes, M. E., Morales, P. E., & Gladyshev, V. N. (2016). Lokiarchaeota marks the transition between the archaeal and eukaryotic selenocysteine encoding systems. <i>Molecular Biology and Evolution, 33</i>(9), 2441–2453. <a class="link-text" href="https://academic.oup.com/mbe/article/33/9/2441/2925203">https://academic.oup.com/mbe/article/33/9/2441/2925203</a></li>
+
+    <li>Author(s) not listed. (2022). DNA-binding factors: Transcription factors and regulatory proteins. <i>PMC</i>. <a class="link-text" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9117886/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9117886/</a></li>
+
+    <li>Author(s) not listed. (2013). RNA polymerase recognition: Promoter binding and initiation. <i>PMC</i>. <a class="link-text" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3700611/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3700611/</a></li>
+
+    <li>Author(s) not listed. (2016). Chromatin structure: Nucleosome positioning and accessibility. <i>PMC</i>. <a class="link-text" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860946/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860946/</a></li>
+
+    <li>Author(s) not listed. (2017). Epigenetic modifications: CpG methylation patterns. <i>PMC</i>. <a class="link-text" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5485512/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5485512/</a></li>
+
+    <li>Author(s) not listed. (2021). Regulatory sequences: Enhancers and silencers positioning. <i>PMC</i>. <a class="link-text" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8119328/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8119328/</a></li>
+
+    <li>Rodnina, M. V., Korniy, N., Klimova, M., Karki, P., Peng, B. Z., Senyushkina, T., Belardinelli, R., Maracci, C., Wohlgemuth, I., & Samatova, E. (2019). Translational recoding: Canonical translation mechanisms reinterpreted. <i>Nucleic Acids Research, 48</i>(3), 1056–1067. <a class="link-text" href="https://doi.org/10.1093/nar/gkz783">https://doi.org/10.1093/nar/gkz783</a></li>
+
+    <li>Ge, H., & Marchisio, M. A. (2021). Aptamers, riboswitches, and ribozymes in <i>S. cerevisiae</i> synthetic biology. <i>Life, 11</i>(3), 248. <a class="link-text" href="https://doi.org/10.3390/life11030248">https://doi.org/10.3390/life11030248</a></li>
+
+    <li>Lynch, S. A., Desai, S. K., Sajja, H. K., & Gallivan, J. P. (2007). A high-throughput screen for synthetic riboswitches. <i>Chemistry & Biology, 14</i>(2), 173–184. <a class="link-text" href="https://doi.org/10.1016/j.chembiol.2006.12.008">https://doi.org/10.1016/j.chembiol.2006.12.008</a></li>
+
+    <li>Akhter, S., Tang, Z., Wang, J., Zhao, Y., Liu, Q., & Chen, H. (2024). Mechanism of ligand binding to theophylline RNA aptamer. <i>Journal of Chemical Information and Modeling, 64</i>(3), 1017–1029. <a class="link-text" href="https://doi.org/10.1021/acs.jcim.3c01454">https://doi.org/10.1021/acs.jcim.3c01454</a></li>
+
+    <li>Wrist, A., Sun, W., & Summers, R. M. (2020). The theophylline aptamer: 25 years as an important tool in cellular engineering research. <i>ACS Synthetic Biology, 9</i>(4), 682–697. <a class="link-text" href="https://doi.org/10.1021/acssynbio.9b00475">https://doi.org/10.1021/acssynbio.9b00475</a></li>
+
+    <li>Suess, B., Fink, B., Berens, C., Stentz, R., & Hillen, W. (2004). A theophylline responsive riboswitch controls gene expression in vivo. <i>Nucleic Acids Research, 32</i>(4), 1610–1614. <a class="link-text" href="https://doi.org/10.1093/nar/gkh321">https://doi.org/10.1093/nar/gkh321</a></li>
+
+    <li>Warfield, B. M., & Anderson, P. C. (2017). Structural diversity and dynamics of a theophylline-binding RNA aptamer in its unbound state. <i>PLoS ONE, 12</i>(4), e0176229. <a class="link-text" href="https://doi.org/10.1371/journal.pone.0176229">https://doi.org/10.1371/journal.pone.0176229</a></li>
+
+    <li>Zimmermann, G. R., Jenison, R. D., Wick, C. L., Simorre, J.-P., & Pardi, A. (1997). Interlocking structural motifs mediate molecular discrimination by a theophylline-binding RNA. <i>Nature Structural Biology, 4</i>(9), 644–649. <a class="link-text" href="https://doi.org/10.1038/nsb0897-644">https://doi.org/10.1038/nsb0897-644</a></li>
+
+    <li>Hausser, J., Mayo, A., Keren, L., & Alon, U. (2019). Central dogma rates and the tradeoff between precision and economy in gene expression. <i>Nature Communications, 10</i>(1), 68. <a class="link-text" href="https://doi.org/10.1038/s41467-018-07391-8">https://doi.org/10.1038/s41467-018-07391-8</a></li>
+
+    <li>Mishler, D. M., & Gallivan, J. P. (2014). A family of synthetic riboswitches adopts a kinetic trapping mechanism. <i>Nucleic Acids Research, 42</i>(10), 6753–6761. <a class="link-text" href="https://doi.org/10.1093/nar/gku262">https://doi.org/10.1093/nar/gku262</a></li>
+
+    <li>Gebauer, F., & Hentze, M. W. (2004). Molecular mechanisms of translational control. <i>Nature Reviews Molecular Cell Biology, 5</i>(10), 827–835. <a class="link-text" href="https://doi.org/10.1038/nrm1488">https://doi.org/10.1038/nrm1488</a></li>
+
+    <li>Touat-Hamici, Z., Bulteau, A.-L., Bianga, J., Lobanov, A. V., & Gladyshev, V. N. (2018). Selenium-regulated hierarchy of human selenoproteome. <i>Biochimica et Biophysica Acta (BBA) - General Subjects, 1862</i>(11), 2493–2505. <a class="link-text" href="https://doi.org/10.1016/j.bbagen.2018.04.012">https://doi.org/10.1016/j.bbagen.2018.04.012</a></li>
+
+    <li>Liang, J. C., Chang, A. L., Kennedy, A. B., & Smolke, C. D. (2012). A high-throughput, quantitative cell-based screen for efficient tailoring of RNA device activity. <i>Nucleic Acids Research, 40</i>(20), e154. <a class="link-text" href="https://doi.org/10.1093/nar/gks636">https://doi.org/10.1093/nar/gks636</a></li>
+
+    <li>Lorenz, R., Bernhart, S. H., Höner zu Siederdissen, C., Tafer, H., Flamm, C., Stadler, P. F., & Hofacker, I. L. (2011). ViennaRNA Package 2.0. <i>Algorithms for Molecular Biology, 6</i>, 26. <a class="link-text" href="https://doi.org/10.1186/1748-7188-6-26">https://doi.org/10.1186/1748-7188-6-26</a></li>
+
+    <li>Turner, D. H., & Mathews, D. H. (2009). NNDB: The nearest-neighbor parameter database for predicting stability of nucleic acid secondary structure. <i>Nucleic Acids Research, 38</i>(Database issue), D280–D282. <a class="link-text" href="https://doi.org/10.1093/nar/gkp892">https://doi.org/10.1093/nar/gkp892</a></li>
+
+    <li>Jenison, R. D., Gill, S. C., Pardi, A., & Polisky, B. (1994). High-resolution molecular discrimination by RNA. <i>Science, 263</i>(5152), 1425–1429. <a class="link-text" href="https://doi.org/10.1126/science.7510417">https://doi.org/10.1126/science.7510417</a></li>
+
+    <li>Mathews, D. H., Moss, W. N., & Turner, D. H. (2006). RNA secondary structure prediction. <i>Current Opinion in Structural Biology, 16</i>(3), 270–278. <a class="link-text" href="https://doi.org/10.1016/j.sbi.2006.04.008">https://doi.org/10.1016/j.sbi.2006.04.008</a></li>
+  </ol>
+</section>
+
+
     </div>
   </div>
 </div>
-
-<div class="row mt-4">
-  <div class="col-lg-8">
-    <h2>Overview</h2>
-    <hr />
-    <p>Mathematical models and computer simulations provide a great way to describe the function and operation of Parts and Devices. Synthetic Biology is an engineering discipline, and part of engineering is simulation and modeling to determine the behavior of your design before you build it. Designing and simulating can be iterated many times in a computer before moving to the lab.</p>
-  </div>
-  <div class="col-lg-4">
-    <h2>Inspirations</h2>
-    <hr />
-    <ul>
-      <li><a href="https://2024.igem.wiki/utoronto/model">2024 UToronto</a></li>
-      <li><a href="https://2024.igem.wiki/heidelberg/model">2024 Heidelberg</a></li>
-      <li><a href="https://2024.igem.wiki/waseda-tokyo/model">2024 Waseda-Tokyo</a></li>
-      <li><a href="https://2024.igem.wiki/bnuzh-china/model">2024 BNUZH-China</a></li>
-      <li><a href="https://2024.igem.wiki/cjuh-jlu-china/model">2024 CJUH-JLU-China</a></li>
-      <li><a href="https://2024.igem.wiki/tsinghua/model">2024 Tsinghua</a></li>
-    </ul>
-  </div>
+<div class="back-to-top" id="back-to-top">
+  ↑
 </div>
+
+
+
+
+<style>
+/* Chocolate melting effect */
+.info-card{
+    transform: translateY(-70px);
+}
+.chocolate-card .chocolate-key-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.chocolate-container-inline {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.chocolate-solid {
+  font-size: 1.5rem;
+  transition: all 0.8s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.chocolate-melted {
+  position: absolute;
+  top: 25px;
+  left: 5px;
+  width: 20px;
+  height: 6px;
+  background: linear-gradient(45deg, #8B4513, #D2691E, #CD853F);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.8s ease;
+}
+
+.chocolate-card:hover .chocolate-solid {
+  transform: scale(0.8) rotate(10deg);
+  opacity: 0.7;
+}
+
+.chocolate-card:hover .chocolate-melted {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: melt 1.5s ease-in-out;
+}
+
+@keyframes melt {
+  0% { transform: scaleX(0); opacity: 0; }
+  50% { transform: scaleX(0.8); opacity: 0.8; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+/* Chocolate key animation */
+.chocolate-key-container {
+  display: inline-block;
+  position: relative;
+  margin-left: 15px;
+  left: 10px;
+  top: 10px;
+  vertical-align: middle;
+}
+
+
+
+.key-symbol {
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 0;
+  transition: all 0.8s ease;
+  left: -30px;
+  top: -18px;
+  transform: rotate(220deg)
+}
+
+.chocolate-wrapper {
+  position: absolute;
+  top: -5px;
+  left: -9px;
+  font-size: 1.8rem;
+  z-index: 3;
+  transition: all 0.8s ease;
+  opacity: 0.9;
+}
+
+.melted-chocolate {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 25px;
+  height: 8px;
+  background: linear-gradient(45deg, #8B4513, #D2691E, #CD853F);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.8s ease;
+  z-index: 1;
+}
+
+.chocolate-key-card:hover .chocolate-wrapper {
+  transform: scale(0.7) rotate(15deg);
+  opacity: 0.3;
+}
+
+
+
+.chocolate-key-card:hover .melted-chocolate {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: keyMelt 1.8s ease-in-out;
+}
+
+
+
+/* Comparison table styling */
+        .comparison-table {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-header h3 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .comparison-column {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .before-column {
+            border-left: 4px solid #dc2626;
+        }
+
+        .after-column {
+            border-left: 4px solid #16a34a;
+        }
+
+        .column-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #fecaca;
+        }
+
+        .before-header h4 {
+            color: #dc2626;
+            margin-bottom: 0.25rem;
+        }
+
+        .after-header h4 {
+            color: #16a34a;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #991b1b;
+            font-style: italic;
+        }
+
+        .comparison-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: #fef2f2;
+            border-radius: 6px;
+            border-left: 3px solid #fecaca;
+        }
+
+        .item-label {
+            font-weight: 600;
+            color: #7f1d1d;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-content {
+            color: #2d3748;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .comparison-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .arrow-symbol {
+            font-size: 2rem;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .arrow-label {
+            font-weight: 600;
+            color: #dc2626;
+            font-size: 0.875rem;
+            text-align: center;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .paradigm-shift {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .paradigm-shift h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .paradigm-shift p {
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Equation and code styling */
+        .code-text {
+            font-family: 'Courier New', monospace;
+            background: #fef2f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #7f1d1d;
+        }
+
+        .equation {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .equation-large {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            color: #dc2626;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .equation-center {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #fef2f2;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .equation-box {
+            background: #fef2f2;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #991b1b;
+        }
+
+        .equation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .equation-list li {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #fecaca;
+        }
+
+        .highlight-equation {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            color: #92400e;
+            font-weight: 700;
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .recommendation-box h4 {
+            color: #991b1b;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .recommendation-box p {
+            margin-bottom: 0.75rem;
+            color: #7f1d1d;
+            line-height: 1.5;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #16a34a;
+        }
+
+        .example-box h4 {
+            color: #15803d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .example-box p {
+            margin-bottom: 0.75rem;
+            color: #166534;
+            line-height: 1.5;
+        }
+
+        .example-box ul {
+            color: #166534;
+        }
+
+        /* Aptamer comparison table */
+        .aptamer-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .aptamer-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .aptamer-table th {
+            background: #dc2626;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .aptamer-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #fecaca;
+            vertical-align: top;
+        }
+
+        .aptamer-table tr:nth-child(even) {
+            background: #fef2f2;
+        }
+
+        .decision-accepted {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .decision-rejected {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .decision-possible {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Linker analysis styling */
+        .linker-analysis {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .linker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .linker-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #dc2626;
+        }
+
+        .linker-card h4 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .linker-property {
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: #fef2f2;
+            border-radius: 4px;
+            border-left: 3px solid #fecaca;
+        }
+
+        .property-label {
+            font-weight: 600;
+            color: #7f1d1d;
+            font-size: 0.875rem;
+        }
+
+        .property-value {
+            color: #2d3748;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .page-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .comparison-arrow {
+                order: 2;
+                flex-direction: row;
+                padding: 0.5rem;
+            }
+            
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: 0 0.5rem;
+            }
+            
+            .arrow-label {
+                writing-mode: horizontal-tb;
+                text-orientation: initial;
+            }
+            
+            .before-column {
+                order: 1;
+            }
+            
+            .after-column {
+                order: 3;
+            }
+            
+            .equation-large {
+                font-size: 1rem;
+            }
+            
+            .equation-center {
+                padding: 0.75rem;
+            }
+
+            .linker-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aptamer-table {
+                overflow-x: auto;
+            }
+        }
+</style>
 
 {% endblock %}

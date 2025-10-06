@@ -1,47 +1,2610 @@
+
 {% extends "layout.html" %}
   
-{% block title %}Software{% endblock %}
-{% block lead %}Software in iGEM should make synthetic biology based on standard parts easier, faster, better or more accessible to our community.{% endblock %}
+{% block title %}Tadpole Overview{% endblock %}
+{% block lead %}{% endblock %}
 
 {% block page_content %}
 
-<div class="row mt-4">
-  <div class="col">
-    <div class="bd-callout bd-callout-info">
-      <h4>Best Software Tool</h4>
-      <p>Regardless of what the topic is, iGEM projects often create or adapt computational tools to move their overall project forward. Because they are born out of a direct practical need, these software tools (or new computational methods) can even prove surprisingly useful for others. Without necessarily being big or complex, they can make the crucial difference to a project's success. This award tries to find and honor such "nuggets" of computational work. To be eligible, your software has to be documented and made available under an OSI-approved open-source license.</p>
-      <hr />
-      <p>Visit the <a href="https://competition.igem.org/judging/special-prizes">Special Prizes page</a> for more information.</p>
+<div class = "page-container">
+  <aside class="sidebar">
+      <ul class="sidebar-nav">
+          <li><a href="#overview-section" class="active">Overview</a></li>
+          <li><a href="#need">The Need for TADPOLE</a>
+          </li>
+          <li><a href="#exceeding-standards">Exceeding Standards</a></li>
+          <li><a href="#impact-section">Impact</a></li>
+          <li><a href="#validation">Experimental Validation</a></li>
+      </ul>
+      
+      <!--EXTRA INFO-->
+       <div class="info-card" id="pythonpkg-info">
+    <div class="card">
+      <h3 class="card-title">Python package</h3>
+      <p>A software distribution that can be installed with Python’s package manager (<strong>pip</strong>) to integrate Tadpole into existing Python scripts or pipelines.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="semi-rational">
+    <div class="card">
+      <h3 class="card-title">Semi-rational design</h3>
+      <p>semi-rational design uses rational guidance to narrow down the possibilities, 
+        even if the exact behaviour cannot be exactly predicted, while still relying on experimental 
+        testing of a manageable set of candidates.</p>
+    </div>
+  </div>
+  <div class="info-card" id="api-info">
+    <div class="card">
+      <h3 class="card-title">API </h3>
+      <p>An Application Programming Interface. Tadpole offers a <strong>RESTful API</strong> so other tools, apps, or workflows can connect and use its functions automatically.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="ViennaRNA<sup>[1]</sup>-info">
+    <div class="card">
+      <h3 class="card-title">ViennaRNA<sup>[1]</sup></h3>
+      <p>A widely used bioinformatics library for RNA secondary structure prediction and analysis. Tadpole connects directly with it.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="Biopython<sup>[2]</sup>-info">
+    <div class="card">
+      <h3 class="card-title">Biopython<sup>[2]</sup></h3>
+      <p>A Python library for computational biology. It provides tools for handling biological sequences and structures, which Tadpole leverages.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="docker-info">
+    <div class="card">
+      <h3 class="card-title">Dockerized code</h3>
+      <p>The software is packaged inside Docker containers, making it portable and ensuring it runs identically on any system.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="gitlab-info">
+    <div class="card">
+      <h3 class="card-title">GitLab</h3>
+      <p>A collaborative platform for hosting, sharing, and version-controlling code. Tadpole’s source is openly available here.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="license-info">
+    <div class="card">
+      <h3 class="card-title">Open-source license</h3>
+      <p>A legal framework that allows anyone to use, modify, and share Tadpole’s code, ensuring transparency and sustainability.</p>
+    </div>
+  </div>
+      <div class = "info-card" id="fre-info">
+        <div class="card">
+          <h3 class="card-title">Functional RNA Element (FRE)</h3>
+          <p>RNA sequences that perform specific biological functions when folded, such as frameshift elements, ribozymes, or Stop Codon Readthrough<sup>[3]</sup> sequences.</p>
+        </div>
+      </div>
+  <div class="info-card" id="stopcodon-info">
+    <div class="card">
+      <h3 class="card-title">Stop Codon Readthrough<sup>[3]</sup> element</h3>
+      <p>A genetic element that allows the ribosome to continue translation past a stop codon, enabling new protein functions.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="aptamer-info">
+    <div class="card">
+      <h3 class="card-title">Aptamer</h3>
+      <p>A short RNA or DNA molecule that binds specifically to a target molecule (similar to an antibody in function).</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="webinterface-info">
+    <div class="card">
+      <h3 class="card-title">Web interface</h3>
+      <p>A user-friendly website that allows interaction without needing programming or command-line tools.</p>
+      <button class="btn btn-primary" onclick="window.open('https://toolkit-m4g6.onrender.com/', '_blank')">Try Tadpole Online</button>
+    </div>
+  </div>
+
+  <div class="info-card" id="docker-info">
+    <div class="card">
+      <h3 class="card-title">Docker</h3>
+      <p>A platform that packages software and its dependencies so it runs the same everywhere, ensuring reproducibility and easy installation.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="sbol-info">
+    <div class="card">
+      <h3 class="card-title">SBOL3 export</h3>
+      <p>SBOL (Synthetic Biology Open Language) is a standard for sharing genetic designs; SBOL3 export enables interoperability with other tools.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="seed-info">
+    <div class="card">
+      <h3 class="card-title">User-defined seed</h3>
+      <p>A simple number chosen by the user that initializes the algorithm's random steps. Using the same seed makes "random" runs produce the same results, so experiments can be reproduced.</p>
+    </div>
+  </div>
+
+  <div class="info-card" id="ga-info">
+    <div class="card">
+      <h3 class="card-title">Genetic Algorithm (GA)</h3>
+      <p>A search method inspired by evolution that explores many possibilities using random variations. Because of that randomness (it is <em>stochastic</em>), results can differ between runs unless a seed is set to reproduce them.</p>
+    </div>
+  </div>
+      <div class = "info-card" id="cre-info">
+        <div class="card">
+          <h3 class="card-title">Conformational RNA Element (CRE)</h3>
+          <p>RNA structures that can change conformation in response to stimuli, including Aptamer<sup>[4]</sup>s, miniRNAs, and temperature-sensitive motifs.</p>
+        </div>
+      </div>
+
+      <div class = "info-card" id="sbol-info">
+        <div class="card">
+          <h3 class="card-title">SBOL3 Export</h3>
+          <p>Synthetic Biology Open Language format that ensures interoperability with other synthetic biology tools and databases.</p>
+        </div>
+      </div>
+
+      <div class = "info-card" id="secis-info">
+        <div class="card">
+          <h3 class="card-title">SECIS Element</h3>
+          <p>A highly conserved RNA hairpin structure that directs the ribosome to bypass UGA stop codons and incorporate selenocysteine into proteins.</p>
+        </div>
+      </div>
+
+      <div class = "info-card" id="aptamer-info">
+        <div class="card">
+          <h3 class="card-title">Aptamer</h3>
+          <p>Short RNA molecules that fold into specific 3D shapes to bind target ligands, changing structure upon binding to control gene expression.</p>
+        </div>
+      </div>
+
+      <div class = "info-card" id="linker-info">
+        <div class="card">
+          <h3 class="card-title">Linker</h3>
+          <p>A crucial 6-10 nucleotide RNA hinge connecting CRE to FRE, whose sequence and length determine folding and switching reliability.</p>
+        </div>
+      </div>
+
+<div class="info-card" id="hp-card1">
+  <div class="card">
+    <h3 class="card-title">HP CARD</h3>
+    <p>
+      <strong>José Ignacio Pérez-López</strong> insisted on having a 
+      <strong>tutorial or more explanatory illustrations</strong>. 
+      Thanks to that, we improved the current images by creating 
+      <strong>animated videos</strong> better highlighting the structural design, 
+      and we also made a tutorial.
+    </p>
+  </div>
+</div>
+
+  <div class="info-card" id="hp-card2">
+  <div class="card">
+    <h3 class="card-title">HP CARD</h3>
+    <p>
+      <strong>Jacob González Isa</strong> suggested a 
+      <strong>workflow and improvements for the user guide</strong>. 
+      Following his feedback, we created the 
+      <strong>general workflow diagram</strong> and the 
+      <strong>diagrams for the two search algorithms</strong> used in our tool.
+    </p>
+  </div>
+</div>
+
+<div class="info-card" id="hp-card3">
+  <div class="card">
+    <h3 class="card-title">HP CARD</h3>
+    <p>
+      <strong>José Ignacio Pérez-López</strong> suggested implementing a 
+      <strong>report to show the results</strong>. 
+      We therefore developed the report feature and later 
+      <strong>improved it based on subsequent feedback</strong>.
+    </p>
+  </div>
+</div>
+
+<div class="info-card" id="hp-card4">
+  <div class="card">
+    <h3 class="card-title">HP CARD</h3>
+    <p>
+      <strong>Jordi Plà Mauri</strong> suggested 
+      <strong>using an API</strong> and 
+      <strong>helped with its implementation</strong>.
+    </p>
+  </div>
+</div>
+
+
+
+  </aside>
+
+  
+  <div class = "page-content">
+    <div class = "header">
+      <h1 class = "page-title">Tadpole Presentation</h1>
+      <p class = "page-desc">A comprehensive RNA switch design tool for synthetic biology applications</p>
+    </div>
+    
+    <div class = "content"> 
+      <!-- OVERVIEW SECTION -->
+      <section id="presentation-video">
+      
+       
+        <h2 class="section-subtitle" style="color: #9D0800; text-align: center; margin-bottom: 15px;">Watch this detailed overview to understand everything necessary for Tadpole <span class = "highlight-word info-word" data-target="hp-card1">&#128161</span>:</h2>
+
+          <div style="text-align: center; margin: 0 auto 40px auto; max-width: 800px;">
+                     <div style="position: relative; width: 100%; aspect-ratio: 16/9;">
+            <iframe 
+              src="https://video.igem.org/videos/embed/wXrShi5JHm5u2VHSD1XjTP?autoplay=1&loop=1&muted=1" 
+              title="Barcelona-UB: TADPOLE Tutorial (2025) [English]" 
+              allow="autoplay; fullscreen" 
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 0;"
+            ></iframe>
+          </div>
+
+
+            <ul class="point-list">
+              <li>Model on which it's based</li>
+              <li>User-friendly / Developer tools</li>
+              <li>Essential Inputs and Outputs Format</li>
+            </ul>  
+          </div>
+
+
+      </section>
+
+      <!-- ACCESS POINTS -->
+      <section id = "access-points">
+        <h2 class="section-subtitle">Access Points</h2>
+        
+        <div class="cards-container">
+          <div class="card">
+            <h3 class="card-title">💻 GitLab Source Code (Official Repository)</h3>
+            <p>All Tadpole source code is openly available on our GitLab repository under an OSI-approved license.</p>
+            <button class="btn btn-secondary" onclick="window.open('https://gitlab.igem.org/2025/software-tools/barcelona-ub', '_blank')">Access GitLab Repository</button>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">🌐 Web Deployment (For Non-Experts)</h3>
+            <p>A live web deployment of Tadpole that can be accessed directly from any browser, no installation required.</p>
+            <button class="btn btn-primary" onclick="window.open('https://toolkit-m4g6.onrender.com/', '_blank')">Try Tadpole Online</button>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">📋 Docker, Package & API Instructions (README)</h3>
+            <p>Step-by-step installation guide including instructions for Docker, the Python package, and the Tadpole API.</p>
+            <button class="btn btn-outline" onclick="window.open('https://gitlab.igem.org/2025/software-tools/barcelona-ub/-/blob/main/README.md?ref_type=heads', '_blank')">View Technical Documentation</button>
+          </div>
+        </div>
+      </section>
+      <section id="overview-section">
+        <h1 class="main-section-title">Overview</h1>
+        <p class="main-section-desc">A comprehensive introduction to Tadpole and its capabilities</p>
+
+      </section>
+      <!-- THE TADPOLE TOOL -->
+      <section id = "tool-description">
+        <h2 class="section-subtitle">The Tadpole Tool</h2>
+        <p class="section-text">
+          Tadpole designs RNA switches by linking a <span class = "highlight-word info-word" data-target="fre-info">Functional RNA Element (FRE)</span> 
+          (e.g., frameshift element, ribozyme, Stop Codon Readthrough<sup>[3]</sup>) with a <span class = "highlight-word info-word" data-target="cre-info">Conformational RNA Element (CRE)</span> 
+          (e.g., Aptamer<sup>[4]</sup>, miniRNA, temperature-sensitive motif). The software generates a linker and designs a system so that in the OFF state the CRE blocks the FRE, 
+          and in the ON state the FRE is released and functional.
+        </p>
+        
+        <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+          <iframe 
+            src="https://video.igem.org/videos/embed/kx2BKv5nyAubWDtj65cmda?autoplay=1&loop=1&muted=1" 
+            title="Barcelona-UB: Parts_intro (2025) [English]" 
+            allow="autoplay; fullscreen" 
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                   border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 0;"
+          ></iframe>
+        </div>
+        <span class = "highlight-word info-word" data-target="hp-card1">&#128161</span>
+      </section>
+
+      <!-- RELEVANCE -->
+      <section id = "relevance">
+        <h2 class="section-subtitle">Relevance - Replace, Improve, Build upon</h2>
+        <p class="section-text">
+          Traditional protein-based regulators are powerful but often <span class="italic-word">slow</span>, 
+          <span class="italic-word">noisy</span>, or <span class="italic-word">difficult to deliver</span>. 
+          RNA-level control is faster and more versatile, yet up until this moment, there has not been a tool 
+          capable of systematically designing RNA switches from arbitrary parts.
+        </p>
+
+        <p class="section-text">
+          Tadpole takes RNA regulation to the next level by offering a <span class="bold-word">generalised switch designer</span>. 
+          Any CRE (any aptamer, any mini-RNA, or any other conformational element) can be combined with any FRE of interest 
+          to produce next-generation RNA switches in seconds. This opens a vast design space, from temperature-sensitive or 
+          metabolite-responsive systems to regulatory RNAs never before explored.
+        </p>
+
+        <p class="section-text">
+          Taking as an example past <span class="highlight-word"><a href="#impact-section" style="color: inherit; text-decoration: none;">IGEM teams</a> </span>, Tadpole can directly replace outdated systems, 
+          such as traditional kill-switches, improve existing designs, like riboswitches, or build upon prior work, for instance, 
+          mini-RNAs. These examples illustrate how Tadpole can transform the landscape of RNA regulation, serving as a practical 
+          tool for future teams, accelerating design and enabling innovations that would have previously required weeks of 
+          trial-and-error or deep expertise.
+        </p>
+      </section>
+
+      <!-- VALIDATION & ACCESSIBILITY --> 
+        <section id="validation-overview">
+  <h2 class="section-subtitle">Validation & Accessibility</h2>
+  <p class="section-text">
+    Tadpole has been validated both <span class="italic-word">in silico</span> and in the <span class="italic-word">wet lab</span>
+    with a <span class="highlight-word info-word" data-target="stopcodon-info">Stop Codon Readthrough<sup>[3]</sup> element</span> and an 
+    <span class="highlight-word info-word" data-target="aptamer-info">aptamer</span>. 
+    Its <span class="highlight-word info-word" data-target="webinterface-info">web interface</span> allows users to design RNA switches without programming or using a terminal, 
+    making the tool accessible to iGEM teams and non-experts. For local deployment, Tadpole can be installed easily via 
+    <span class="highlight-word info-word" data-target="docker-info">Docker</span>, ensuring reproducible execution across systems. 
+    <span class="highlight-word info-word" data-target="sbol-info">SBOL3 export</span> ensures interoperability with the wider synthetic biology ecosystem.
+  </p>
+
+  <div class="validation-details">
+    <p><strong>  In Silico Validation:</strong> Comprehensive <strong>computational testing</strong> 
+      ensures <strong>structural stability</strong> and predicted functionality of designed RNA switches.</p>
+
+    <p><strong>  Wet Lab Validation:</strong> <strong>Experimental verification</strong> conducted with 
+      <span class="highlight-word info-word" data-target="stopcodon-info">Stop Codon Readthrough<sup>[3]</sup> 
+        element</span> and 
+      <span class="highlight-word info-word" data-target="aptamer-info">aptamer</span> systems, 
+      demonstrating <strong>real-world functionality</strong>. <b>Of the 4 designed systems, 
+      all 4 proved to be switches</b> (see the <a href="#validation" style="text-decoration: none;"><span class="highlight-word info-word">Experimental Validation</span></a>  section for more information).
+    </p>
+
+    <p><strong>  Accessibility Features:</strong> 
+      <span class="highlight-word info-word" data-target="webinterface-info">Web interface</span> designed for non-experts, 
+      <span class="highlight-word info-word" data-target="docker-info">Docker</span> deployment for reproducibility, and 
+      <span class="highlight-word info-word" data-target="sbol-info">SBOL3 export</span> for ecosystem integration.
+    </p>
+
+    <p><strong>  Reproducibility:</strong> 
+      <span class="highlight-word info-word" data-target="docker-info">Docker</span> deployment ensures reproducible execution across systems, and the 
+      <span class="highlight-word info-word" data-target="seed-info">user-defined seed</span> for the 
+      <span class="highlight-word info-word" data-target="ga-info">Genetic Algorithm (GA)</span> guarantees <strong>consistent and repeatable results</strong>. 
+      Since the <span class="highlight-word info-word" data-target="ga-info">Genetic Algorithm (GA)</span> uses random choices, wihtout a seed, 
+      user could not help others reproduce their results. That is bad for reproductability, so we added the seed to allow users reproduce the same results.
+    </p>
+  </div>
+        </section>
+
+      <!-- EXTENSIBILITY & SUSTAINABILITY -->
+      <section id="extensibility">
+  <h2 class="section-subtitle">Extensibility & Sustainability</h2>
+  <p class="section-text">
+    Beyond the interface, Tadpole can be used as a 
+    <span class="highlight-word info-word" data-target="pythonpkg-info">Python package</span> 
+    and through an <span class="highlight-word info-word" data-target="api-info">API</span>, 
+    supporting <span class="highlight-word info-word" data-target="ViennaRNA<sup>[1]</sup>-info">ViennaRNA<sup>[1]</sup></span> 
+    and <span class="highlight-word info-word" data-target="Biopython<sup>[2]</sup>-info">Biopython<sup>[2]</sup></span> for seamless integration into computational pipelines.  
+    Its <span class="highlight-word info-word" data-target="docker-info">Dockerized code</span>, 
+    openly available on <span class="highlight-word info-word" data-target="gitlab-info">GitLab</span> under an 
+    <span class="highlight-word info-word" data-target="license-info">open-source license</span>, guarantees 
+    <strong>maintainability</strong>, <strong>reproducibility</strong>, and <strong>future extensibility</strong> by other groups.
+  </p>
+
+  <div class="integration-details">
+    <p><strong>  Python Package:</strong> Install via <strong>pip</strong> for integration into existing Python workflows and computational pipelines.</p>
+    <p><strong>  API Access:</strong> <strong>RESTful API</strong> enables integration into web applications and automated systems.</p>
+    <p><strong>  ViennaRNA<sup>[1]</sup> & Biopython<sup>[2]</sup> Support:</strong> Built-in compatibility with standard bioinformatics tools and libraries.</p>
+    <p><strong>  Documentation:</strong> Comented code with architecture diagrams and an evalutaion on 
+      the two algorithms that can be used and recomendations on when to use each
+      (see <a style="text-decoration: none;" 
+      href="https://2025.igem.wiki/barcelona-ub/software-technicalities">
+      <span class="highlight-word">Software Technicalities</span></a> page).
+      The <a style="text-decoration: none;" onclick="window.open('https://gitlab.igem.org/2025/software-tools/barcelona-ub/-/blob/main/README.md?ref_type=heads', '_blank')">
+        <span class="highlight-word">README file</span></a> includes instructions
+       on how to download and use the code for each of the 
+       <a style="text-decoration: none;" href="#exceeding-standards"><span class="highlight-word">possibilities</span></a>, 
+       as well as instructions on how to use the execution scripts.</p>
+      <p><strong>  Open Source:</strong> <strong>Modular</strong>, <strong>documented</strong> code, made available under an OSI-approved license for community development.</p>
+  </div>
+
+      </section>
+      <h2 class="section-subtitle">Where to Find the Information</h2>
+      In this page, you will find the above informaiton detailed and extended.
+      For more information, see the software-technicalities page, 
+      where you can find diagrams of the different algorithms used, detailed explanations and
+      tips for the inputs, and explanation on the results presentation.</p>
+        <span class = "highlight-word info-word" data-target="hp-card2">&#128161</span> 
+      <div style="text-align: center; margin: 20px 0;">
+              <img 
+                src="https://static.igem.wiki/teams/5622/images/software/tadpole-workflow.webp" 
+                alt="Workflow of the Software Tool" 
+                style="width: 50%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+              >
+            
+        <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Workflow of the Software Tool.
+      </div>       
+      <!-- THE NEED FOR TADPOLE -->
+      <h1 class="main-section-title", id="need">The Need for TADPOLE</h1>
+        <p class="main-section-desc">Moving beyond traditional transcriptional control to unlock RNA-level regulation</p>
+       <!-- Title outside the menu box -->
+        <div class="mb-4">
+    <h2 class="text-xxl font-extrabold tracking-wide text-slate-800" style="color: var(--color-intense-2);"> <span class="highlight-word">CLICK EACH ELEMENT TO EXPLORE THE SECTIONS</span></h2>
+</div>
+        <!-- INTERACTIVE TADPOLE OVERVIEW -->
+        <div class="w-full h-80 bg-white text-slate-100 rounded-2xl relative overflow-hidden shadow-lg mb-8">
+            <!-- Left side: White background -->
+            <div class="absolute left-0 top-0 w-1/4 h-full bg-white"></div>
+            
+            <!-- Galaxy background (starts from door position and expands) -->
+            <div class="absolute left-1/4 top-0 w-1/2 h-full overflow-hidden">
+                <!-- Galaxy expanding from door -->
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900" 
+                     style="clip-path: ellipse(100% 100% at 100% 50%);"></div>
+                
+                <!-- Fine starfield background -->
+                <div class="absolute inset-0" id="starfield"></div>
+                
+                <!-- Subtle nebula effects -->
+                <div class="absolute top-1/4 left-1/3 w-32 h-32 rounded-full bg-gradient-radial from-cyan-500/30 to-transparent blur-2xl"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-28 h-28 rounded-full bg-gradient-radial from-purple-500/20 to-transparent blur-2xl"></div>
+            </div>
+            
+            <!-- Right side: White background (after galaxy ends) -->
+            <div class="absolute right-0 top-0 w-1/4 h-full bg-white"></div>
+            
+           <!-- DNA helices field -->
+            <canvas id="dna-field" class="absolute left-1/4 top-0 w-1/2 h-full opacity-50"></canvas>
+            
+            <!-- door -->
+            <div class="relative" style="left: 22%; top: 100px; width: 80px; height: 150px;">
+    <div class="door-3d door-glow relative w-full h-full">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-700 to-slate-800 rounded-lg border-2 border-slate-600 shadow-2xl transform-gpu"></div>
+        <div class="absolute inset-1 bg-gradient-to-b from-slate-600 to-slate-700 rounded-md transform-gpu"></div>
+        <div class="door-handle">
+            <div class="door-knob-center"></div>
+        </div>
+        <div class="absolute -right-1 top-0 w-3 h-full bg-gradient-to-r from-cyan-400/60 to-transparent blur-sm"></div>
+    </div>
+</div>
+                
+                
+                
+                <!-- Objetos interactivos integrados en la escena -->
+                
+                <!-- 1. Llave dorada flotante (unlock) - izquierda de la puerta, altura media -->
+                <div class="absolute cursor-pointer hover:scale-110 transition-all duration-300" 
+                     style="left: 10%; top: 110px;"
+                     onclick="selectNode('rna-control')">
+                    <!-- Llave antigua con brillo -->
+                    <div class="relative">
+                        <svg width="100" height="80" viewBox="0 0 50 30" class="drop-shadow-lg">
+                            <defs>
+                                <linearGradient id="keyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fbbf24"/>
+                                    <stop offset="50%" style="stop-color:#f59e0b"/>
+                                    <stop offset="100%" style="stop-color:#d97706"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Cuerpo de la llave -->
+                            <circle cx="12" cy="18" r="8" fill="url(#keyGradient)" stroke="#92400e" stroke-width="1"/>
+                            <rect x="18" y="15" width="25" height="4" fill="url(#keyGradient)" stroke="#92400e" stroke-width="1"/>
+                            <!-- Dientes de la llave -->
+                            <rect x="35" y="15" width="4" height="11" fill="url(#keyGradient)"/>
+                            <rect x="40" y="15" width="5" height="9" fill="url(#keyGradient)"/>
+                            <!-- Agujero central -->
+                            <circle cx="12" cy="18" r="3" fill="#92400e"/>
+                        </svg>
+                        <!-- Partículas de luz -->
+                        <div class="absolute top-0 left-2 w-1 h-1 bg-yellow-300 rounded-full animate-ping"></div>
+                        <div class="absolute bottom-1 right-2 w-1 h-1 bg-amber-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                    </div>
+                    <!-- Etiqueta -->
+                    <div class="unlock-button">
+                          <span>Unlock RNA Control</span>
+                    </div>
+                </div>
+                
+                <!-- 2. Nebulosa espiral (galaxy) - dentro de la galaxia, altura 30% -->
+                <div class="absolute cursor-pointer hover:scale-105 transition-all duration-500" 
+                     style="left: 32%; top: 80px;"
+                     onclick="selectNode('design-space')">
+                    <!-- Espiral galáctica -->
+                    <div class="relative w-20 h-20">
+                        <!-- Fondo redondo -->
+                        <div class="absolute inset-0 w-20 h-20 rounded-full bg-slate-800 border-2 border-cyan-400 shadow-lg"></div>
+                        <!-- Núcleo central brillante -->
+                        <div class="absolute inset-1 w-18 h-18 rounded-full bg-gradient-radial from-cyan-300 via-blue-500 to-purple-800 opacity-90 animate-pulse"></div>
+                        <!-- Brazos espirales -->
+                        <svg class="absolute inset-0 w-20 h-20 animate-spin" style="animation-duration: 20s;">
+                            <path d="M 10 10 Q 15 5, 18 10 Q 12 15, 10 10" stroke="rgba(56,189,248,0.8)" stroke-width="2" fill="none"/>
+                            <path d="M 10 10 Q 5 15, 2 10 Q 8 5, 10 10" stroke="rgba(168,85,247,0.8)" stroke-width="2" fill="none"/>
+                            <path d="M 10 10 Q 15 15, 18 10 Q 12 5, 10 10" stroke="rgba(34,211,238,0.6)" stroke-width="1" fill="none"/>
+                        </svg>
+                        <!-- Estrellas orbitales -->
+                        <div class="absolute top-2 right-3 w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                        <div class="absolute bottom-3 left-2 w-1 h-1 bg-cyan-300 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+                        <div class="absolute top-8 left-8 w-1 h-1 bg-purple-300 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
+                    </div>
+                    <!-- Etiqueta -->
+                    <div class="unlock-button">
+                          <span style="color: #fff">New Design Space</span>
+                    </div>
+                </div>
+                
+                <!-- 3. Cristal de ADN (DNA) - junto a la hélice especial, altura 60% -->
+                <div class="absolute cursor-pointer hover:rotate-12 transition-all duration-300" 
+                     style="left: 49%; top: 230px;"
+                     onclick="selectNode('our-approach')">
+                    <!-- Cristal hexagonal con estructura de ADN -->
+                    <div class="relative">
+                        
+
+                            
+                            <!-- Puntos de conexión -->
+                            <circle cx="27.5" cy="18" r="2" fill="#ffffff"/>
+                            <circle cx="27.5" cy="27" r="2" fill="#fbbf24"/>
+                            <circle cx="27.5" cy="36" r="2" fill="#ffffff"/>
+                        </svg>
+                        <!-- Energía radiante -->
+                        <div class="absolute inset-0 w-14 h-14 bg-orange-400 opacity-20 blur-lg animate-pulse"></div>
+                    </div>
+                    <!-- Etiqueta -->
+                    <div class="unlock-button">
+                          <span style="color: #fff">Our Approach</span>
+                    </div>
+                </div>
+                
+                <!-- Arrow from DNA to Software (extending outside galaxy) -->
+                <div class="absolute" style="left: 53%; top: 75%;">
+                    <svg>
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                                    refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 5, 0 7" fill="white" />
+                            </marker>
+                        </defs>
+                        <line x1="0" y1="10" x2="298" y2="10" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />
+                    </svg>
+                </div>
+                
+                <!-- Software text (outside galaxy, in white area) -->
+                <div class="absolute text-lg font-semibold text-black" style="left: 77%; top: 75%;">
+                    Software
+                </div>
+                
+                <!-- Arrow from Software to TADPOLE -->
+                <div class="absolute" style="left: 79%; top: 28%;">
+                    <svg>
+                        <defs>
+                            <marker id="arrowhead2" markerWidth="10" markerHeight="7" 
+                                    refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="00000" />
+                            </marker>
+                        </defs>
+                        <line x1="10" y1="240" x2="10" y2="5" stroke="grey" stroke-width="2" marker-end="url(#arrowhead2)"/>
+                    </svg>
+                </div>
+                
+                <!-- Generalised text -->
+                <div class="absolute text-lg font-semibold text-black" style="left: 81%; top: 50%;">
+                    Generalise
+                </div>
+                
+                <!-- 4. Renacuajo en estanque (TADPOLE) - fuera de galaxia, más arriba -->
+                <div class="absolute cursor-pointer hover:rotate-12 transition-all duration-300" 
+                     style="left: 82%; top: 30%;"
+                     onclick="selectNode('tadpole-play')">
+                    
+                    <!-- Etiqueta -->
+                    <div class="unlock-box">
+                          <span>TADPOLE</span>
+                    </div>
+                </div>
+                
+            </div>
+
+       <!-- CONTENT SECTIONS -->
+        <section id="rna-control" class="need-content-section  active">
+            <h1 class="section-title">🔓 Unlocking RNA control beyond the old playbook</h1>
+            <p class="section-text"><span class="italic-word">(<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/model">see more on Model</a>)</span></p>
+            <p class="section-text">Synthetic biology aims to program biological systems to perform defined tasks. For decades, the field has primarily relied on transcriptional control, using DNA elements like promoters and transcription factors to regulate gene expression. While this approach has enabled countless breakthroughs, it comes with significant limitations.</p>
+            
+            <p class="section-text">Transcriptional regulation is a complex and often slow process. It involves numerous factors like the binding of proteins to DNA, the intricate dynamics of RNA polymerase, and the presence of regulatory sequences (enhancers and silencers). This complexity can lead to undesirable effects such as cross-talk between low-specificity transcription factors, stochastic noise in gene expression, and slow response times, as the process involves multiple steps from DNA to protein. These shortcomings create a bottleneck for advanced applications like biomanufacturing and gene therapy, which demand precise, rapid, and multi-layered control.</p>
+            
+            <p class="section-text">Recognising these limitations, the field has increasingly explored alternative regulatory layers, particularly at the translational level. For a long time, the design of translational control tools has been limited to basic approaches like simple riboswitches and small RNAs (sRNAs), which primarily function by capturing the Ribosome Binding Site (RBS) or Internal Ribosome Entry Site (IRES) to block or enable protein synthesis. While effective, these methods often represent a basic, "one-size-fits-all" solution. We call this Riboswitches, small RNAs, etc. a <span class = "highlight-word info-word" data-target="cre-info">Conformational RNA Element (CRE)</span>. A CRE is an RNA sequence that adopts a particular structure in response to external factors like small molecules (ligands), temperature, or sRNAs.</p>
+        </section>
+
+        <section id="design-space" class="need-content-section">
+            <h1 class="section-title">A new design space: Functional RNA Elements</h1>
+            <p class="section-text">The next leap in this field is to use more sophisticated <span class = "highlight-word info-word" data-target="fre-info">Functional RNA Element (FRE)</span>  to engineer highly specific and efficient translational switches. An FRE is a sequence of RNA that, when folded into a specific secondary or tertiary structure, performs a biological function without the need for a protein catalyst. The crucial distinction with a <span class = "highlight-word info-word" data-target="cre-info">Conformational RNA Element (CRE)</span>  is that a FRE's folded shape performs a specific function, unlike a CRE, which simply adopts a particular structure in response to external factors like aptamers, temperature, or small RNAs, without a concrete function.</p>
+            
+            <p class="section-text"><span class="italic-word">(<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/model">more details on Functional RNA Elements and Conformational RNA Elements can be found on our Model page</a>)</span></p>
+            
+            <!-- KEY CONCEPTS CARDS -->
+            <div class="cards-container">
+                <div class="card">
+                    <h3 class="card-title">CRE - Conformational RNA Element</h3>
+                    <p>RNA sequence that adopts a particular structure in response to external factors like ligands, temperature, or sRNAs.</p>
+                    <a class=" btn btn-primary" href="https://2025.igem.wiki/barcelona-ub/model">Learn More</a>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">FRE - Functional RNA Element</h3>
+                    <p>RNA sequence that performs a biological function when folded into specific structure, without needing protein catalyst.</p>
+                    <a class=" btn btn-primary" href="https://2025.igem.wiki/barcelona-ub/model">Learn More</a>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">SECIS Element</h3>
+                    <p>Highly conserved RNA hairpin that directs ribosome to bypass UGA stop codon and incorporate selenocysteine.</p>
+                    <a class=" btn btn-primary" href="https://2025.igem.wiki/barcelona-ub/parts">Part Details</a>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Aptamer</h3>
+                    <p>Short RNA/DNA molecule that folds into 3D shape to bind target ligand, changing structure to control gene expression.</p>
+                    <a class=" btn btn-primary" href="https://2025.igem.wiki/barcelona-ub/parts">Part Details</a>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Linker</h3>
+                    <p>Short 6-10 nucleotide RNA hinge crucial for connecting CRE to FRE and enabling reliable switching.</p>
+                    <a class=" btn btn-primary" href="https://2025.igem.wiki/barcelona-ub/parts">Part Details</a>
+                </div>
+            </div>
+            
+            <p class="section-text">This is precisely where our project began. We aimed to combine an FRE, a SCR element known as <span class="bold-word">"SECIS"</span><sup>[5]</sup></span>, with a ligand-responsive aptamer.</p>
+            
+            <p class="section-text">The linker, a short 6–10 nucleotide RNA hinge, is crucial for connecting a <span class = "highlight-word info-word" data-target="cre-info">Conformational RNA Element (CRE)</span>  to a <span class = "highlight-word info-word" data-target="fre-info">Functional RNA Element (FRE)</span> ) and enabling reliable switching. Its sequence and length shape how the CRE and FRE fold and interact. With proper design, the linker ensures consistent ON/OFF control <span class="italic-word">(<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/parts">More details on aptamers are available on its Part Composite page</a>)</span></p>
+            
+            <p class="section-text">By fusing There are two possible RNA switch designs: ON-ON and OFF-ON (IMAGES). 
+            <ul class="point-list">
+              <li>ON-ON configuration: When the CRE is stimulated by the external input, the FRE is active.</li>
+              <li>OFF-ON configuration: When the CRE is not stimulated by the external input, the FRE is active. </li>
+            </ul>
+            To simplify the explanation of our Software’s inner workings, we will be using an ON-ON case example. Both types of RNA switches (ON-ON/OFF-ON) follow the same basic design principles. 
+            </p>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+              <iframe 
+                src="https://video.igem.org/videos/embed/muyboCpS2HhfYNCueDWDvT?autoplay=1&loop=1&muted=1" 
+                title="Barcelona-UB: RNA_Switches (2025) [English]" 
+                allow="autoplay; fullscreen" 
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                       border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 0;"
+              ></iframe>
+            </div>
+
+          </section>
+
+        <section id="our-approach" class="need-content-section">
+            <h1 class="section-title"> Our Approach</h1>
+            <p class="section-text">The design of such a system is far from trivial. It requires precise engineering of RNA structures and linkers to ensure the switch functions correctly and to prevent off-target effects. The vast design space of possible sequences and structures makes manual or simple trial-and-error approaches inefficient and time-consuming.</p>
+            
+            <p class="section-text">This is why <span class="highlight-word">TADPOLE was developed: To aid in the wet lab project design</span>.</p>
+            
+            <p class="section-text">It automates the design process focused on achieving two distinct, stable states: ON and OFF:</p>
+             <ul class="point-list">
+                <li><span class="bold-word">Design Proposal Generation:</span> TADPOLE's algorithms (<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/software-technicalities">which you will learn about in our Software Technicalities page</a>) systematically generate a large number of RNA sequence proposals.</li>
+                <li><span class="bold-word">Structural and Thermodynamic Prediction:</span> Powered by ViennaRNA<sup>[1]</sup>, for each sequence, the secondary structures and minimum free energies (MFEs) are predicted for both the ON and OFF states.</li>
+                <li><span class="bold-word">Design Evaluation:</span> The software evaluates each proposal against a set of key design principles, such as the required energy difference between the ON and OFF states (ΔMFE) and the structural stability of each conformation (<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/model">see more information on the Model page</a>).</li>
+                <li><span class="bold-word">Linker Optimisation:</span> A key part of the process is designing the optimal linker sequence between the FRE and the CRE. TADPOLE's algorithms ensure this linker facilitates the correct folding of both the ON and OFF conformations.</li>
+                <li><span class="bold-word">Output Analysis:</span> Finally, it provides you with a set of optimal designs that meet all of the design criteria, ready for experimental testing.</li>
+            </ul>
+            <div style="text-align: center; margin: 20px 0;">
+              <img 
+                src="https://static.igem.wiki/teams/5622/images/software/tadpole-steps.webp" 
+                alt="Ejemplo de imagen" 
+                style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+              >
+            </div>
+
+        </section>
+
+        <section id="tadpole-play" class="need-content-section">
+            <div class="highlight-section">
+              <h1 class="section-title featured-title">
+                <img src="https://static.igem.wiki/teams/5622/images/software/tadpole.webp" 
+                     alt="Frog icon" 
+                     style="height: 2em; vertical-align: middle; margin-right: 8px;">
+                TADPOLE Comes into Play
+              </h1>
+              <p class="section-text featured-text">
+                The revolutionary tool that democratizes RNA switch design
+              </p>
+            </div>
+
+            
+            <h2 class="section-subtitle">Tadpole: Small Beginning, Endless Possibilities</h2>
+            <p class="section-text">While our work in the lab focused on the SECIS+Aptamer model, we quickly realised that our approach could be generalised to any FRE. This insight pushed us to create TADPOLE as a tool to share with the synthetic biology community.</p>
+            
+            <p class="section-text">However, the true value of our tool became clear when we recognised that not only could aptamers be used as CREs, but so could many other elements, such as mini-RNAs. This inspiration came directly from exploring past iGEM projects: the <a href="#impact-section" style="text-decoration: none;"><span class="highlight-word">UParis-BME 2021 team</span></a>  worked with mini-RNAs, designing a hairpin structure that would unfold to reveal a ribosome binding site (RBS). With Tadpole, we can take it to the next level: enabling a generalised design framework. Any conformational element, whether a hairpin like UParis-BME's, an aptamer, or even temperature-sensitive motifs, can be paired with functional RNA elements to create versatile, customizable switches. In this way, Tadpole doesn't just substitute or improve past efforts: it can also amplify their possibilities, turning isolated designs into part of a broad, systematic toolkit.</p>
+            
+            <div class="impact-highlight">
+                <p class="section-text">And this is where the true impact lies: <span class="highlight-word">Tadpole goes beyond saving time or simplifying workflows; it democratizes access to an entirely new design space</span>. Not just skipping the limits of transcriptional control, but going beyond traditional translation regulation, by making the design of translational switches systematic, intuitive, and scalable.</p>
+                
+                <p class="section-text">Through an easy-to-use interface, an open-source package, and standards-based outputs, Tadpole ensures that the potential of RNA-level regulation becomes a shared resource rather than a niche tool. This way, the innovation can accelerate at the pace of community creativity, empowering every iGEM team and every lab to help build the next generation of biological control.</p>
+            </div>
+            
+            <p class="section-text">The impact of TADPOLE extends far beyond our laboratory. By democratizing access to sophisticated RNA switch design, we enable:</p>
+             <ul class="point-list">
+                <li><span class="bold-word">Accelerated Research:</span> Researchers can focus on innovation rather than tedious design iterations</li>
+                <li><span class="bold-word">Educational Access:</span> Students and new researchers can engage with advanced concepts through intuitive tools</li>
+                <li><span class="bold-word">Community Building:</span> Shared standards and open-source availability foster collaboration</li>
+                <li><span class="bold-word">Therapeutic Applications:</span> Faster development of RNA-based therapeutics and biosensors</li>
+                <li><span class="bold-word">Industrial Innovation:</span> Enhanced biomanufacturing through precise translational control</li>
+            </ul>
+        </section>
+
+      <hr style="border: none; height: 2px; background-color: black; margin: 40px 0;">
+
+
+      <!-- EXCEEDING STANDARDS SECTION -->
+      <section id="exceeding-standards">
+        <h1 class="main-section-title">Exceeding Standards</h1>
+        <p class="main-section-desc">A comprehensive ecosystem designed to make advanced synthetic biology accessible to all users</p>
+        
+        <p class="section-text">
+          TADPOLE is more than just a computational tool: it is a complete ecosystem designed to make advanced synthetic biology 
+          accessible to all users. Its multifaceted design ensures that biologists without programming experience, bioinformaticians, 
+          and developers can use it efficiently. More than just writing code, we built a comprehensive platform for RNA switch design.
+        </p>
+
+        <!-- ECOSYSTEM OVERVIEW -->
+         <div class="image-container">
+          <!-- Title outside the menu box -->
+        <div class="mb-4">
+    <h2 class="text-xl font-extrabold tracking-wide text-slate-800" style="color: var(--color-intense-2);">CLICK EACH ELEMENT TO EXPLORE THE SECTIONS</h2>
+</div>
+        
+          <div style="background: linear-gradient(135deg, #8e44ad, #9b59b6); padding: 40px; border-radius: 15px; color: white; margin: 30px 0;">
+            <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8em;">TADPOLE Accessibility Ecosystem</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+              <div class="ecosystem-card" data-target="web-interface" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🌐</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Interactive Web Interface</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Streamlit-based GUI for all users</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ No programming required</li>
+                  <li>✓ Real-time visualization</li>
+                  <li>✓ Online & local deployment</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="python-toolkit" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🐍</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Python Toolkit</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Modular library & CLI for developers</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ Easy pip installation</li>
+                  <li>✓ Modular components</li>
+                  <li>✓ Command-line interface</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="rest-api" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">⚡</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">REST API <span class = "highlight-word info-word" data-target="hp-card4">&#128161</span></h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Programmatic access for integration</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ JSON endpoints</li>
+                  <li>✓ Automation support</li>
+                  <li>✓ Pipeline integration</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="docker-container" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🐳</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Docker Container</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Reproducible deployment solution</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ One-command setup</li>
+                  <li>✓ All dependencies included</li>
+                  <li>✓ Cross-platform compatibility</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="validation-qa" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🔬</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Validation & Quality</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Rigorous testing & verification</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ In silico validation</li>
+                  <li>✓ Wet lab verification</li>
+                  <li>✓ Continuous testing</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="interoperability" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🔗</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Standards & Interoperability</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">SBOL3 export & open standards</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ SBOL3 format support</li>
+                  <li>✓ ViennaRNA<sup>[1]</sup> & Biopython<sup>[2]</sup></li>
+                  <li>✓ MIT open-source license</li>
+                </ul>
+              </div>
+              
+              <div class="ecosystem-card" data-target="community-sustainability" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🌱</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Community & Sustainability</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Long-term development & support</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ Open development</li>
+                  <li>✓ Educational resources</li>
+                  <li>✓ Regular updates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAILED SECTIONS -->
+        <section id="web-interface" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Interactive Web Interface (User Friendly)</h2>
+          <p class="section-text">
+            TADPOLE offers an <a class="link-text" href="https://toolkit-m4g6.onrender.com/">interactive web</a> interface that serves as the most accessible entry point for users of all skill levels. Built with Streamlit, it transforms complex bioinformatics workflows into a simple, guided process without requiring programming knowledge.
+          </p>
+          <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+            <iframe 
+              src="https://video.igem.org/videos/embed/cZqT8Nfzo6KkXv7zkn9tma?autoplay=1&loop=1&muted=1" 
+              title="Barcelona-UB: Tadpole_render (2025) [English]" 
+              allow="autoplay; fullscreen" 
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                     border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 0;"
+            ></iframe>
+          </div>
+
+          <h3 class="section-subtitle2">Design and Usability</h3>
+          <p class="section-text">
+            The Streamlit interface is intuitive and structured, with tabs and side menus (st.sidebar) that let users navigate through the main functionalities: from core design tools to a detailed help section. Elements like buttons, radio selectors (st.radio), and text input fields (st.text_input) collect essential user data, including RNA sequences and search parameters.
+          </p>
+          
+          <h3 class="section-subtitle2">Real-Time Visualization</h3>
+          <p class="section-text">
+            One of the interface's most notable features is real-time visualization of results. As the analysis runs, Streamlit displays progress and outputs directly on the web page, including:
+          </p>
+           <ul class="point-list">
+            <li><strong>Search Results:</strong> Tables with candidate sequences, structures, and energies (See report below <span class = "highlight-word info-word" data-target="hp-card3">&#128161</span>)</li>
+            
+            <li><strong>Structure Visualizations:</strong> Images of RNA structures in both ON and OFF states</li>
+            
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 20px 0; text-align: center;">
+  
+              <!-- Imagen ON state -->
+              <div>
+                <h3>ON state</h3>
+                <img src="https://static.igem.wiki/teams/5622/images/software/on-state.webp" 
+                     alt="ON state" 
+                     style="width: 300px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+              </div>
+            
+              <!-- Imagen OFF state -->
+              <div>
+                <h3>OFF state</h3>
+                <img src="https://static.igem.wiki/teams/5622/images/software/off-state.webp" 
+                     alt="OFF state" 
+                     style="width: 300px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+              </div>
+            
+            </div>
+              <div style="display: flex; gap: 20px; align-items: center; margin: 20px 0; font-family: sans-serif;">
+  
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <span style="display: inline-block; width: 20px; height: 20px; background-color: red; border-radius: 3px;"></span>
+                <span>Linker</span>
+              </div>
+            
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <span style="display: inline-block; width: 20px; height: 20px; background-color: blue; border-radius: 3px;"></span>
+                <span>Aptamer (CRE)</span>
+              </div>
+            
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <span style="display: inline-block; width: 20px; height: 20px; background-color: green; border-radius: 3px;"></span>
+                <span>SECIS (FRE)</span>
+              </div>
+            
+            </div>
+              <li><strong>Clustering Metrics:</strong> Organized displays of clustering results, enabling exploration of design families (See report below <span class = "highlight-word info-word" data-target="hp-card3">&#128161</span>)</li>
+          </ul>
+          <p>
+          Even thought there are other formats to download the results, the report returns the clustering metrics and the tables:
+          </p>
+          <div style="border: 2px dashed #999; border-radius: 8px; padding: 10px; margin: 20px 0;">
+            <object 
+              data="{{ url_for('static', filename='images/report.html') }}" 
+              type="text/html" 
+              style="width: 100%; height: 600px;"
+            >
+              Your browser does not support embedding HTML.
+            </object>
+          </div>
+
+          <h3 class="section-subtitle2">Barrier-Free Accessibility</h3>
+          <p class="section-text">
+            The TADPOLE interface makes the software accessible in two main ways:
+          </p>
+           <ul class="point-list">
+            <li><strong>Online Access:</strong> Deployed on a public web page (via Render), allowing any user to run the tool from a browser without installing additional software or configuring a local environment. Ideal for biologists or students unfamiliar with command-line tools.</li>
+            <li><strong>Local Use:</strong> Advanced users or developers can run the interface on their own machine. The README.md provides step-by-step instructions, simplified further by Docker, ensuring all dependencies are automatically managed and the environment is fully reproducible.</li>
+          </ul>
+          
+          <p class="section-text">
+            The Streamlit interface is more than just a component; it's the key piece that democratizes access to advanced synthetic biology, allowing a wide range of users to design RNA switches efficiently.
+          </p>
+        </section>
+
+        <section id="python-toolkit" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Python Toolkit (Package and CLI)</h2>
+          <p class="section-text">
+            TADPOLE goes beyond the web interface by providing a full Python package and a command-line interface (CLI), offering advanced users and developers a flexible and powerful way to interact with the software.
+          </p>
+          
+          <h3 class="section-subtitle2">Python Package (Intermediate)</h3>
+          <p class="section-text">
+            TADPOLE is packaged as a Python library, making it easy to install and use in any development environment.
+          </p>
+          
+           <ul class="point-list">
+            <li><strong>Installation:</strong> The setup.py file specifies all project dependencies, ensuring a smooth and reliable installation. A single command (pip install .) installs the package along with essential libraries such as ViennaRNA<sup>[1]</sup>, Biopython<sup>[2]</sup>, sbol3, and scikit-learn. Any other external installation is explicited.</li>
+            <li><strong>Modular Code:</strong> Each functionality (genetic algorithm, clustering, secondary structure prediction) is implemented in an independent module. 
+              Users can import and reuse specific parts of TADPOLE in their own scripts or workflows without loading the full application. 
+              For example, the secondary structure prediction or linker search functions can be integrated directly into custom code. Examples are provided on the README file in Gitlab.</li>
+            <li><strong>Interoperability:</strong> As a Python-based package, TADPOLE integrates seamlessly with the rich ecosystem of Python libraries. This simplifies data conversions, whether to text strings, FASTA files, or other synthetic biology standards like SBOL.</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Command-Line Interface (CLI)</h3>
+          <p class="section-text">
+            For users who prefer speed and control, TADPOLE offers a CLI that enables direct execution of core functions.
+          </p>
+          
+           <ul class="point-list">
+            <li><strong>Quick Access:</strong> Predefined commands allow users to perform common tasks without navigating package modules. For instance, a genetic algorithm search can be executed with <code>tadpole ga_search</code>, or structure clustering with <code>tadpole cluster_structures</code>.</li>
+            <li><strong>Flexible Control:</strong> Users can specify input parameters directly, providing fine-grained control over software execution. The CLI is ideal for automating tasks, running batch searches, or integrating TADPOLE into larger bioinformatics pipelines.</li>
+            <li><strong>Batch Processing:</strong> Process multiple designs simultaneously for high-throughput applications</li>
+            <li><strong>Automation Support:</strong> Easy integration into shell scripts and computational pipelines</li>
+          </ul>
+          
+          <p class="section-text">
+            The Python toolkit, through both the package and CLI, offers advanced users flexibility, modularity, and automation, complementing the accessibility of the web interface while enabling powerful, custom workflows.
+          </p>
+          
+          <h3 class="section-subtitle2">Advanced Integration Features</h3>
+           <ul class="point-list">
+            <li><strong>Custom Workflows:</strong> Build complex analysis pipelines combining TADPOLE with other bioinformatics tools</li>
+            <li><strong>Parallel Processing:</strong> Even if parallel processing is not implemented on TADPOLE, the python package allows other developers to implement it for large-scale design projects</li>
+            <li><strong>Export Standards:</strong> Native support for SBOL3, FASTA, JSON, and other standard formats</li>
+            <li><strong>Extensible Framework:</strong> Easy to add new CREs, FREs, and custom design algorithms</li>
+          </ul>
+        </section>
+
+        <section id="rest-api" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">REST API (Advanced)</h2>
+          
+          <p class="section-text">
+            TADPOLE features a robust RESTful API built with the Flask micro-framework. This API transforms the software into a programmable tool, allowing other services and scripts to interact directly with its core RNA design functions. This architecture is essential for automation, integration into broader computational workflows, and the development of custom applications.
+          </p>
+          
+          <h3 class="section-subtitle2">1. Architecture and Endpoints</h3>
+          <p class="section-text">
+            The API follows a modular design, with each main functionality exposed through a dedicated endpoint:
+          </p>
+           <ul class="point-list">
+            <li><strong>/predict_secondary_structure:</strong> This endpoint accepts an RNA sequence via a POST request and uses TADPOLE's engine to predict its secondary structure and minimum free energy (MFE). It is ideal for rapid sequence analysis.</li>
+            <li><strong>/run_ga_search:</strong> This is the primary endpoint for design searches. It accepts a JSON object containing all necessary parameters for the genetic algorithm, including RNA sequences, linker length, mutable positions, and search criteria.</li>
+          </ul>
+          <p class="section-text">
+            Both endpoints communicate through JSON objects, ensuring seamless interoperability with any programming language.
+          </p>
+          
+          <h3 class="section-subtitle2">2. Functionality and Practical Use</h3>
+          <p class="section-text">
+            The API transforms TADPOLE from a desktop application into a web service, providing key usability benefits:
+          </p>
+           <ul class="point-list">
+            <li><strong>Automation:</strong> Users can automate repetitive design tasks. For example, a script can iterate over a list of aptamers, sending requests to the API to find the optimal linker for each one without manual intervention.</li>
+            <li><strong>Integration:</strong> The API enables TADPOLE to be embedded in bioinformatics pipelines. Laboratories or companies can incorporate TADPOLE's design logic into their workflows, alongside sequencing and visualization tools. The test_api.py file demonstrates how to interact with the API using Python's requests library, facilitating adoption by developers.</li>
+            <li><strong>Decoupling:</strong> The API separates business logic (design algorithms) from the user interface (Streamlit frontend). This allows maintainable and extensible development, as new interfaces—mobile or desktop—can be created without altering the core code.</li>
+          </ul>
+          
+          <p class="section-text">
+            TADPOLE's API is a foundational layer that reinforces accessibility and integration, making its powerful algorithms usable beyond the web interface on one hand, and the local execution on the other.
+          </p>
+        </section>
+
+        <section id="docker-container" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Containerized Environment (Docker, Advanced)</h2>
+          <p class="section-text">
+            TADPOLE's use of Docker represents a robust solution to common installation and reproducibility challenges in bioinformatics. 
+            Docker packages the entire application environment, ensuring the software runs identically on any system. Instructions on how to set up the Docker container can be found on the READ ME file in Gitlab.
+          </p>
+          
+          <h3 class="section-subtitle2">What is a Docker Container?</h3>
+          <p class="section-text">
+            A Docker container is like a self-contained box holding everything needed for an application to run: the code, libraries, system dependencies, and configurations. Unlike a virtual machine, which emulates a full operating system, a container is lightweight and efficient. This eliminates the frustration of a program working on one machine but not another.
+          </p>
+          
+          <h3 class="section-subtitle2">Implementation and Key Advantages</h3>
+          <p class="section-text">
+            TADPOLE's Docker setup is defined in a Dockerfile, which acts as a recipe for building the container image. Key steps include:
+          </p>
+          
+           <ul class="point-list">
+            <li><strong>System Dependencies Installation:</strong> TADPOLE relies on complex packages such as ViennaRNA<sup>[1]</sup> for structure prediction and Ghostscript for visualization. The Dockerfile installs these dependencies automatically, avoiding manual, error-prone setups.</li>
+            <li><strong>Environment Configuration:</strong> The file sets up the Conda and Python environment, installing all required libraries from requirements.txt.</li>
+            <li><strong>Code Copying:</strong> The application code is copied into the container, making it fully self-contained.</li>
+            <li><strong>Port Exposure:</strong> The Dockerfile exposes port 8501, the default port used by Streamlit, so the web interface is accessible outside the container.</li>
+            <li><strong>Execution Command:</strong> A default command starts the Streamlit application, enabling automatic container execution with a simple docker run command.</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">User Instructions</h3>
+          <p class="section-text">
+            For users, the process is drastically simplified: instead of manually installing and configuring multiple dependencies, all they have to do is follow the simple instructions on the README.
+          </p>
+          
+          <p class="section-text">
+            Docker ensures TADPOLE is portable and reproducible, eliminating compatibility issues and simplifying the installation experience for anyone wishing to run the tool locally.
+          </p>
+          
+          <h3 class="section-subtitle2">Technical Advantages</h3>
+           <ul class="point-list">
+            <li><strong>One-Command Setup:</strong> Install and run TADPOLE with a single Docker command</li>
+            <li><strong>Complete Environment:</strong> All dependencies including ViennaRNA<sup>[1]</sup>, Python libraries, and system requirements pre-configured</li>
+            <li><strong>Cross-Platform:</strong> Runs identically on Windows, macOS, and Linux systems</li>
+            <li><strong>Version Control:</strong> Tagged releases ensure consistent results across different environments</li>
+            <li><strong>Lightweight Design:</strong> Optimized container size for fast deployment</li>
+            <li><strong>Security:</strong> Non-root user execution and minimal attack surface</li>
+            <li><strong>Scalability:</strong> Easy horizontal scaling for high-throughput applications</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Deployment Options</h3>
+          <p class="section-text">
+            Supports various deployment scenarios: local development, cloud deployment (AWS, GCP, Azure), 
+            Kubernetes orchestration, and HPC cluster integration. Includes both web interface and 
+            command-line variants for different use cases.
+          </p>
+        </section>
+
+        <section id="validation-qa" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Validation and Quality Assurance</h2>
+          <p class="section-text">
+            TADPOLE has undergone extensive validation to ensure reliability, accuracy, and real-world applicability 
+            across diverse RNA switch design scenarios.
+          </p>
+          
+          <h3 class="section-subtitle2">Computational Validation</h3>
+           <ul class="point-list">
+            <li><strong>Thermodynamic Accuracy:</strong> VienaRNA used, a widely known project based on Thermodynamics</li>
+            <li><strong>Benchmark Testing:</strong> Comparison with existing tools and manual designs from literature</li>
+            <li><strong>Performance Metrics:</strong> Evaluation of 'unique' designs by analysing the different output structures</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Experimental Validation</h3>
+           <ul class="point-list">
+            <li><strong>Wet Lab Testing:</strong> Experimental verification of designed switches in living cells</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Quality Assurance</h3>
+           <ul class="point-list">
+            <li><strong>Documentation:</strong> Comprehensive documentation with examples and troubleshooting guides</li>
+            <li><strong>User Feedback:</strong> Active incorporation of user feedback and bug reports</li>
+          </ul>
+        </section>
+
+        <section id="interoperability" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Interoperability and Standards</h2>
+          <p class="section-text">
+            TADPOLE is designed as a highly interoperable package, enabling seamless integration into the broader synthetic biology ecosystem. This is achieved through adherence to standards and reliance on well-established libraries.
+          </p>
+          
+          <h3 class="section-subtitle2">SBOL3 (Synthetic Biology Open Language)</h3>
+          <p class="section-text">
+            TADPOLE can export RNA switch designs in SBOL3 format, a key standard for describing biological components and designs.
+          </p>
+           <ul class="point-list">
+            <li><strong>Standardized Description:</strong> An SBOL3 (.jsonld) file contains a complete and standardized description of the design, including the sequence, its biological role, and important metadata such as folding energies and performed mutations.</li>
+            <li><strong>Exchange and Reuse:</strong> By adhering to this standard, TADPOLE designs can be easily shared and imported into other design tools or synthetic biology databases. This promotes collaboration and accelerates innovation in the field.</li>
+          </ul>
+          <h3 class="section-subtitle">Restriction Enzymes Checked</h2>
+              <p>In our sequence generation code, we also check for the presence of restriction sites for commonly used type IIS enzymes. These enzymes are important in iGEM projects because they allow precise DNA assembly using techniques like Golden Gate cloning.</p>
+
+              <p>The type IIS restriction enzymes considered in our workflow are:</p>
+              <ul>
+                <li><span class="highlight-word">BbsI</span> → GAAGAC, GTCTTC</li>
+                <li><span class="highlight-word">BsaI</span> → GGTCTC, GAGACC</li>
+                <li><span class="highlight-word">BsmB</span> → CGTCTC, GAGACG</li>
+                <li><span class="highlight-word">BspQI </span> → GCTCTTC, GAAGAGC</li>
+                <li><span class="highlight-word">BtgZI</span> → GCGATG, CATCGC</li>
+                <li><span class="highlight-word">Esp3I</span> → CGTCTC, GAGACG</li>
+                <li><span class="highlight-word">PaqCI</span> → CACCTGC, GCAGGTG</li>
+                <li><span class="highlight-word">SapI</span>→ GCTCTTC, GAAGAGC</li>
+              </ul>
+            
+              <p>By checking for these restriction sites in the generated sequences, we ensure that the sequences can be safely used in cloning experiments without introducing unwanted cutting sites. This step helps prevent errors during assembly and is a standard practice in synthetic biology workflows.</p>
+            
+          <h3 class="section-subtitle2">Use of Recognized External Packages and Format Conversion</h3>
+          <p class="section-text">
+            TADPOLE builds on widely-used, well-documented libraries, ensuring reliability and smooth integration.
+          </p>
+           <ul class="point-list">
+            <li><strong>Reliability and Consistency:</strong> The software uses libraries like ViennaRNA<sup>[1]</sup> for RNA structure prediction and Biopython<sup>[2]</sup> for sequence handling and alignments. Leveraging these recognized tools guarantees that TADPOLE results are consistent with community bioinformatics standards.</li>
+            <li><strong>Seamless Integration:</strong> As a Python-based package, TADPOLE integrates seamlessly with the rich ecosystem of Python libraries. This simplifies data conversions, whether to text strings, FASTA files, or other synthetic biology standards like SBOL.</li>
+            <li><strong>Flexibility for Data Handling:</strong> Users can work with their data in the format that best suits their workflow, whether combining TADPOLE functionality with other Python libraries or converting outputs for downstream analysis.</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Open Source Licensing</h3>
+          <p class="section-text">
+            TADPOLE is released under the MIT License, an OSI (Open Source Initiative)-approved open-source license (https://opensource.org/licenses/MIT). This ensures that the software is freely available for use, modification, and distribution, supporting collaboration and further development within the synthetic biology community.
+          </p>
+          
+          <p class="section-text">
+            TADPOLE's design prioritizes interoperability, standardization, and integration, allowing its powerful RNA design algorithms to fit effortlessly into a variety of computational pipelines and collaborative workflows.
+          </p>
+          
+          <h3 class="section-subtitle2">Additional Standard Formats</h3>
+           <ul class="point-list">
+            <li><strong>Sequence Formats:</strong> Import/export in FASTA, GenBank, and other standard bioinformatics formats</li>
+            <li><strong>Structural Data:</strong> Vienna dot-bracket notation and CT format for RNA secondary structures</li>
+            <li><strong>Metadata Standards:</strong> Rich annotation support for design provenance and experimental conditions</li>
+            <li><strong>Laboratory Tools:</strong> Export formats compatible with DNA synthesis and cloning software</li>
+            <li><strong>Analysis Pipelines:</strong> Integration with popular bioinformatics workflow managers</li>
+          </ul>
+        </section>
+
+        <section id="community-sustainability" class="detail-section" style="display: none;">
+          <h2 class="section-subtitle2">Community and Sustainability</h2>
+          <p class="section-text">
+            TADPOLE is designed as a long-term community resource with sustainable development practices and 
+            comprehensive support for users and contributors.
+          </p>
+          
+          <h3 class="section-subtitle2">Community Engagement</h3>
+           <ul class="point-list">
+            <li><strong>Open Development:</strong> All development happens in public with transparent decision-making</li>
+            <li><strong>User Community:</strong> Active forums and communication channels for user support and feedback</li>
+            <li><strong>Educational Outreach:</strong> Workshops, tutorials, and educational materials for learning RNA design</li>
+            <li><strong>Collaboration:</strong> Partnerships with other synthetic biology tools and databases</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Sustainability Model</h3>
+           <ul class="point-list">
+            <li><strong>Institutional Support:</strong> Backing from academic institutions ensures long-term maintenance</li>
+            <li><strong>Modular Architecture:</strong> Clean, well-documented code facilitates community contributions</li>
+            <li><strong>Regular Updates:</strong> Scheduled releases with new features and bug fixes</li>
+            <li><strong>Backward Compatibility:</strong> Commitment to maintaining compatibility with existing workflows</li>
+          </ul>
+          
+          <h3 class="section-subtitle2">Future Development</h3>
+           <ul class="point-list">
+            <li><strong>Roadmap:</strong> Public development roadmap with community input on priorities</li>
+            <li><strong>Feature Requests:</strong> Systematic process for evaluating and implementing user-requested features</li>
+            <li><strong>Research Integration:</strong> Ongoing incorporation of latest RNA design research and methods</li>
+            <li><strong>Ecosystem Growth:</strong> Support for plugins and extensions to expand functionality</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- IMPACT SECTION -->
+      <section id="impact-section">
+        <h1 class="main-section-title">Impact</h1>
+        <p class="main-section-desc">Concrete examples of how TADPOLE transforms RNA-based regulation</p>
+        
+        <p class="section-text">
+          We have consistently said that TADPOLE represents the next step in the evolution of RNA-based regulation. Now it is time to illustrate this with concrete examples.
+        </p>
+
+        <p class="section-text">
+          Fortunately, the iGEM community has left us a rich legacy of projects, each one exploring unique ideas and approaches. These past achievements are more than inspiration—they form a living foundation that we can draw from. Some of these projects point toward strategies that TADPOLE can enhance or reimagine, others provide frameworks upon which we can build more sophisticated circuits, and still others simply spark ideas that take us in entirely new directions. The sheer diversity of these contributions highlights the creativity of the community and the endless possibilities for future innovation.
+        </p>
+
+        <!-- IMPACT CATEGORIES -->
+         <div class="image-container">
+          <!-- Title outside the menu box -->
+        <div class="mb-4">
+          <h2 class="text-xl font-extrabold tracking-wide text-slate-800" style="color: var(--color-intense-2);">CLICK EACH ELEMENT TO EXPLORE THE SECTIONS</h2>
+        </div>
+        
+          <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); padding: 40px; border-radius: 15px; color: white; margin: 30px 0;">
+            <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8em;">TADPOLE Impact Categories</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+              <div class="impact-card" data-target="kill-switches" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">💀</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Replacing Kill Switches</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">From slow protein cascades to instant RNA responses</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ NYCU-Taipei 2021 improvement</li>
+                  <li>✓ Kyoto 2023 enhancement</li>
+                  <li>✓ Faster, more precise control</li>
+                </ul>
+              </div>
+              
+              <div class="impact-card" data-target="riboswitches" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🔬</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Improving Riboswitches</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">Adding amplification and multifunctionality</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ PennState 2024 biosensor</li>
+                  <li>✓ Signal amplification</li>
+                  <li>✓ Enhanced sensitivity</li>
+                </ul>
+              </div>
+              
+              <div class="impact-card" data-target="toehold-switches" style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                <div style="font-size: 3em; margin-bottom: 15px;">🔄</div>
+                <h4 style="margin-bottom: 12px; font-size: 1.2em;">Building on Toehold Switches</h4>
+                <p style="font-size: 0.9em; margin-bottom: 15px; opacity: 0.9;">From simple detection to complex circuits</p>
+                <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0; opacity: 0.8;">
+                  <li>✓ UParis-BME 2021 foundation</li>
+                  <li>✓ Multi-functional RNA circuits</li>
+                  <li>✓ Cascading logic systems</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAILED IMPACT SECTIONS -->
+        <section id="kill-switches" class="impact-detail-section" style="display: none;">
+          <h2 class="section-subtitle2">💀 Replacing Protein-Based Kill Switches</h2>
+          
+          <p class="section-text">
+            Kill switches are essential safety mechanisms in synthetic biology, designed to eliminate engineered organisms when they are no longer needed or if they escape containment. However, traditional protein-based kill switches suffer from significant limitations that TADPOLE can address through RNA-level control.
+          </p>
+
+          <!-- NYCU-Taipei Example -->
+          <div class="impact-example">
+            <h3 class="section-subtitle2">A. NYCU-Taipei Kill Switch (iGEM 2021)</h3>
+            
+            <div class="card" style="background: #FFFFFF; margin: 20px 0;">
+              <h4 style="color: #1565c0; margin-bottom: 15px;">🔬 Original Project Overview</h4>
+              <p>The NYCU-Taipei team developed a kill switch system based on the MazE/MazF toxin-antitoxin pair. In their design, the antitoxin MazE is constitutively produced to neutralize the toxin MazF. When an external signal (like arabinose) is absent, MazE production stops, allowing MazF to kill the cell by cleaving mRNA molecules.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+              <div class="card" style="background: #ffebee;">
+                <h4 style="color: #c62828; margin-bottom: 15px;">❌ Fundamental Problems</h4>
+                 <ul class="point-list">
+                  <li><strong>Multi-step cascade delays:</strong> Signal absence → transcription stop → MazE protein degradation → MazF activation → mRNA cleavage</li>
+                  <li><strong>Protein half-life issues:</strong> MazE proteins persist after transcription stops, delaying kill switch activation</li>
+                  <li><strong>Energy waste:</strong> Continuous protein production required for maintenance</li>
+                  <li><strong>Escape potential:</strong> Cells can survive and potentially evolve resistance during the delay period</li>
+                  <li><strong>Leaky expression:</strong> Basal transcription can provide enough MazE to prevent killing</li>
+                </ul>
+              </div>
+              
+              <div class="card" style="background: #e8f5e8;">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ TADPOLE Revolutionary Approach</h4>
+                 <ul class="point-list">
+                  <li><strong>Direct RNA control:</strong> Aptamer directly senses signal presence/absence</li>
+                  <li><strong>Immediate response:</strong> No protein degradation waiting period</li>
+                  <li><strong>Energy efficient:</strong> No continuous protein production needed</li>
+                  <li><strong>Escape-proof:</strong> Instant activation prevents adaptation</li>
+                  <li><strong>Digital switching:</strong> Clear ON/OFF states with minimal leakiness</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #FF918B, #FF1D11); padding: 30px; border-radius: 15px; color: white; margin: 20px 0;">
+              <h4 style="margin-bottom: 20px; text-align: center;">TADPOLE Proposal: Kill Switch Design</h4>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                  <div style="font-size: 2em; margin-bottom: 10px;">1️⃣</div>
+                  <h5>Signal Detection</h5>
+                  <p style="font-size: 0.9em;">Aptamer directly binds survival signal (e.g., arabinose)</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                  <div style="font-size: 2em; margin-bottom: 10px;">2️⃣</div>
+                  <h5>Conformational Switch</h5>
+                  <p style="font-size: 0.9em;">Signal absence triggers ribozyme activation</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                  <div style="font-size: 2em; margin-bottom: 10px;">3️⃣</div>
+                  <h5>Immediate Cleavage</h5>
+                  <p style="font-size: 0.9em;">Active ribozyme cleaves essential mRNAs</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; text-align: center;">
+                  <div style="font-size: 2em; margin-bottom: 10px;">4️⃣</div>
+                  <h5>Rapid Cell Death</h5>
+                  <p style="font-size: 0.9em;">Cell death within minutes, not hours</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 4px solid #E70C00;">
+              <h4 style="color: #FF5249; margin-bottom: 15px;">Specific TADPOLE Design for NYCU-Taipei Improvement</h4>
+              <p><strong>Components:</strong></p>
+               <ul class="point-list">
+                <li><strong>CRE:</strong> Arabinose-binding aptamer (maintains same trigger as original)</li>
+                <li><strong>FRE:</strong> Ribozyme targeting essential mRNAs (e.g., those encoding ribosomal proteins)</li>
+                <li><strong>Logic:</strong> Arabinose present → ribozyme OFF → cell survives; Arabinose absent → ribozyme ON → cell dies</li>
+              </ul>
+              
+              <p><strong>Advantages over original:</strong></p>
+               <ul class="point-list">
+                <li>Response time: Hours → Minutes</li>
+                <li>Energy cost: High (continuous protein production) → Low (RNA-only)</li>
+                <li>Reliability: Variable (protein degradation dependent) → Consistent (direct RNA control)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Kyoto Example -->
+          <div class="impact-example">
+            <h3 class="section-subtitle">B. iGEM Kyoto Kill Switch (iGEM 2023)</h3>
+            
+            <div class="card" style="background: #FFFFFF; margin: 20px 0;">
+              <h4 style="color: #ef6c00; margin-bottom: 15px;">🔬 Original Project Overview</h4>
+              <p>The Kyoto team designed a population control system using quorum sensing. Their kill switch activates when cell density reaches a threshold, detected through accumulation of signaling molecules. The system uses protein-based detection and response cascades to trigger cell death, preventing overgrowth.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+              <div class="card" style="background: #ffebee;">
+                <h4 style="color: #c62828; margin-bottom: 15px;">❌ Critical Limitations</h4>
+                 <ul class="point-list">
+                  <li><strong>Complex cascade delays:</strong> Quorum molecule accumulation → receptor binding → transcriptional activation → lytic protein production</li>
+                  <li><strong>Threshold imprecision:</strong> Protein-based detection creates noisy, gradual responses</li>
+                  <li><strong>Resource burden:</strong> Multiple proteins required for sensing and killing</li>
+                  <li><strong>Population overshoot:</strong> Delays allow population to exceed target before control activates</li>
+                  <li><strong>Evolutionary pressure:</strong> Long response times select for resistant mutants</li>
+                </ul>
+              </div>
+              
+              <div class="card" style="background: #e8f5e8;">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ TADPOLE Precision Control</h4>
+                 <ul class="point-list">
+                  <li><strong>Direct molecular detection:</strong> Aptamer binds quorum molecules immediately</li>
+                  <li><strong>Sharp threshold response:</strong> Digital ON/OFF switching at precise concentrations</li>
+                  <li><strong>Minimal resource use:</strong> Single RNA molecule performs sensing and killing</li>
+                  <li><strong>Precise population control:</strong> Immediate response prevents overshoot</li>
+                  <li><strong>Evolution-resistant:</strong> Fast killing prevents selection pressure</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #FF918B, #E70C00); padding: 30px; border-radius: 15px; color: white; margin: 20px 0;">
+              <h4 style="margin-bottom: 20px; text-align: center;">TADPOLE Proposal: Quorum Sensing Kill Switch</h4>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🎯 Precise Detection</h5>
+                  <p style="font-size: 0.9em;">Aptamer designed to bind specific quorum sensing molecules (AHL, AI-2, etc.) with high affinity and specificity, providing sharp concentration thresholds.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">⚡ Instant Response</h5>
+                  <p style="font-size: 0.9em;">When quorum molecule concentration exceeds threshold, aptamer binding immediately activates ribozyme, bypassing all protein synthesis delays.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🎛️ Tunable Control</h5>
+                  <p style="font-size: 0.9em;">Aptamer affinity can be engineered to set precise population density thresholds, enabling fine-tuned population control.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 4px solid  #E70C00;">
+              <h4 style="color: #FF5249; margin-bottom: 15px;">Specific TADPOLE Design for Kyoto Enhancement</h4>
+              <p><strong>Components:</strong></p>
+               <ul class="point-list">
+                <li><strong>CRE:</strong> AHL-binding aptamer (or other quorum molecule-specific aptamer)</li>
+                <li><strong>FRE:</strong> Ribozyme targeting mRNAs encoding essential proteins</li>
+                <li><strong>Logic:</strong> Low density (low AHL) → ribozyme OFF → growth continues; High density (high AHL) → ribozyme ON → population reduction</li>
+              </ul>
+              
+              <p><strong>Performance improvements:</strong></p>
+               <p>TADPOLE transforms kill switches from slow, unreliable safety mechanisms into precise, immediate control systems:</p>
+               <ul class="point-list">
+                <li><strong>Speed Revolution:</strong> Hours → Minutes response times eliminate escape windows</li>
+                <li><strong>Precision Enhancement:</strong> Digital switching replaces gradual, noisy responses</li>
+                <li><strong>Efficiency Gains:</strong> RNA-only systems reduce metabolic burden</li>
+                <li><strong>Reliability Improvement:</strong> Direct molecular control eliminates cascade failures</li>
+                <li><strong>Safety Advancement:</strong> Faster, more reliable containment for engineered organisms</li>
+              </ul>
+              
+              <p style="margin-top: 15px;"><strong>This represents a paradigm shift:</strong> from kill switches as backup safety measures to kill switches as precise, real-time control systems that can be trusted for critical applications.</p>
+            </div>
+          </div>
+      </section>
+
+        <section id="riboswitches" class="impact-detail-section" style="display: none;">
+          <h2 class="section-subtitle2">🔬 Improving Traditional Riboswitches</h2>
+          
+          <p class="section-text">
+            Riboswitches are naturally occurring RNA structures that bind small molecules and regulate gene expression. While powerful, traditional riboswitches are limited to simple ON/OFF control of translation. TADPOLE transforms these basic switches into sophisticated, amplified detection systems.
+          </p>
+
+          <div class="impact-example">
+            <h3 class="section-subtitle">The Original Project: PennState (iGEM 2024)</h3>
+            
+            <div class="card" style="background: #FFFFFF; margin: 20px 0;">
+              <h4 style="color: #1565c0; margin-bottom: 15px;">🔬 Original Project Overview</h4>
+              <p>The PennState team developed a biosensor system to detect CA125, a glycoprotein biomarker associated with ovarian cancer. Their approach used a traditional riboswitch design where CA125 binding to an aptamer domain causes a conformational change that exposes a ribosome binding site (RBS), allowing translation of a fluorescent reporter protein. The system aimed to provide early detection of ovarian cancer through a simple, cost-effective biosensor.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+              <div class="card" style="background: #ffebee;">
+                <h4 style="color: #c62828; margin-bottom: 15px;">❌ Fundamental Limitations</h4>
+                 <ul class="point-list">
+                  <li><strong>Linear signal relationship:</strong> Output directly proportional to biomarker concentration - no amplification</li>
+                  <li><strong>Low sensitivity threshold:</strong> Requires high biomarker concentrations for detectable signal</li>
+                  <li><strong>Single function constraint:</strong> Can only control translation ON/OFF, limiting versatility</li>
+                  <li><strong>Slow protein-dependent readout:</strong> Relies on protein synthesis and folding for signal generation</li>
+                  <li><strong>Background noise issues:</strong> Leaky translation creates false positives</li>
+                  <li><strong>Limited dynamic range:</strong> Narrow window between background and saturation</li>
+                </ul>
+              </div>
+              
+              <div class="card" style="background: #e8f5e8;">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ TADPOLE Revolutionary Enhancements</h4>
+                 <ul class="point-list">
+                  <li><strong>Exponential signal amplification:</strong> One binding event triggers multiple catalytic cycles</li>
+                  <li><strong>Ultra-high sensitivity:</strong> Detection at picomolar concentrations</li>
+                  <li><strong>Multi-functional capability:</strong> By fusing them with FRE, we can enable Control splicing, cleavage, activation cascades</li>
+                  <li><strong>Rapid RNA-based readout:</strong> Immediate signal without protein synthesis delays</li>
+                  <li><strong>Digital switching:</strong> Sharp ON/OFF transitions minimize noise</li>
+                  <li><strong>Tunable dynamic range:</strong> Adjustable sensitivity and saturation points</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #FF918B, #E70C00); padding: 30px; border-radius: 15px; color: white; margin: 20px 0;">
+              <h4 style="margin-bottom: 20px; text-align: center;">TADPOLE Proposal: Amplified Riboswitch Design</h4>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🎯 Signal Amplification Mechanism</h5>
+                  <p style="font-size: 0.9em;">CA125 binding to aptamer triggers conformational change that activates a ribozyme. Each active ribozyme can cleave hundreds of substrate RNAs, creating exponential signal amplification from a single binding event.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">📈 Sensitivity Enhancement</h5>
+                  <p style="font-size: 0.9em;">Amplification has the potential to enable detection at concentrations 100-1000x lower than traditional riboswitches. Early-stage cancer detection becomes feasible with minimal sample volumes.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🔧 Functional Versatility</h5>
+                  <p style="font-size: 0.9em;">Beyond simple reporter activation, TADPOLE riboswitches can control RNA splicing, activate therapeutic RNAs, or trigger complex regulatory cascades for sophisticated biosensor networks.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 4px solid  #E70C00;">
+              <h4 style="color: #FF5249; margin-bottom: 15px;">Specific TADPOLE Design for CA125 Detection</h4>
+              
+              <p><strong>System Architecture:</strong></p>
+              <ol style="padding-left: 20px; margin-bottom: 20px;">
+                <li><strong>CRE Component:</strong> CA125-binding aptamer (maintains original specificity)</li>
+                <li><strong>FRE Component:</strong> Hammerhead ribozyme targeting reporter mRNA</li>
+                <li><strong>Linker Design:</strong> 8-nucleotide hinge optimized for conformational switching</li>
+                <li><strong>Reporter System:</strong> Multiple copies of cleavable reporter RNA for amplification</li>
+              </ol>
+              
+              <p><strong>Operational Logic:</strong></p>
+               <ul class="point-list">
+                <li><strong>OFF State (No CA125):</strong> Ribozyme sequestered by aptamer → No cleavage → High reporter signal</li>
+                <li><strong>ON State (CA125 present):</strong> Aptamer binding → Ribozyme release → Reporter cleavage → Signal reduction</li>
+              </ul>
+              
+              <p><strong>Performance Improvements:</strong></p>
+              <ul class="point-list">
+                    <li>Sensitivity: Low → High</li>
+                    <li>Response Time: Hours → Minutes</li>
+              </ul>
+                
+        </section>
+
+        <section id="toehold-switches" class="impact-detail-section" style="display: none;">
+          <h2 class="section-subtitle2">🔄 Building on Toehold Switches: UParis-BME (iGEM 2021)</h2>
+          
+          <p class="section-text">
+            Toehold switches represent one of the most successful RNA-based regulatory tools in synthetic biology. However, they are typically limited to simple translation control. TADPOLE transforms these foundational tools into sophisticated, multi-functional RNA circuits capable of complex logic and amplified responses.
+          </p>
+
+          <div class="impact-example">
+            <h3 class="section-subtitle">Original Project Foundation: SwitchMi Designer</h3>
+            
+            <div class="card" style="background: #FFFFFF; margin: 20px 0;">
+              <h4 style="color: #1565c0; margin-bottom: 15px;">🔬 Original Project Overview</h4>
+              <p>The UParis-BME team developed SwitchMi Designer, a computational tool for designing toehold switches that detect specific microRNAs. Their system uses RNA hairpin structures that sequester ribosome binding sites (RBS). When the target microRNA binds to the toehold region, it unfolds the hairpin, exposing the RBS and enabling translation of a reporter gene. This work established a reliable framework for microRNA detection with high specificity and low cross-reactivity.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+              <div class="card" style="background: #ffebee;">
+                <h4 style="color: #c62828; margin-bottom: 15px;">❌ Original System Constraints</h4>
+                 <ul class="point-list">
+                  <li><strong>Single function limitation:</strong> Only controls translation ON/OFF</li>
+                  <li><strong>No signal amplification:</strong> One microRNA binding = one protein produced</li>
+                  <li><strong>Protein-dependent readout:</strong> Requires time for protein synthesis and maturation</li>
+                  <li><strong>Limited logic capability:</strong> Simple binary response without complex processing</li>
+                  <li><strong>No cascading potential:</strong> Cannot trigger downstream RNA events</li>
+                  <li><strong>Static design:</strong> Fixed response without tunable parameters</li>
+                </ul>
+              </div>
+              
+              <div class="card" style="background: #e8f5e8;">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ TADPOLE Transformative Enhancements</h4>
+                 <ul class="point-list">
+                  <li><strong>Multi-functional capability:</strong> By fusing them with FRE, we can control ribozymes, splicing, RNA processing</li>
+                  <li><strong>Exponential amplification:</strong> One binding triggers hundreds of events</li>
+                  <li><strong>Immediate RNA readout:</strong> Direct RNA-level responses without protein delays</li>
+                  <li><strong>Complex logic processing:</strong> AND/OR gates</li>
+                  <li><strong>Cascading architecture:</strong> Multi-step RNA circuit activation</li>
+                  <li><strong>Tunable parameters:</strong> Adjustable sensitivity and response kinetics</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #FF918B, #E70C00); padding: 30px; border-radius: 15px; color: white; margin: 20px 0;">
+              <h4 style="margin-bottom: 20px; text-align: center;">TADPOLE Prposal: Enhancement Strategy</h4>
+              <p style="font-size: 1.1em; text-align: center; margin-bottom: 20px;">
+                Building on SwitchMi Designer's foundation to create next-generation RNA circuits
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🔧 Foundation Integration</h5>
+                  <p style="font-size: 0.9em;">Use the iGem team's tool SwitchMi Designer to search for validated toehold sequences as starting points, ensuring reliable microRNA recognition while adding functional complexity.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">⚡ Functional Expansion</h5>
+                  <p style="font-size: 0.9em;">Replace simple translation control with sophisticated RNA functions: ribozymes for cleavage, self-splicing introns for processing, aptamers for additional inputs.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                  <h5 style="margin-bottom: 15px;">🔗 Circuit Architecture</h5>
+                  <p style="font-size: 0.9em;">Create modular RNA circuits where toehold activation triggers cascades of RNA events, enabling complex information processing and amplified responses.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-by-step">
+              <h4 style="color: #9c27b0; margin-bottom: 20px;">Step-by-Step TADPOLE Enhancement Process:</h4>
+              
+              <div class="step-card" style="background: #ffdcda; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                <h5 style="color: #9c27b0; margin-bottom: 10px;">Step 1: Foundation - SwitchMi Designer Integration</h5>
+                <p><strong>Objective:</strong> Leverage existing validated toehold designs</p>
+                 <ul class="point-list">
+                  <li>Input target microRNA sequence into SwitchMi Designer</li>
+                  <li>Obtain thermodynamically validated toehold sequence with optimal binding kinetics</li>
+                  <li>Verify specificity against off-target microRNAs</li>
+                  <li>Use this sequence as the CRE component in TADPOLE design</li>
+                </ul>
+                <p><strong>Advantage:</strong> Builds on proven technology while maintaining reliability</p>
+              </div>
+
+              <div class="step-card" style="background: #ffdcda; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #3f51b5;">
+                <h5 style="color: #3f51b5; margin-bottom: 10px;">Step 2: Functional Enhancement - FRE Integration</h5>
+                <p><strong>Objective:</strong> Replace simple translation control with sophisticated RNA functions</p>
+                 <ul class="point-list">
+                  <li>Select appropriate FRE based on desired function:</li>
+                  <li style="margin-left: 20px;">• <strong>Ribozyme:</strong> For signal amplification through RNA cleavage</li>
+                  <li style="margin-left: 20px;">• <strong>Self-splicing intron:</strong> For conditional RNA processing</li>
+                  <li style="margin-left: 20px;">• <strong>SECIS element:</strong> For Stop Codon Readthrough<sup>[3]</sup> control</li>
+                  <li>Design optimal linker using TADPOLE algorithms</li>
+                  <li>Ensure proper folding in both ON and OFF states</li>
+                </ul>
+                <p><strong>Advantage:</strong> Transforms binary switch into multi-functional processor</p>
+              </div>
+
+              <div class="step-card" style="background: #ffdcda; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #009688;">
+                <h5 style="color: #009688; margin-bottom: 10px;">Step 3: Circuit Architecture - Multi-Level Control</h5>
+                <p><strong>Objective:</strong> Create sophisticated RNA circuits with complex logic</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                  <div style="background: rgba(0,150,136,0.1); padding: 15px; border-radius: 8px;">
+                    <p><strong>OFF State Architecture:</strong></p>
+                     <ul class="point-list">
+                      <li>Toehold hairpin sequesters FRE</li>
+                      <li>FRE remains inactive</li>
+                      <li>Downstream targets unaffected</li>
+                      <li>Circuit in standby mode</li>
+                    </ul>
+                  </div>
+                  <div style="background: rgba(0,150,136,0.1); padding: 15px; border-radius: 8px;">
+                    <p><strong>ON State Architecture:</strong></p>
+                     <ul class="point-list">
+                      <li>microRNA binding unfolds hairpin</li>
+                      <li>FRE becomes active and functional</li>
+                      <li>Triggers cascade of RNA events</li>
+                      <li>Amplified, multi-functional response</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <p><strong>Advanced Functions Enabled:</strong></p>
+                 <ul class="point-list">
+                  <li><strong>Signal Amplification:</strong> Ribozyme cleaves multiple substrate RNAs</li>
+                  <li><strong>Conditional Processing:</strong> Self-splicing introns enable/disable gene expression</li>
+                  <li><strong>Logic Gates:</strong> Multiple toehold inputs create AND/OR logic</li>
+                  <li><strong>Cascading Circuits:</strong> Output of one switch becomes input for another</li>
+                </ul>
+              </div>
+
+              <div class="step-card" style="background: #ffdcda; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #FF918B;">
+                <h5 style="color: #FF918B; margin-bottom: 10px;">Step 4: Advanced Applications - Next-Generation RNA Circuits</h5>
+                <p><strong>Objective:</strong> Implement sophisticated biological computing</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                  <div style="background: #FF918B; padding: 15px; border-radius: 8px;">
+                    <h6 style="color: #560400; margin-bottom: 10px;">Diagnostic Networks</h6>
+                     <ul class="point-list">
+                      <li>Multiple microRNA detection</li>
+                      <li>Disease signature recognition</li>
+                      <li>Quantitative readouts</li>
+                    </ul>
+                  </div>
+                  
+                  <div style="background: #FF918B; padding: 15px; border-radius: 8px;">
+                    <h6 style="color: #560400 ; margin-bottom: 10px;">Therapeutic Circuits</h6>
+                     <ul class="point-list">
+                      <li>Conditional drug activation</li>
+                      <li>Cell-type specific responses</li>
+                      <li>Feedback-controlled therapy</li>
+                    </ul>
+                  </div>
+                  
+                  <div style="background: #FF918B; padding: 15px; border-radius: 8px;">
+                    <h6 style="color: #560400 ; margin-bottom: 10px;">Biosafety Systems</h6>
+                     <ul class="point-list">
+                      <li>Multi-input kill switches</li>
+                      <li>Environmental monitoring</li>
+                      <li>Containment circuits</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #ffdcda; padding: 25px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+              <h4 style="color: #9c27b0; margin-bottom: 15px;">Concrete Example: Enhanced microRNA Cancer Detection</h4>
+              
+              <p><strong>Original UParis-BME Approach:</strong></p>
+               <ul class="point-list">
+                <li>miR-21 (cancer-associated microRNA) → Toehold unfolds → GFP translation → Fluorescent signal</li>
+                <li>Simple binary readout: Cancer present/absent</li>
+              </ul>
+              
+              <p><strong>TADPOLE Enhancement:</strong></p>
+              <ol style="padding-left: 20px; margin: 15px 0;">
+                <li><strong>Multi-input Detection:</strong> Toeholds for miR-21, miR-155, miR-210 (cancer signature)</li>
+                <li><strong>Logic Processing:</strong> AND gate requires 2+ microRNAs for activation</li>
+                <li><strong>Amplified Response:</strong> Activation triggers ribozyme that cleaves 100+ reporter RNAs</li>
+                <li><strong>Quantitative Output:</strong> Cleavage rate proportional to cancer progression</li>
+                <li><strong>Therapeutic Activation:</strong> Same circuit can activate anti-cancer siRNA</li>
+              </ol>
+              
+            
+                </div>
+              </div>
+            
+
+            <div style="background: #ffdcda; padding: 25px; border-radius: 10px; border-left: 4px solid #FF5249;">
+              <h4 style="color: #FF5249; margin-bottom: 15px;">Revolutionary Impact: From Simple Switches to RNA Computers</h4>
+              
+              <p><strong>Paradigm Transformation:</strong></p>
+               <ul class="point-list">
+                <li><strong>Computational Complexity:</strong> Simple binary switches → Multi-input logic processors</li>
+                <li><strong>Response Amplification:</strong> Linear responses → Exponential amplification</li>
+                <li><strong>Functional Scope:</strong> Detection only → Detection + processing + action</li>
+                <li><strong>Circuit Integration:</strong> Isolated switches → Networked RNA computers</li>
+                <li><strong>Therapeutic Potential:</strong> Diagnostic tools → Theranostic systems</li>
+              </ul>
+              
+              <p style="margin-top: 15px;"><strong>Community Impact:</strong> TADPOLE doesn't replace SwitchMi Designer—it elevates it. Teams can use their proven toehold designs as building blocks for sophisticated RNA circuits, accelerating innovation while maintaining reliability. This represents the evolution from RNA switches to RNA computers, opening entirely new possibilities for synthetic biology applications.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="validation">
+          <h1 class="main-section-title">Experimental Validation</h1>
+
+          In <a style="text-decoration: none;" href="#need">
+            <span class="highlight-word info-word">The Need for TADPOLE</span>
+          </a> section, 'Our Approach' subsection, we explained the expectations we had when building the software, 
+          and how exactly we expected it to help us design our systems: with 
+          <span class="highlight-word info-word" data-target="semi-rational">semi-rational design.</span>
+        
+          <p>
+            <b>And the results reflect this approach perfectly:</b>
+          </p>
+        
+          <ul class="point-list">
+            <li>
+              We finally did not need to rely on experimental testing as 
+              <span class="highlight-word">all 4 different systems we tested in the lab correctly worked as switches</span>. 
+              This shows that our considerations about energy and nucleotide complementarity were good enough to design functional systems. 
+              It would be virtually impossible to obtain 4 working switches by chance from just 4 random sequences.
+            </li>
+            <li>
+              At the same time, the structural predictions were not completely accurate.
+              While the software suggested an ON–ON system, the lab results showed an OFF–ON system 
+              (see details in the Model or Engineering page).
+            </li>
+          </ul>
+        
+          <p>
+            This outcome validates the value of a semi-rational approach: even with imperfect structural 
+            predictions, our tool could reduce the design space enough to reliably generate functional switches.
+          </p>
+        
+          <h2>What happened exactly?</h2>
+          <p>The results in the lab show that:</p>
+          <ul>
+            <li>Without theophylline: we have Readthrough</li>
+            <li>With theophylline: less Readthrough</li>
+          </ul>
+        
+          <b>Important consideration</b><br><br>
+          Despite the fact we have been dealing in absolutes regarding FRE activity ("Functional / Non-functional"), it is important to remember that in the lab these systems work in relatives. <br>
+          Elements like STOP codon readthrough sequences, or frameshift structures, are able to trigger their function to a certain level, but they never reach 100%.
+          <br><br>
+          When isolated, SECIS performed in a cell-free assay with a certain percentatge of readthrough induction (<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/results">see more on Results</a>).
+          <br><br>
+          What we predicted as the OFF state shows less Readthrough than with the isolated SECIS (<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/results">see more on Results</a>), 
+          <b>therefore our prediction of the OFF state was correct</b>: there is indeed a reduction on the level of Readthrough.
+          <br><br>
+          However, what should have been the ON state, shows less Readthrough: about half (<a class="link-text" href="https://2025.igem.wiki/barcelona-ub/results">see more on Results</a>). 
+          This means that, instead of recovering its functional structure, when theophylline is added, 
+          the structural change disrupts the FRE even more. This deviation with predictions is most likely
+          due to the limitations we already explained about RNAFold, more precisely, the fact that <b>it is not
+          able to predict the non-canonical base pairings located at the heart of the functional core of SECIS, the most important part of the element</b>.
+          <br><br>
+        
+          <h3>So what is working?</h3>
+          <div style="margin-bottom: 0.1rem;  background: #f9f9f9; border-left: 4px solid #560400; padding: 12px 16px; border-radius: 8px;">
+            <p>
+              We wanted the model to compute two states in which the addition of theophylline would provoke a structural change.
+              <span style="color:#007acc;">&#8594;</span>
+              <b>There is a structural change in our system when theophylline is added that modulates functionality</b>
+              <span style="color:#007acc;">&#8594;</span>
+              <span style="color:green; font-weight:600;">✔️ Checked</span>
+            </p>
+          
+            <p>
+              We also needed these two states with energies close enough so that it would allow us to pivot between the two conformations.
+              <span style="color:#007acc;">&#8594;</span>
+              As the functionality is modulated when theophylline is added, there has to be a 
+              <b>conformational change</b>
+              (we eliminated other possibilities) and therefore we are able to pivot.
+              <span style="color:#007acc;">&#8594;</span>
+              <span style="color:green; font-weight:600;">✔️ Checked</span>
+            </p>
+          </div>
+        <br><br>
+          <h3>What is not working?</h3>
+          <div style= "margin-bottom: 0.1rem; background: #f9f9f9; border-left: 4px solid #560400; padding: 12px 16px; border-radius: 8px;">
+            
+          <p>
+            As expected, the structural prediction of the state with theophylline is not accurate, which is explained by RNAFold limitations. 
+            <u>We were able to build two conformations that would result in a switch</u> (we were able to design a switch) 
+            but we were <b>not able to predict the exact behaviour of our system 
+            due to the current limitations on structural prediction</b>. 
+            <b>This limitations comply</b> with the definition af a <span class="highlight-word info-word" data-target="semi-rational">semi-rational</span> designing tool.
+          </p>
+          </div>
+          <br><br>
+          <h3>Therefore, what can other people expect from TADPOLE?</h3>
+          <p>
+            We were able to make a semi-rational design that <span class="highlight-word">worked properly</span> 
+            for the system we tested in the lab, 
+            <span class="highlight-word">one of the most difficult systems</span> 
+            (due to the non-canonical pairings) <span class="highlight-word">we could have presented</span>. 
+            <br>
+            <b>We proved how it can work even outside of ordinary cases.</b> 
+            <br>
+            Therefore, with FRE elements without these uncommon structures, 
+            our tool should predict even more accurate results and.
+            <br><br>
+            <span class="highlight-word">Others can use this tool as a functional semi-rational design tool.</span>
+          </p>
+        </section>
+
+      <section class="references" id="references">
+    <h1 class="section-title">References</h1>
+    <ol>
+        <li>Lorenz, R., Bernhart, S. H., Höner zu Siederdissen, C., Tafer, H., Flamm, C., Stadler, P. F., & Hofacker, I. L. (2011). ViennaRNA Package 2.0. <i>Algorithms for Molecular Biology, 6</i>, 26. <a class="link-text" href="https://doi.org/10.1186/1748-7188-6-26">https://doi.org/10.1186/1748-7188-6-26</a></li>
+
+        <li>Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F., Wilczynski, B., & De Hoon, M. J. L. (2009). Biopython: Freely available Python tools for computational molecular biology and bioinformatics. <i>Bioinformatics, 25</i>(11), 1422–1423. <a class="link-text" href="https://doi.org/10.1093/bioinformatics/btp163">https://doi.org/10.1093/bioinformatics/btp163</a></li>
+
+        <li>Rodnina, M. V., Korniy, N., Klimova, M., Karki, P., Peng, B. Z., Senyushkina, T., Belardinelli, R., Maracci, C., Wohlgemuth, I., & Samatova, E. (2019). Translational recoding: Canonical translation mechanisms reinterpreted. <i>Nucleic Acids Research, 48</i>(3), 1056–1067. <a class="link-text" href="https://doi.org/10.1093/nar/gkz783">https://doi.org/10.1093/nar/gkz783</a></li>
+
+        <li>Jenison, R. D., Gill, S. C., Pardi, A., & Polisky, B. (1994). High-resolution molecular discrimination by RNA. <i>Science, 263</i>(5152), 1425–1429. <a class="link-text" href="https://doi.org/10.1126/science.7510417">https://doi.org/10.1126/science.7510417</a></li>
+
+        <li>Berry, M. J., Banu, L., Harney, J. W., & Larsen, P. R. (1993). Functional characterization of the eukaryotic SECIS elements that direct selenocysteine insertion at UGA codons. <i>EMBO Journal, 12</i>(8), 3315–3322. <a class="link-text" href="https://doi.org/10.1002/j.1460-2075.1993.tb05983.x">https://doi.org/10.1002/j.1460-2075.1993.tb05983.x</a></li>
+
+        <li>Mathews, D. H., Sabina, J., Zuker, M., & Turner, D. H. (1999). Expanded sequence dependence of thermodynamic parameters improves prediction of RNA secondary structure. <i>Journal of Molecular Biology, 288</i>(5), 911–940. <a class="link-text" href="https://doi.org/10.1006/jmbi.1999.2700">https://doi.org/10.1006/jmbi.1999.2700</a></li>
+
+        <li>Holland, J. H. (1992). <i>Adaptation in Natural and Artificial Systems</i>. MIT Press.</li>
+    </ol>
+</section>
+
+
     </div>
   </div>
 </div>
-
-<div class="row mt-4">
-  <div class="col-lg-8">
-    <h2>What Should this Page Contain?</h2>
-    <hr />
-    <p>This page should aim to make your software accessible and understandable to a wide audience, supplementing the detailed technical documentation available on the repository.</p>
-    <ul>
-      <li>Provide a clear and concise overview of the software's purpose and functionality.</li>
-      <li>Use non-technical language to make it accessible to a broad audience.</li>
-      <li>Create step-by-step instructions on how to use the software.</li>
-      <li>Include screenshots and visual aids to guide users.</li>
-      <li>Explain how to integrate the software with other tools or platforms.</li>
-      <li>Explain the key design choices made during the software's development.</li>
-      <li>Discuss any trade-offs or compromises made during the design process.</li>
-      <li>Provide a high-level overview of the software's architecture.</li>
-      <li>Provide clear instructions on how to deploy and install the software.</li>
-      <li>Provide an overview of the software's API, if applicable.</li>
-    </ul>
-  </div>
-  <div class="col-lg-4">
-    <h2>Inspirations</h2>
-    <hr />
-    <ul>
-      <li><a href="https://2024.igem.wiki/vilnius-lithuania/software">2024 Vilnius-Lithuania</a></li>
-      <li><a href="https://2023.igem.wiki/fudan/software">2023 Fudan</a></li>
-    </ul>
-  </div>
+<div class="back-to-top" id="back-to-top">
+  ↑
 </div>
 
+
+<style>
+.ecosystem-card:hover, .impact-card:hover {
+  background: rgba(255,255,255,0.25) !important;
+  border-color: rgba(255,255,255,0.5) !important;
+  transform: translateY(-2px);
+}
+
+.ecosystem-card.active, .impact-card.active {
+  background: rgba(255,255,255,0.3) !important;
+  border-color: rgba(255,255,255,0.8) !important;
+  transform: scale(1.02);
+}
+
+.detail-section, .impact-detail-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  border-left: 5px solid #3498db;
+}
+
+.impact-detail-section {
+  border-left-color: #e74c3c;
+}
+
+.impact-example {
+  margin: 30px 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.impact-example:last-child {
+  border-bottom: none;
+}
+
+.step-by-step {
+  margin: 30px 0;
+}
+
+.step-card {
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Narrative Flow Styles */
+.narrative-flow {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.narrative-flow::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+.flow-content {
+  position: relative;
+  z-index: 2;
+}
+
+.flow-title {
+  text-align: center;
+  color: white;
+  font-size: 1.8em;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.flow-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flow-step {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 180px;
+  max-width: 200px;
+  position: relative;
+}
+
+.flow-step:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-5px);
+}
+
+.flow-step.active {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.step-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.step-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.step-subtitle {
+  font-size: 0.8em;
+  opacity: 0.9;
+}
+
+.flow-arrow {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.5em;
+  margin: 0 10px;
+  animation: pulse 2s infinite;
+}
+
+.flow-detail {
+  margin-top: 40px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  color: white;
+  display: none;
+}
+
+.flow-detail.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.detail-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #ffd54f;
+}
+
+.detail-text {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.detail-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.highlight-item {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #ffd54f;
+}
+
+.highlight-item h4 {
+  color: #ffd54f;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.highlight-item p {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .flow-steps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .flow-step {
+    max-width: none;
+    margin-bottom: 10px;
+  }
+  
+  .flow-arrow {
+    transform: rotate(90deg);
+    margin: 10px 0;
+  }
+  
+  .flow-title {
+    font-size: 1.4em;
+  }
+}
+</style>
+
+<script>
+// Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    
+    
+    // Ecosystem interaction functionality
+    const ecosystemCards = document.querySelectorAll('.ecosystem-card');
+    const detailSections = document.querySelectorAll('.detail-section');
+    
+    ecosystemCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const targetSection = document.getElementById(target);
+            
+            // Remove active class from all cards
+            ecosystemCards.forEach(c => c.classList.remove('active'));
+            
+            // Hide all detail sections
+            detailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Add active class to clicked card
+            this.classList.add('active');
+            
+            // Show target section
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Impact interaction functionality
+    const impactCards = document.querySelectorAll('.impact-card');
+    const impactDetailSections = document.querySelectorAll('.impact-detail-section');
+    
+    impactCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const targetSection = document.getElementById(target);
+            
+            // Remove active class from all cards
+            impactCards.forEach(c => c.classList.remove('active'));
+            
+            // Hide all detail sections
+            impactDetailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Add active class to clicked card
+            this.classList.add('active');
+            
+            // Show target section
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+});
+
+ // Narrative flow functionality
+    const flowSteps = document.querySelectorAll('.flow-step');
+    const flowDetails = document.querySelectorAll('.flow-detail');
+
+    flowSteps.forEach(step => {
+        step.addEventListener('click', function() {
+            const target = this.getAttribute('data-step');
+            const targetDetail = document.getElementById('detail-' + target);
+            
+            // Remove active class from all steps
+            flowSteps.forEach(s => s.classList.remove('active'));
+            
+            // Hide all detail sections
+            flowDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Add active class to clicked step
+            this.classList.add('active');
+            
+            // Show target detail
+            if (targetDetail) {
+                targetDetail.classList.add('active');
+            }
+        });
+    });
+</script>
+<style>
+    /* Estilos para el pomo de la puerta */
+.door-handle {
+    position: absolute;
+    right: 70%; /* Ajusta la posición para que sea visible */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px; /* Aumenta el tamaño */
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #f59e0b, #d97706);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #b45309;
+}
+
+.door-knob-center {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 10px; /* Aumenta el tamaño del centro */
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #fde047, #fcd34d);
+}
+    .unlock-box {
+  position: absolute;
+  bottom: 20px;
+  left: 80%;
+  transform: translateX(-50%);
+
+  /* Estilos base del recuadro */
+  padding: 10px 20px; /* Relleno para que el botón tenga un tamaño adecuado */
+  border-radius: 8px; /* Redondeo de las esquinas */
+  background-color:  #560400;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 100;
+  /* Estilo del texto */
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #fff;
+
+  /* Centrar el texto (esto es opcional, pero ayuda a alinear si el padding cambia) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Efecto al pasar el cursor (HOVER) */
+.unlock-box:hover {
+  background-color: #FF1D11; /* Color azul-púrpura para el hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%) translateY(2px); /* Mueve el botón 2px hacia abajo para un efecto de "apretar" */
+  color: #fff; /* Texto blanco para contrastar */
+}
+
+/* Cambia el color del texto dentro del recuadro al pasar el cursor */
+.unlock-box:hover span {
+  color: #fff;
+}
+    .unlock-button {
+  position: absolute;
+  bottom: -55px; /* Ajusta este valor si necesitas más o menos espacio desde abajo */
+  left: 48%;
+  transform: translateX(-50%);
+
+  /* Estilos base del botón (círculo) */
+  width: 150px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(231, 12, 0, 0.5);  /* Color inicial del botón */
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+
+  /* Centrar el texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Estilo del texto */
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  overflow: hidden; /* Asegura que cualquier contenido que se salga se recorte */
+}
+
+.unlock-button span {
+  transition: all 0.3s ease; /* Transición suave para el texto */
+}
+
+/* Efecto al pasar el cursor por encima (HOVER) */
+.unlock-button:hover {
+  background-color: #ff6347; /* Color más rojizo, evocando la base del ADN */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+  transform: translateX(-50%) scale(1.05); /* Ligeramente más grande al pasar el cursor */
+}
+
+/* Efecto en el texto al pasar el cursor (HOVER) */
+.unlock-button:hover span {
+  color: #fff; /* Texto blanco para contrastar con el nuevo fondo */
+  /* Aquí podrías cambiar el texto a "DNA" o algo similar */
+  /* Ejemplo: content: "DNA"; (Esto solo funciona con ::before o ::after) */
+}
+
+/* Para cambiar el texto, necesitaríamos un poco de JavaScript o usar pseudo-elementos */
+/* Si quieres un cambio de texto puro CSS, necesitaríamos esto: */
+.unlock-button:hover span::after {
+  content: "DNA"; /* Cambia el texto al pasar el cursor */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Empieza invisible */
+  transition: opacity 0.3s ease;
+}
+
+
+
+/* Interactive TADPOLE Overview Styles */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+@keyframes dnaFlow {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(360deg); }
+}
+
+@keyframes pathDraw {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes doorGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(56,189,248,0.3); }
+    50% { box-shadow: 0 0 40px rgba(56,189,248,0.6); }
+}
+
+.float { animation: float 3.5s ease-in-out infinite; }
+.twinkle { animation: twinkle 2s ease-in-out infinite; }
+
+.dna-flow { animation: dnaFlow 8s linear infinite; }
+.door-glow { animation: doorGlow 3s ease-in-out infinite; }
+
+.galaxy-mask {
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%);
+}
+
+.door-3d {
+    transform-style: preserve-3d;
+    transform: perspective(800px) rotateY(-25deg);
+}
+
+/* Estilos para formas especiales */
+.clip-star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.border-3 {
+    border-width: 3px;
+}
+
+.absolute { position: absolute; }
+.relative { position: relative; }
+.w-full { width: 100%; }
+.h-80 { height: 20rem; }
+.h-full { height: 100%; }
+.bg-white { background-color: white; }
+.text-slate-100 { color: rgb(241 245 249); }
+.text-slate-600 { color: rgb(71 85 105); }
+.text-slate-700 { color: rgb(51 65 85); }
+.text-slate-800 { color: rgb(30 41 59); }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-full { border-radius: 9999px; }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.overflow-hidden { overflow: hidden; }
+.mb-8 { margin-bottom: 2rem; }
+.p-4 { padding: 1rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.tracking-tight { letter-spacing: -0.025em; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.border { border-width: 1px; }
+.border-2 { border-width: 2px; }
+.inset-0 { top: 0px; right: 0px; bottom: 0px; left: 0px; }
+.inset-1 { top: 0.25rem; right: 0.25rem; bottom: 0.25rem; left: 0.25rem; }
+.top-0 { top: 0px; }
+.left-0 { left: 0px; }
+.right-0 { right: 0px; }
+.top-1\/4 { top: 25%; }
+.left-1\/3 { left: 33.333333%; }
+.left-1\/4 { left: 25%; }
+.w-1\/3 { width: 33.333333%; }
+.w-1\/4 { width: 25%; }
+.w-1\/2 { width: 50%; }
+.w-1\/6 { width: 16.666667%; }
+.w-32 { width: 8rem; }
+.h-32 { height: 8rem; }
+.w-28 { width: 7rem; }
+.h-28 { height: 7rem; }
+.w-1 { width: 0.25rem; }
+.h-1 { height: 0.25rem; }
+.blur-2xl { filter: blur(40px); }
+.blur-sm { filter: blur(4px); }
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+.bg-gradient-to-b { background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); }
+.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+
+.from-slate-900 { --tw-gradient-from: var(--color-intense-4); --tw-gradient-to: var(--color-intense-4 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-slate-800 { --tw-gradient-to: var(--mid-black / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--mid-black), var(--tw-gradient-to); }
+.to-slate-900 { --tw-gradient-to: var(--color-intense-4); }
+.from-slate-700 { --tw-gradient-from: var(--grey); --tw-gradient-to: var(--grey / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-slate-800 { --tw-gradient-to: var(--mid-black); }
+.from-slate-600 { --tw-gradient-from: var(--mid-black); --tw-gradient-to: var(--mid-black / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-slate-700 { --tw-gradient-to: var(--grey); }
+.from-amber-300 { --tw-gradient-from: var(--color-soft-1); --tw-gradient-to: var(--color-soft-1 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-orange-400 { --tw-gradient-to: var(--color-soft-2); }
+.from-cyan-400 { --tw-gradient-from: var(--color-soft-3); --tw-gradient-to: var(--color-soft-3 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-purple-500 { --tw-gradient-to: var(--main-color / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--main-color), var(--tw-gradient-to); }
+.from-teal-400 { --tw-gradient-from: var(--color-intense-1); --tw-gradient-to: var(--color-intense-1 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-teal-600 { --tw-gradient-to: var(--color-intense-2); }
+.from-rose-400 { --tw-gradient-from: var(--color-soft-2); --tw-gradient-to: var(--color-soft-2 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-amber-500 { --tw-gradient-to: var(--color-soft-3); }
+.from-orange-400 { --tw-gradient-from: var(--color-soft-2); --tw-gradient-to: var(--color-soft-2 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.to-red-500 { --tw-gradient-to: var(--color-intense-1); }
+
+.bg-amber-400 { background-color: var(--color-soft-2); }
+.border-slate-600 { border-color: var(--mid-black); }
+.border-amber-500 { border-color: var(--color-soft-3); }
+.border-cyan-400 { border-color: var(--color-soft-3); }
+.border-orange-500 { border-color: var(--color-intense-2); }
+.border-rose-400 { border-color: var(--color-soft-2); }
+.border-white\/30 { border-color: var(--bg-main / 0.3); }
+.border-white\/40 { border-color: var(--bg-main / 0.4); }
+
+.text-center { text-align: center; }
+.text-white { color: var(--bg-main); }
+.text-slate-900 { color: var(--text); }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.font-medium { font-weight: 500; }
+.transform-gpu { transform: translate3d(0, 0, 0); }
+.opacity-50 { opacity: 0.5; }
+
+
+/* Highlight sections for featured content */
+.highlight-section {
+    background: #FF918B;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    border-left: 5px solid #9D0800;
+}
+
+.featured-title {
+    color: white !important;
+    font-size: 2.5em !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.featured-text {
+    font-size: 1.3em !important;
+    color: #2c3e50 !important;
+    font-weight: 600;
+}
+
+.impact-highlight {
+    background: none;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    border-left: 4px solid #560400;
+    border-right: 4px solid #560400;
+}
+
+/* Content Sections */
+.need-content-section {
+    margin: 40px 0;
+    display: none;
+    animation: fadeInUp 0.6s ease;
+}
+
+.need-content-section.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .highlight-section {
+        padding: 20px;
+    }
+    
+    .featured-title {
+        font-size: 2em !important;
+    }
+}
+</style>
+
+<script>
+// TADPOLE Interactive Overview functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate fine starfield (only in galaxy area)
+    function createStarfield() {
+        const starfield = document.getElementById('starfield');
+        if (!starfield) return;
+        
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'absolute w-1 h-1 bg-white rounded-full twinkle';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starfield.appendChild(star);
+        }
+    }
+
+    // Node selection
+    let activeNode = null;
+    
+    window.selectNode = function(nodeKey) {
+        // Hide all content sections
+        document.querySelectorAll('.need-content-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show selected content section
+        const contentSection = document.getElementById(nodeKey);
+        if (contentSection) {
+            setTimeout(() => {
+                contentSection.classList.add('active');
+            }, 200);
+        }
+        
+        activeNode = nodeKey;
+    };
+
+    // DNA Helices drawing
+    function drawDNAHelices() {
+        const canvas = document.getElementById("dna-field");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        const numHelices = 12;
+        const positions = [];
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radiusX = canvas.width / 2;
+        const radiusY = canvas.height / 2;
+        const minDist = 80;
+
+        // Hélices normales (aleatorias)
+        while (positions.length < numHelices) {
+            const angle = Math.random() * 2 * Math.PI;
+            const r = Math.sqrt(Math.random());
+            const x = centerX + r * radiusX * Math.cos(angle);
+            const y = centerY + r * radiusY * Math.sin(angle);
+
+            if (((x - centerX) ** 2) / (radiusX ** 2) + ((y - centerY) ** 2) / (radiusY ** 2) <= 1) {
+                let ok = true;
+                for (let p of positions) {
+                    if (Math.hypot(p.x - x, p.y - y) < minDist) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok) positions.push({ x, y });
+            }
+        }
+
+        // Dibujar hélices normales
+        positions.forEach(({ x, y }) => {
+            drawHelix(ctx, x, y, 80 + Math.random() * 70, 10, 4 + Math.floor(Math.random() * 3), 6, 1, 
+                      "rgba(94,234,212,0.85)", "rgba(56,189,248,0.85)", "rgba(255,255,255,0.5)", true);
+        });
+
+        // Hélice destacada (posición fija y sin rotación) - más visible, junto a DNA sphere
+        // Positioned to match DNA sphere at 42% left, 50% top
+        const specialX = centerX - radiusX * 0.15; // Adjusted to match DNA sphere position
+        const specialY = centerY;
+        drawHelix(ctx, specialX, specialY, 140, 18, 6, 5, 2.5, 
+                  "rgba(255,99,71,1)", // rojo tomate más opaco
+                  "rgba(255,165,0,1)", // naranja más opaco
+                  "rgba(255,255,255,1)", 
+                  false); // false = sin rotación aleatoria
+    }
+
+    // Función para dibujar hélices
+    function drawHelix(ctx, x, y, height, amplitude, turns, step, radius, colorA, colorB, rungColor, randomRotate = true) {
+        const rotation = randomRotate ? Math.random() * Math.PI : 0;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+
+        for (let yy = 0; yy <= height; yy += step) {
+            const t = (yy / height) * Math.PI * 2 * turns;
+            const x1 = Math.sin(t) * amplitude;
+            const x2 = Math.sin(t + Math.PI) * amplitude;
+
+            ctx.beginPath();
+            ctx.arc(x1, yy, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = colorA;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(x2, yy, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = colorB;
+            ctx.fill();
+
+            if (yy % (step * 2) === 0) {
+                ctx.beginPath();
+                ctx.moveTo(x1, yy);
+                ctx.lineTo(x2, yy);
+                ctx.strokeStyle = rungColor;
+                ctx.stroke();
+            }
+        }
+
+        ctx.restore();
+    }
+
+    // Initialize everything
+    createStarfield();
+    drawDNAHelices();
+    
+    // Set default active section
+    selectNode('rna-control');
+});
+</script>
 {% endblock %}

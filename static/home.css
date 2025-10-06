@@ -1,0 +1,352 @@
+.homepage{
+    width:100vw;
+}
+
+.hero{
+    background-image: url(https://static.igem.wiki/teams/5622/images/home/faded-homepage-switches.webp);
+    background-position: bottom;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    height: auto;
+}
+
+.dna-container {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    transform: translateY(-50%);
+    z-index: 10;
+    overflow-x: hidden;
+}
+
+.dna-half {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.dna-half.left {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.dna-half.right {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.dna-half.broken.left {
+    transform: translateX(-200px);
+}
+
+.dna-half.broken.right {
+    transform: translateX(200px);
+}
+
+.helix-strand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.helix-strand.strand1 {
+    z-index: 2;
+}
+
+.helix-strand.strand2 {
+    z-index: 1;
+}
+
+.helix-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.helix-point.strand1 {
+    background: var(--main-color);
+}
+
+.helix-point.strand2 {
+    background: var(--color-intense-2);
+}
+
+
+
+.nucleotide-label {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.revealed-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+    text-align: center;
+    color: #1e1e1e;
+    opacity: 0;
+    transition: all 0.2s cubic-bezier(0, 0, 0, 1) 0.2s;
+    z-index: 5;
+    max-width: 600px;
+    padding: 40px;
+}
+
+.revealed-text.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.revealed-text h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    text-align: center;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
+}
+
+.content-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0em 5em 0em 10em;
+}
+
+.text-img{
+    display: flex;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr;
+    column-gap:15rem;
+    padding-bottom:2em;
+    padding-left:5em;
+}
+
+.text-img img{
+    width:23em;
+    height:auto;
+}
+
+.text-img h2{
+    font-weight: var(--fw-subsemibold);
+}
+
+.home-video{
+    margin-top:5rem;
+    margin-bottom:5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+} 
+
+.ribosome img{
+    width:90%;
+}
+.ribosome-text{
+    padding:8em 10em 0em 10em;
+}
+
+.home-table{
+    /* padding:10em; */
+    padding:5em;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:var(--fs-h4);
+}
+.home-table img{
+    width:60%;
+    height:auto;
+}
+
+.rewiring{
+    padding:9em 5em;
+}
+
+.tadpole-home{
+    background-color: var(--tadpole-color);
+    color:var(--bg-main);
+    padding:1em 5em 3em 5em;
+    width:100%;
+    border-radius:16px;
+}
+
+.tadpole-home img{
+    width:15%;
+    height:auto;
+}
+.text-img2{
+    display: flex;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr;
+    column-gap:5rem;
+    padding-bottom:2em;
+    padding-left:5em;
+}
+
+
+.gradient{
+    margin-top:5rem;
+    height:20rem;   
+    background: linear-gradient(180deg,rgba(253, 253, 253, 1) 0%, rgba(155, 36, 33, 1) 100%);
+}
+.final{
+    color:var(--bg-main);
+    height:auto;
+    margin-bottom:-3.5rem;
+    background: var(--alt-color);
+    padding:5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.final p{
+    font-size: var(--fs-h1);
+    font-weight: var(--fw-subsemibold);
+}
+
+.join-us{
+    font-size: 5rem;
+    font-weight: var(--fw-bold);
+}
+
+.final-container {
+    max-width: 800px;
+    padding: 2rem;
+    text-align: left;
+}
+
+.staggered-text {
+    color: white;
+    line-height: 1.4;
+}
+
+.line {
+    display: block;
+    transform: translateX(-50px);
+    margin-bottom: 1rem;
+    font-weight:var(--fw-semibold);
+}
+
+.line:nth-child(1) {
+    font-size: var(--fs-h1);
+    margin-left: 0;
+}
+
+.line:nth-child(2) {
+    font-size: var(--fs-h1);
+    margin-left: 3rem;
+}
+
+.line:nth-child(3) {
+    font-size: var(--fs-h3);
+    margin-left: 9rem;
+}
+
+.line:nth-child(4) {
+    font-size: var(--fs-h3);
+    margin-left: 11rem;
+
+}
+
+.line:nth-child(5) {
+    font-size: var(--fs-title);
+    font-weight: var(--fw-bold);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .line:nth-child(1) {
+        font-size: 1.8rem;
+        margin-left: 0;
+    }
+    
+    .line:nth-child(2) {
+        font-size: 1.8rem;
+        margin-left: 1rem;
+    }
+    
+    .line:nth-child(3) {
+        font-size: 1.2rem;
+        margin-left: 2rem;
+    }
+    
+    .line:nth-child(4) {
+        font-size: 1.1rem;
+        margin-left: 3rem;
+    }
+    
+    .line:nth-child(5) {
+        font-size: 2.2rem;
+        margin-left: -1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .line:nth-child(2) {
+        margin-left: 0.5rem;
+    }
+    
+    .line:nth-child(3) {
+        margin-left: 1rem;
+    }
+    
+    .line:nth-child(4) {
+        margin-left: 1.5rem;
+    }
+    
+    .line:nth-child(5) {
+        margin-left: -0.5rem;
+    }
+}

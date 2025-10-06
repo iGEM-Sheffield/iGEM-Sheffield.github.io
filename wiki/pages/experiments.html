@@ -1,28 +1,783 @@
 {% extends "layout.html" %}
-  
-{% block title %}Experiments{% endblock %}
-{% block lead %}Describe the research, experiments, and protocols you used in your project. It is designed to provide sufficient information for other teams to replicate our work.{% endblock %}
+
+{% block title %}Experimental Overview{% endblock %}
+{% block lead %}Cell-based assays in HEK293T: A complete weekly workflow{% endblock %}
 
 {% block page_content %}
 
-<div class="row mt-4">
-  <div class="col-lg-8">
-    <h2>What Should this Page Contain?</h2>
-    <hr />
-    <p>Provide comprehensive, step-by-step protocols for all experiments conducted. Include a list of materials, reagents, and equipment used. Specify concentrations, volumes, incubation times, temperatures, and other critical parameters. Document any modifications or optimizations made to standard protocols.</p>
-    <p>Explain the purpose of each experiment and its relevance to your project goals. Describe the experimental design, including controls and replicates. Provide a clear rationale for the chosen methods and approaches.</p>
-    <p>Document any troubleshooting steps taken and optimizations made during the experimental process. Share any lessons learned that could benefit future teams.</p>
-  </div>
-  <div class="col-lg-4">
-    <h2>Inspirations</h2>
-    <hr />
-    <ul>
-      <li><a href="https://2024.igem.wiki/heidelberg/experiments">2024 Heidelberg</a></li>
-      <li><a href="https://2024.igem.wiki/marburg/experiments">2024 Marburg</a></li>
-      <li><a href="https://2024.igem.wiki/epfl/experiments">2024 EPFL</a></li>
-      <li><a href="https://2023.igem.wiki/estonia-tuit/experiments">2023 Estonia-TUIT</a></li>
-    </ul>
+
+<div class="page-container">
+  <aside class="sidebar">
+      <ul class="sidebar-nav">
+          <li><a href="#organisation" class="active">Organisastion</a></li>
+          <li><a href="#experim-w" class="active">Experimental workflow</a></li>
+          <li><a href="#constructs" class="active">Constructs used in the lab</a></li>
+          <ul class="sidebar-subnav">
+            <li><a href="#scr-d" class="active">SCR-D</a></li>
+            <li><a href="#switch" class="active">SECIS</a></li>
+          </ul>
+            
+            
+      </ul>
+  
+    <!--EXTRA INFO-->
+    <!-- Functional RNA Element (FRE) -->
+<div class="info-card" id="fre-info">
+  <div class="card">
+    <h3 class="card-title">Functional RNA Element (FRE)</h3>
+    <p>RNA sequences that perform specific biological functions when folded, such as frameshift elements, ribozymes, or Stop Codon Readthrough<sup>[3]</sup> sequences.</p>
   </div>
 </div>
+
+<!-- Semi-rational design -->
+<div class="info-card" id="semi-rational">
+  <div class="card">
+    <h3 class="card-title">Semi-rational design</h3>
+    <p>Semi-rational design uses rational guidance to narrow down the possibilities, 
+       even if the exact behaviour cannot be exactly predicted, while still relying on experimental 
+       testing of a manageable set of candidates.</p>
+  </div>
+</div>
+
+<!-- Conformational RNA Element (CRE) -->
+<div class="info-card" id="cre-info">
+  <div class="card">
+    <h3 class="card-title">Conformational RNA Element (CRE)</h3>
+    <p>RNA structures that can change conformation in response to stimuli, including Aptamer<sup>[4]</sup>s, miniRNAs, and temperature-sensitive motifs.</p>
+  </div>
+</div>
+
+<!-- SECIS Element -->
+<div class="info-card" id="secis-info">
+  <div class="card">
+    <h3 class="card-title">SECIS Element</h3>
+    <p>A highly conserved RNA hairpin structure that directs the ribosome to bypass UGA stop codons and incorporate selenocysteine into proteins.</p>
+  </div>
+</div>
+
+<!-- Aptamer -->
+<div class="info-card" id="aptamer-info">
+  <div class="card">
+    <h3 class="card-title">Aptamer</h3>
+    <p>A short RNA or DNA molecule that binds specifically to a target molecule (similar to an antibody in function).</p>
+  </div>
+</div>
+
+<!-- Riboswitches -->
+<div class="info-card" id="riboswitches">
+  <div class="card">
+    <h3 class="card-title">Riboswitches</h3>
+    <p>Structured RNA segments that directly bind small molecules and regulate gene expression without requiring proteins. They change conformation upon ligand binding.</p>
+  </div>
+</div>
+
+<!-- Model Section -->
+<div class="info-card" id="model-info">
+  <div class="card">
+    <h3 class="card-title">Model Section</h3>
+    <p>Explanation of the workflow from Engineering design to Wet Lab experiments.</p>
+  </div>
+</div>
+<div class="info-card" id="hp-card1">
+  <div class="card">
+    <h3 class="card-title">HP CARD</h3>
+    <p>
+      At the <strong>Discover-Glo conference</strong> by <strong>Promega</strong>, we had the chance to talk to 
+      <strong>Irena Montiel</strong> and <strong>Eric Rovira</strong>, who suggested using the 
+      <strong>dual-luciferase assay</strong> to test our construct.
+      See <a href="https://2025.igem.wiki/barcelona-ub/human-practices" class="highlight-word info-word" style="text-decoration: none;">HP</a>
+      and <a href="https://2025.igem.wiki/barcelona-ub/engineering" class="highlight-word info-word" style="text-decoration: none;">Engineering</a>
+    
+    </p>
+  </div>
+</div>
+
+        
+    </aside>
+   <div class="page-content">
+    <div class="header">
+      <h1 class="page-title">Experimental Overview</h1>
+      <p class="page-desc"></p>
+    </div>
+     <div class="content">
+    <h1 id="organisation" class="section-title">Organization</h1>
+    <p>
+        The experimental work of our project aims to complete the various cycles described in the Engineering section. In the table below, each wet lab branch is associated with the engineering cycle it seeks to complete and provide experimental validation for.
+ </p>
+ <br>
+  <table class="parts-table" style="border-collapse: collapse; width: 100%; margin-bottom: 2rem;">
+  <colgroup>
+    <col style="width: 50%; border-right: 2px solid #ccc;">
+    <col style="width: 50%;">
+  </colgroup>
+
+  <tr style="background-color: #f2f2f2;">
+    <th style="padding: 10px; border-bottom: 2px solid #ccc;">Engineering</th>
+    <th style="padding: 10px; border-bottom: 2px solid #ccc;">Wet Lab</th>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch:</strong> SCR-D structure prediction<br>
+      &nbsp;&nbsp;<strong>Cycle 2:</strong> Identification of key structural elements<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;- Complete iteration 3
+    </td>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch 1:</strong> SCR-D element
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch:</strong> Creation of an aptamer-controlled SCR<br>
+      &nbsp;&nbsp;<strong>Cycle 2:</strong> Aptamer<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;- Complete iteration 2
+    </td>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch 2:</strong> SECIS<br>
+      <strong>Branch 4:</strong> SECIS Cell-free
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch:</strong> Creation of an aptamer-controlled SCR<br>
+      &nbsp;&nbsp;<strong>Cycle 3:</strong> Riboswitch<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;- Complete iteration 1
+    </td>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch 3:</strong> Aptamer<br>
+      <strong>Branch 5:</strong> Aptamer Cell-free
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch:</strong> Creation of an aptamer-controlled SCR<br>
+      &nbsp;&nbsp;<strong>Cycle 3:</strong> Switch<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;- Complete iteration 1
+    </td>
+    <td style="padding: 8px; border-bottom: 1px solid #ccc;">
+      <strong>Branch 6:</strong> Switch
+    </td>
+  </tr>
+</table>
+<p>A detailed explanation of the workflow Engineering → Wet Lab can be found in the <a class="link-text" href="https://2025.igem.wiki/barcelona-ub/model">Model Page</a>.</p>
+<br><br>
+<h1 id="experim-w">Experimental workflow</h1>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/generalscheme.webp" 
+    alt="General scheme of experimental workflow" 
+    style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>General scheme of experimental workflow </p>
+</div>
+
+<p>In the laboratory, we mainly carried out two types of assays: <strong>cell-based assays</strong> and <strong>cell-free system assays</strong>. Both assays share a <strong>common preliminary part</strong>.</p>
+<br><br>
+<h2>Common part</h2>
+<p>The constructs arrived from the supplier in plasmid form. In order to amplify the plasmids, we performed a standard amplification procedure using <strong>E. coli DH5α</strong>:</p>
+
+<ol>
+  <li><strong>Transformation:</strong> We carried out a bacterial transformation by heat shock of <strong>E. coli DH5α</strong> with the plasmids of interest, and plated the bacteria.</li>
+  <li><strong>Incubation:</strong> The following day, we collected colonies from the plates and incubated them in tubes with <strong>LB medium</strong>.</li>
+  <li><strong>Plasmid purification:</strong> One day later, we purified the plasmids of interest, obtaining the desired concentration.</li>
+  <li><strong>Verification:</strong> Finally, to verify the efficiency of the procedure, we measured the concentration of the purified plasmids using a <strong>Nanodrop</strong>.</li>
+</ol>
+
+<p>All plasmids underwent this process before being used in the assays.</p>
+<br><br>
+<h2>Cell-based assays in HEK293T</h2>
+<p>Starting from the purified plasmids, we performed the assays in HEK293T cells, with plasmids of SCR-D and SECIS. A complete assay takes one week, so we always began on Monday and finished over the weekend. The process is as follows:
+</p>
+        
+ 
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <h2 class="calendar-title">Weekly Experimental Timeline</h2>
+            <p class="calendar-subtitle">From cell seeding to data analysis - a complete 7-day protocol</p>
+        </div>
+
+        <div class="week-grid">
+            <!-- Day 1 - Monday -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-name">Monday</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Cell Seeding</div>
+                    <div class="activity-description">
+                        We seeded the cells at the   <span class="highlight-word">desired density</span> in 48-well plates. The cells were then incubated for 24 hours.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 - Tuesday -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-name">Tuesday</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Transfection</div>
+                    <div class="activity-description">
+                        We transfected the   <span class="highlight-word">plasmids of interest</span> (SCR-D and SECIS) into the cells using a lipofectamine-based system, followed by a 24-hour incubation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 - Wednesday -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-name">Wednesday</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Treatment</div>
+                    <div class="activity-description">
+                        After preparing   <span class="highlight-word">selenium and theophylline solutions</span>, we treated the cells with selenium and/or theophylline and incubated them for 48 hours.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 - Thursday -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-name">Thursday</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Observation</div>
+                    <div class="activity-description">
+                        We observed the cells under an   <span class="highlight-word">optical microscope</span>, solely to check that the process was proceeding correctly and that cell growth was taking place as expected.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 - Friday -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">5</div>
+                    <div class="day-name">Friday</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Luciferase Assay</div>
+                    <div class="activity-description">
+                        We performed   <span class="highlight-word">cell lysis and dual-luciferase assay</span> <span class = "highlight-word info-word" data-target="hp-card1">&#128161</span>(Dual-Luciferase® Reporter Assay System from Promega®, catalog #E1910), obtaining raw data on gene expression.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekend -->
+            <div class="day-card weekend-card">
+                <div class="day-header">
+                    <div class="day-number">📊</div>
+                    <div class="day-name">Weekend</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-title">Data Analysis & Presentation</div>
+                    <div class="activity-description">
+                        We dedicated this time to   <span class="highlight-word">plotting and analyzing the results in RStudio</span>, and prepared a presentation of the findings and conclusions to share with our PI and instructors.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <p>This procedure shows variations across the different rounds carried out, since we have conducted an optimization process of the various variables and time points that influence the experiment. For more details about this process, please refer to the <a class="link-text" href="https://2025.igem.wiki/barcelona-ub/pivotal-changes">Pivotal changes and milestones Page</a>.</p>
+  </div>
+<br><br>
+  <h2>Cell-free system assays</h2>
+
+<p>Starting from the purified plasmids, we performed the <strong>cell-free system assays</strong> (<em>TnT® Coupled Reticulocyte Lysate Systems</em> from Promega®, catalog #L1170), but in this case only <strong>SECIS plasmids</strong> and <strong>SECIS-related plasmids</strong> were tested. A complete assay takes one or two days. The process is as follows:</p>
+
+<ol>
+  <li><strong>Starting Material:</strong> The starting point can be either a purified plasmid or a PCR product. We incorporated <strong>Paul Copeland’s plasmid</strong> in purified plasmid form. However, we performed a PCR on the SECIS plasmids to incorporate our construct as a PCR product, since in this form it was more stable. Therefore, the first step was to run a <strong>PCR</strong> and an <strong>agarose gel electrophoresis</strong>.</li>
+  
+  <li><strong>Assay Setup:</strong> Once we had the PCR product, we proceeded with the cell-free system assay. The different samples were treated with <strong>selenium</strong> and/or <strong>theophylline</strong>, which were added prior to the incubation period during which <strong>transcription and translation</strong> occurred simultaneously.</li>
+  
+  <li><strong>Measurement:</strong> Gene expression was measured through a <strong>dual-luciferase assay</strong>. Finally, we plotted and analyzed the results in <strong>RStudio</strong> and prepared a presentation to share with our PI and instructors.</li>
+</ol>
+<br><br>
+<h3>Other Procedures</h3>
+
+<ul>
+  <li><strong>Split:</strong> This routine procedure in the team is used to replace the medium of <strong>HEK293T cells</strong> with trypsin, thereby ensuring their survival over time.</li>
+  
+  <li><strong>Toxicity assay:</strong> This procedure involves seeding cells at different densities and treating them with increasing concentrations of <strong>theophylline</strong>, in order to establish toxicity thresholds.</li>
+  <li><strong>Sanger sequencing verification:</strong> To confirm the identity and integrity of the purified constructs, plasmid samples are sent for Sanger sequencing. The results are compared to the expected construct sequences to verify that they match the intended design.
+</li>
+</ul>
+
+<p>More information about lab procedures and protocols can be found at the <a class="link-text" href="https://2025.igem.wiki/barcelona-ub/notebook">Notebook section</a>.</p>
+<br><br>
+
+
+
+
+
+
+<h1 id="constructs"><a class="link-text" href="https://2025.igem.wiki/barcelona-ub/parts">Constructs </a> used in the lab</h1>
+<br>
+The constructs used in our laboratory are divided into two main branches, according to the SCR with which they are associated. Thus, we have constructs that were used for the SCR-D experiments and constructs that were used for the SECIS experiments.
+
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/constructs.webp" 
+    alt="General Constructs" 
+    style="width: 80%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>Classification of the constructs that we used in the lab </p>
+</div>
+<br>
+<br>
+<br>
+
+<h2 id="scr-d">SCR-D</h2>
+<h4>A: Normal SCR-D (TGA):</h4>
+This construct is the complete SCR-D along with the STOP 
+codon on which it must act to produce readthrough, allowing the 
+ribosome to bypass it. This way, Firefly luciferase will be expressed.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/tganormal.webp" 
+    alt="Normal SCR-D (TGA)" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>Normal SCR-D (TGA) construct and predicted structure </p>
+</div>
+<br>
+<br>
+<h4>B: SCR-D controls</h4>
+<p><strong>1- CGA:</strong> This construct has the first nucleotide of the STOP codon mutated 
+  from T to C, so the codon is no longer a STOP codon but instead encodes an arginine. 
+  In other words, each reading of the construct’s mRNA gives rise to both luciferase proteins,
+   Renilla and Firefly. This serves to normalize the activity of the two luciferases and to generate 
+   cleaner and more reliable graphs.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/cga.webp" 
+    alt="CGA construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>CGA construct, a control for normalizing the activity of both luciferases </p>
+</div>
+<br>
+
+<p><strong>2- TAAA:</strong> This construct serves as a negative control for the
+   Dual-Luciferase Assay. In this case, the STOP codon was modified by changing 
+   its central nucleotide (G → A) and adding one extra nucleotide immediately after
+    it, introducing a frameshift. As a result, even if the ribosome continues
+     translation beyond this point, the downstream Firefly luciferase gene will 
+     be out of frame and cannot be correctly translated. Therefore, no Firefly
+      signal should be detected. This control ensures that any measured Firefly
+       activity in experimental constructs truly results from readthrough events
+        rather than from frameshifting or reinitiation.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/taaa.webp" 
+    alt="TAAA construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>TAAA construct, useful for ruling out reinitiation and other modes of Firefly 
+    luciferase expression that are independent of SECIS-mediated readthrough.  </p>
+</div>
+<br>
+
+<p><strong>3- TGA postATG mutated:</strong> This construct was designed to control for ribosomal
+   reinitiation. In the natural SCR-D sequence, there is an internal ATG start codon located 
+   downstream of the stop codon. This ATG could allow the ribosome to detach and then 
+   reinitiate translation, leading to Firefly luciferase expression that is not due to
+    true readthrough. To prevent this, the internal ATG was mutated in a way that preserved
+     the SCR-D RNA structure while eliminating the reinitiation site. As a result, any Firefly 
+     luciferase produced from this construct must come exclusively from readthrough events.
+      By comparing this construct to the normal SCR-D (TGA) construct, we can quantify and 
+      subtract the contribution of reinitiation.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/atgmutated.webp" 
+    alt="TGA postATG mutated construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>TGA postATG mutated construct, useful for ruling out reinitiation, 
+    a mode of Firefly luciferase expression that is independent of SECIS-mediated readthrough. </p>
+</div>
+<br>
+<br>
+<h4>C: SCR-D parts</h4>
+<p><strong>1- Only pre-diapin:</strong> This construct contains only the
+   Pre-diapin region of SCR-D, and it is used to test whether this isolated 
+   part is capable of producing readthrough on its own. It allows us to quantify 
+   the percentage contribution of Pre-diapin to readthrough, if it is indeed able to induce it.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/onlyprediapin.webp" 
+    alt="SCR-D pre-diapin construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>SCR-D construct containing only the pre-diapin element </p>
+</div>
+<br>
+<br>
+<p><strong>2- No hypopin:</strong> This construct contains all parts of SCR-D except 
+  for the Hypopin. It is used to determine whether this region is essential for readthrough
+   to occur, or if SCR-D can bypass the STOP codon without it. It allows us to quantify
+    the percentage contribution of Hypopin to readthrough.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/nohypopin.webp" 
+    alt="SCR-D no hypopin construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>SCR-D construct not containing hypopin element </p>
+</div>
+<br>
+<br>
+<p><strong>3- Mutated Diapin:</strong> This construct is nearly identical to the normal 
+  SCR-D (TGA) element, except that the nucleotide sequence of the Diapin region was altered 
+  while maintaining its predicted base pairing and secondary structure. It was designed to 
+  determine whether the Diapin’s specific sequence is essential for promoting readthrough, 
+  or whether its structural configuration alone is sufficient for SCR-D function. 
+  This distinction is particularly important for our project, as we are exploring 
+  structure-dependent mechanisms to build a riboswitch.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/mutateddiapin.webp" 
+    alt="SCR-D mutated diapin construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>SCR-D construct containing a mutated diapin element  </p>
+</div>
+<br>
+<br><br>
+<h2 id="switch">SECIS</h2>
+<br>
+<h3>A: Controls</h3>
+<p><strong>1- Activity normalization:</strong> The construct used to normalize luciferase 
+  activity in the SECIS experiments was the same as the one used in SCR-D. Since both SCR-D 
+  and SECIS employ the same luciferases to measure gene expression, we were able to use the 
+  SCR-D luciferase normalization construct for normalization in the SECIS experiments.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/cga.webp" 
+    alt="CGA construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  >
+  <p>CGA construct, a control for normalizing the activity of both luciferases </p>
+</div>
+
+<p><strong>2- Negative control / Bad SECIS:</strong> 
+ This construct does not contain any element that enables readthrough, 
+ and is therefore used to determine the amount of Firefly luciferase produced as a
+  result of spontaneous ribosomal readthrough, experimental background, reinitiation, 
+  or other possible experimental artifacts. Thus, in constructs with SECIS, we can determine 
+  what percentage of Firefly luciferase corresponds to this background noise and what percentage
+   actually corresponds to the readthrough driven by SECIS.
+</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/negative.webp" 
+    alt="Bad SECIS construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Bad SECIS allows us to rule out Firefly luciferase expression that is independent of SECIS-mediated readthrough. </p>
+
+</div>
+
+<p><strong>3- SECIS control:</strong> This is the construct we used to verify that the SCR element of 
+  our riboswitch, namely SECIS, functions on its own. This construct is very important because, before 
+  testing our riboswitch, it allowed us to confirm that the SECIS element works and is in the proper 
+  conditions to carry out readthrough.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/seciscontrol.webp" 
+    alt="SECIS control" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>SECIS control confirmed that SECIS system works in the experimental conditions we are exposing it to</p>
+
+  </div>
+
+<p><strong>4- Aptamer control:</strong> 
+This construct allows us to verify the aptamer’s structural responsiveness 
+to the ligand under our experimental conditions before testing it within the riboswitch context.
+ In this design, the presence or absence of theophylline influences the formation of a <b>pseudoknot structure</b>
+  that can induce ribosomal frameshifting. If no theophylline is present, the pseudoknot that induces
+   ribosomal frameshift does not fold correctly. Conversely, when theophylline is added, the pseudoknot 
+   is released, allowing the ribosome to undergo frameshift and avoid a STOP codon, placing Firefly
+    luciferase in the correct ORF and resulting in its expression. This sequence and design is extracted
+     from Anzalone et al., <i>Reprogramming eukaryotic translation with ligand-responsive synthetic RNAb
+      switches, Nature Methods (2016)</i>. https://doi.org/10.1038/nmeth.3807
+</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/fsapt.webp" 
+    alt="Aptamer control" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Dr Anzalone’s construct is crucial to make sure the aptamer is working in the experimental
+     conditions we are exposing it to. </p>
+  </div>
+<br>
+<h3>B: Switches</h3>
+The following constructs represent different designs of the SECIS-based riboswitch, 
+coupled with the theophylline aptamer. In their names, the letter L stands for “Linker,” 
+and the accompanying number indicates the number of nucleotides inserted between the SECIS
+ element and the aptamer. The L5 construct has a slightly modified version of the SECIS sequence.
+ <br> 
+In the absence of theophylline, the aptamer base-pairs with part of the SECIS sequence, keeping 
+the two regions bound together and preventing SECIS from folding into its <b>natural structure</b>. 
+The aptamer also base-pairs with the linker when there is no theophylline. When theophylline binds to
+ the aptamer, this interaction is disrupted, changing the conformation of the SECIS region and 
+ therefore altering Firefly luciferase expression and acting as a riboswitch for readthrough rate.
+
+<p><strong>1- L5:</strong> Structure of Linker 5 construct.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/l5.webp" 
+    alt="Linker 5 construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p> Structure of Linker 5 construct </p>
+</div>
+
+<p><strong>2- L7:</strong> Structure of Linker 7 construct.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/l7.webp" 
+    alt="Linker 7 construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Structure of Linker 7 construct </p>
+</div>
+
+<p><strong>3- L8:</strong> Structure of Linker 8 construct.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/l8.webp" 
+    alt="Linker 8 construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Structure of Linker 8 construct </p>
+</div>
+
+<p><strong>4- L9:</strong> Structure of Linker 9 construct.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/l9.webp" 
+    alt="Linker 9 construct" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Structure of Linker 9 construct </p>
+</div>
+It is important to consider that these four riboswitches were designed using our model and the TADPOLE software. These two tools operate based on structural predictions provided by RNAfold and focus specifically on the energetic requirements that allow the aptamer to fluctuate between two states: bound to theophylline or unbound. The linkers were designed based on an ON-ON switch structural prediction with RNAfold. This means that a functional (non-disrupted) SECIS element is expected in the presence of theophylline, as illustrated in the riboswitch structures.
+<br>
+However, RNAfold has known limitations that prevent its structural predictions from being fully accurate, and these limitations appear to affect the non-canonical interactions within the functional core of SECIS. Therefore, although the in silico prediction suggested an ON-ON switch, an OFF-ON switch may be observed experimentally.
+<br>
+<br>
+<br>
+<h3>C: Dr. Copeland’s plasmid</h3>
+<p>This plasmid was used in the cell-free assays as a supplement for SECIS. The SBP2 protein is essential for SECIS to induce readthrough, so its presence is required to achieve higher readthrough efficiency.</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img 
+    src="https://static.igem.wiki/teams/5622/images/wetlab/pc.webp" 
+    alt="Dr. Copeland's SBP2 plasmid" 
+    style="width: 70%; border-radius: 10px; margin: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"
+  ><p>Simplified version of Dr. Paul Copeland’s SBP2 gene context.</p>
+</div>
+
+
+</div>
+</div>
+<div class="back-to-top" id="back-to-top">
+  ↑
+</div>
+
+<style>
+
+.calendar-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.calendar-header {
+    background: linear-gradient(135deg, var(--color-intense-1), var(--main-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.calendar-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.calendar-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+}
+
+.day-card {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--color-soft-1);
+    border-bottom: 1px solid var(--color-soft-1);
+    min-height: 300px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.day-card:hover {
+    background: var(--bg-main);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.day-card:last-child {
+    border-right: none;
+}
+
+.day-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.day-number {
+    width: 40px;
+    height: 40px;         
+    min-width: 40px;      
+    min-height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-right: 1rem;
+    flex-shrink: 0;        
+    background: linear-gradient(135deg, var(--color-soft-3), var(--color-intense-1));
+    color: white;
+}
+
+
+.day-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.day-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--grey);
+}
+
+.activity-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.activity-description {
+    margin-bottom: 1rem;
+}
+
+
+
+.weekend-card {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--color-soft-1), var(--color-soft-2));
+    color: var(--text);
+}
+
+.weekend-card .day-number {
+    background: linear-gradient(135deg, var(--color-intense-2), var(--main-color));
+}
+
+.icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.process-flow {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.flow-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+.flow-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--grey);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+@media (max-width: 1024px) {
+    .week-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para tablets */
+    }
+    
+    .weekend-card {
+        grid-column: 1 / -1; /* sigue ocupando todo el ancho */
+    }
+}
+
+@media (max-width: 768px) {
+    .week-grid {
+        grid-template-columns: 1fr; /* móvil: 1 columna por fila */
+    }
+    
+    .weekend-card {
+        grid-column: 1 / -1;
+    }
+}
+
+.emoji {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* lunes a viernes */
+    gap: 1px;
+}
+
+.weekend-card {
+    grid-column: 1 / -1; /* ocupa todas las columnas debajo de la semana */
+}
+
+.parts-table {
+    width: 100%;
+    table-layout: fixed; 
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+.parts-table th{
+  background-color: var(--color-soft-1);
+}
+.parts-table th, .parts-table td {
+    word-wrap: break-word; 
+  }
+</style>
 
 {% endblock %}

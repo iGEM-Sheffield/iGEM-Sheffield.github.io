@@ -5,30 +5,636 @@
 
 {% block page_content %}
 
-<div class="row mt-4">
-  <div class="col">
-    <div class="bd-callout bd-callout-info">
-      <h4>Best Education</h4>
-      <p>Innovative educational tools and outreach activities have the ability to establish a two-way dialogue with new communities by discussing public values and the science behind synthetic biology. How have you developed new opportunities to include more people in shaping synthetic biology? Education activities do not have to be directly related to your project but may look at wider issues of iGEM or synthetic biology.  Education activities must promote scientific learning and avoid simply proselytizing or marketing synthetic biology and/or iGEM. Document your approach, and what was learned by everyone involved, to compete for this award.</p>
-      <hr />
-      <p>Visit the <a href="https://competition.igem.org/judging/special-prizes">Special Prizes page</a> for more information.</p>
+<div class = "page-container">
+  <aside class="sidebar">
+      <ul class="sidebar-nav">
+          <li><a href="#toolkit" class="active">Tookit</a></li>
+          <li><a href="#outside the toolkit">Outside the toolkit</a>
+          <li><a href="#educational network">Educational network</a>
+      </ul>
+    <div class ="info-card hp-card" id="hp-card1">
+        <div class="card">
+          <h3 class="card-title">HP Card</h3>
+          <p>For our idea of the 360º scientist we were inspired by a local youth association called La Llar de la Recerca, dedicated to mentoring young people in their scientific or technological projects.</p>
+          <button class="btn btn-outline" onclick = "window.location.href='{{ url_for('pages', page='integratedhp') }}#subtitle6'">Go to HP</button>
+        </div>
+      </div>
+  </aside>
+  
+  <div class = "page-content">
+    <div class = "header">
+      <h1 class = "page-title">Education</h1>
+      <p class = "page-desc">The many faces of science</p>
+    </div>
+
+    <div class = "content"> 
+        <p class="section-text" style = "color: #A30000"><span class="italic-word">"Education means inspiring someone's mind, not just filling their heads"
+        <br>
+        - Katie Lusk
+        <br><br>
+        </span></p>
+        <p class="section-text">A good scientist is not just an expert in their field. That’s why at iGEM UB 2025 we want to promote the idea of the <span class="bold-word">360º scientist</span> <span class = "info-word hp-icon" data-target= "hp-card1">&#128161;</span>: a professional who, while mastering their own area of research, is also deeply aware of the world around them. This means having a solid cultural background, staying informed about current events, and applying strong critical thinking skills to connect science with society.
+        <br><br>
+        With this in mind, we created Reineta, a free and adaptable toolkit for 16–17-year-old students. It includes activities on technology, ethics, communication, experimentation, and even art—designed with experts and improved through real classroom feedback.
+        <br><br>
+        We’ve also taken our vision beyond the toolkit, joining events like Festa de la Ciència or Nit de la Recerca, and even translating the Arizona State iGEM children’s book into our own language to make it more accessible. Our goal is simple: to inspire the next generation of scientists to be not only skilled researchers but also <span class="bold-word">thoughtful, well-rounded individuals</span>.
+        </p>
+
+      <section id = "toolkit">
+        <h1 class="section-title">The toolkit: Reineta</h1>
+        <p class="section-text">The toolkit is designed as a <span class="bold-word">free</span>, <span class="bold-word">adaptable</span>, and <span class="bold-word">constantly evolving</span> resource for teachers, offering students essential skills not usually addressed in class. Built as a modular project, its activities are interconnected yet flexible, allowing teachers to use them separately or in sequence according to their time and needs. Feedback from users is encouraged to ensure continuous improvement and alignment with classroom realities. Ultimately, the toolkit aims to provide a high-quality, accessible bank of activities to help shape the scientists of the future.
+        <br><br>
+        <a class="link-text" href="{{ url_for('pages', page='education-toolkit') }}">Go to page</a></p>
+        
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+          <div class="controls">
+            <button class="control-btn active" onclick="showFace('reset')">Reset</button>
+            <button class="control-btn" onclick="showFace('ethics')">Ethics</button>
+            <button class="control-btn" onclick="showFace('communication')">Communication</button>
+            <button class="control-btn" onclick="showFace('art')">Art</button>
+            <button class="control-btn" onclick="showFace('technology')">Technology</button>
+            <button class="control-btn" onclick="showFace('experimental')">Experimental</button>
+          </div>
+
+          <div class="cube-container">
+              <div class="cube" id="cube">
+                  <div class="face ethics" onclick="selectFace('ethics')">
+                      <h3>Ethics</h3>
+                  </div>
+                  <div class="face communication" onclick="selectFace('communication')">
+                      <h3>Communication</h3>
+                  </div>
+                  <div class="face art" onclick="selectFace('art')">
+                      <h3>Art</h3>
+                  </div>
+                  <div class="face technology" onclick="selectFace('technology')">
+                      <h3>Technology</h3>
+                  </div>
+                  <div class="face experimental" onclick="selectFace('experimental')">
+                      <h3>Experimental</h3>
+                  </div>
+                  <div class="face title-face" onclick="selectFace('reset')">
+                      <h3>The Many Faces<br>of<br>Science</h3>
+                  </div>
+              </div>
+              <div class="description-text" id="descriptionText">
+              <h2 id="descTitle">Ethics</h2>
+              <p id="descContent">
+                 How far should science go? How can we regulate new techniques when they are appearing at such a rapid rate? We must keep in mind the social and ethical impact of our research, and a competent scientist should possess the capacity to assess, reason critically, and reflect upon these dimensions.</p>
+          </div>
+          </div>
+
+          
+        </div>
+      </section>
+
+      <section id = "outside the toolkit">
+        <h1 class="section-title">Outside the toolkit</h1>
+        <p class="section-text">Outside of the toolkit, we carried out additional initiatives such as activities for children, scientific outreach talks, and collaborations with other iGEM teams. These actions allowed us to reach different audiences, explore new perspectives, and give a deeper or alternative focus to topics, expanding the overall impact of our project.
+            <br><br>
+            <a class="link-text" href="{{ url_for('pages', page='outside-toolkit') }}">Go to page</a>
+        </p>
+        <div class ="image-container">
+            <img src="https://static.igem.wiki/teams/5622/images/education/outsidethetoolkitpaginaprincipal.webp">
+        </div>
+      </section>
+
+      <section id="educational network">
+        <h1 class="section-title">Creating an educational network across Catalonia</h1>
+        <div class="text-img">
+                    <div class="edu-grid">
+          <div class="edu-text">
+            <p>
+              While working on our project we realised that 
+              <span class="bold-word">we are not alone in our mission</span>, which is why we wanted to collaborate with other entities and associations dedicated to sharing science and knowledge by incorporating links to their activities in our toolkit, creating this educational network for teachers or the open public.
+            </p>
+          </div>
+        
+          <div class="edu-image">
+            <img src="https://static.igem.wiki/teams/5622/images/education/educationalnetworkpgprincipal.webp" alt="Educational network graphic">
+          </div>
+        </div>
+            </div>
+        
+        <div class="cards-container">
+          <div class="card">
+            <div class="image-container">
+                <img src="https://static.igem.wiki/teams/5622/images/education/logoirbpgprincipal.webp" alt="IRB's logo">
+            </div>
+            <h3 class="card-title">Biomedical Research Institute of Barcelona</h3>
+            <p>IRB is a biomedical research center working to achieve a disease-free life. Their mission is to conduct excellent research to cure cancer and other diseases linked to aging. IRB Barcelona's public engagement initiatives contribute to promoting scientific literacy by fostering critical thinking and opening up science to diverse audiences in different spaces.</p>
+            <button class="btn btn-outline" onclick ="window.location.href='https://www.irbbarcelona.org/en/outreach'">Read more</button>
+          </div>
+          
+          <div class="card">
+            <div class="image-container">
+                <img src="https://static.igem.wiki/teams/5622/images/education/geo3bcnpgprincipal.webp" alt="GEO3BCN's logo">
+            </div>
+            <h3 class="card-title">Geosciences Barcelona</h3>
+            <p>GEO3BCN – CSIC is an international research institute dedicated to Earth sciences whose mission is to advance the understanding of Earth System Sciences. They make available to the public a wide range of quality scientific and educational material in the form of books, videos, exhibitions, and others.</p>
+            <button class="btn btn-outline" onclick ="window.location.href='https://www.geo3bcn.csic.es/outreach-resources/'">Read more</button>
+          </div>
+        </div>
+
+        <div class="cards-container">
+          <div class="card">
+            <div class="image-container">
+                <img src="https://static.igem.wiki/teams/5622/images/education/cragpgprincipal.webp" alt="CRAG's logo">
+            </div>
+            <h3 class="card-title">Centre for Research in Agricultural Genomics</h3>
+            <p>CRAG brings together diverse research groups on plants and farm animals, and provides a unique breeding ground for research and training, exploring the genetic and genomic determinants common to plants and animals. CRAG strives to translate the results of its research into benefits for society. It also aims to train the next generation of plant and farm animal scientists who will play a vital role in helping to meet the societal and global challenges of this century.</p>
+            <button class="btn btn-outline" onclick ="window.location.href='https://www.cragenomica.es/outreach'">Read more</button>
+          </div>
+          
+          <div class="card">
+            <div class="image-container">
+                <img src="https://static.igem.wiki/teams/5622/images/education/lallardelarecercapgprincipal.webp" alt="La Llar de la Recerca's logo">
+            </div>
+            <h3 class="card-title">La Llar de la Recerca</h3>
+            <p>La Llar de la Recerca wants all young people in Penedès who are interested in research, investigation and the why of things to be able to carry out their scientific or technological projects. For this reason, they offer a space, infrastructure and support to young people who intend to learn, and have fun, while they network and create synergies between members and different experts and professionals in the area.</p>
+            <button class="btn btn-outline" onclick ="window.location.href='https://www.lallardelarecerca.org/inici'">Read more</button>
+          </div>
+        </div>
+      </section>
+
+      <section class ="references" id="references">
+        <h1 class="section-title">Referències</h1>
+        <ol>
+          <li>National Science Education Standards. (1996). National Academy Press.</li>
+          <li>Torres, L., & Sampson, V. (2019). The impact of inquiry-based science instruction on student understanding. <a class="link-text" href="https://doi.org/10.1007/s10956-019-09123-4">Paper</a></li>
+          <li>UNESCO Science Education Programme. <a class="link-text" href="https://en.unesco.org/themes/education/science">Website</a></li>
+        </ol>
+      </section>
     </div>
   </div>
 </div>
-
-<div class="row mt-4">
-  <div class="col">
-    <h2>Inspirations</h2>
-    <hr />
-    <ul>
-      <li><a href="https://2024.igem.wiki/cityu-hongkong/education">2024 CityU-HongKong</a></li>
-      <li><a href="https://2024.igem.wiki/cjuh-jlu-china/education">2024 CJUH-JLU-China</a></li>
-      <li><a href="https://2024.igem.wiki/keystone/education">2024 Keystone</a></li>
-      <li><a href="https://2024.igem.wiki/stanford/education">2024 Stanford</a></li>
-      <li><a href="https://2024.igem.wiki/gems-taiwan/education">2024 GEMS-Taiwan</a></li>
-      <li><a href="https://2024.igem.wiki/heidelberg/education">2024 Heidelberg</a></li>
-    </ul>
-  </div>
+<div class="back-to-top" id="back-to-top">
+  ↑
 </div>
+
+
+<style>
+       
+        .cube-container {
+            perspective: 1200px;
+            perspective-origin: center center;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cube {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+              /* tHis determines the face to be shownwhen the page is loaded */
+            transform: rotateX(80deg) rotateY(15deg);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+            margin: 50px;
+        }
+
+        .cube:active {
+            cursor: grabbing;
+        }
+
+        .face {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 2px solid rgba(255, 145, 139, 0.3);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: #560400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(255, 145, 139, 0.2);
+        }
+
+        .face:hover {
+            box-shadow: 0 12px 40px rgba(255, 29, 17, 0.3);
+        }
+
+        .face h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .control-btn {
+            background: #FFDCDA;
+            border: 2px solid #FF918B;
+            color: #560400;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .control-btn:hover {
+            background: #FF5249;
+            color: #FFFFEE;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 29, 17, 0.3);
+        }
+
+        .control-btn.active {
+            background: #FF1D11;
+            color: #FFFFEE;
+            border-color: #9D0800;
+        }
+
+        /* Specific faces */
+        .ethics {
+            background: linear-gradient(135deg, #FF5249, #FF1D11);
+            transform: translateZ(125px);
+        }
+
+        .communication {
+            background: linear-gradient(135deg, #FF918B, #FF5249);
+            transform: rotateY(90deg) translateZ(125px);
+        }
+
+        .technology {
+            background: linear-gradient(135deg, #FFDCDA, #FF918B);
+            transform: rotateY(180deg) translateZ(125px);
+        }
+
+        .experimental {
+            background: linear-gradient(135deg, #FF918B, #FF5249);
+            transform: rotateY(-90deg) translateZ(125px);
+        }
+
+        .art {
+            background: linear-gradient(135deg, #FF5249, #FF1D11);
+            transform: rotateX(90deg) translateZ(125px);
+        }
+
+        .title-face {
+            background: linear-gradient(135deg, #9D0800, #560400);
+            transform: rotateX(-90deg) translateZ(125px);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            color: #FFFFEE;
+        }
+
+        .description-text {
+            max-width: 50%;
+            text-align: justify;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 2rem;
+            padding: 0 20px;
+        }
+
+        .description-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .description-text h2 {
+            color: #FF1D11;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .description-text p {
+            color: #560400;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cube {
+                width: 200px;
+                height: 200px;
+                margin: 30px;
+            }
+
+            .face {
+                width: 200px;
+                height: 200px;
+            }
+
+            .face h3 {
+                font-size: 1.4rem;
+            }
+
+            .technology, .communication, .ethics, .experimental, .art, .title-face {
+                transform: translateZ(100px);
+            }
+
+            .communication {
+                transform: rotateY(90deg) translateZ(100px);
+            }
+
+            .ethics {
+                transform: rotateY(180deg) translateZ(100px);
+            }
+
+            .experimental {
+                transform: rotateY(-90deg) translateZ(100px);
+            }
+
+            .art {
+                transform: rotateX(90deg) translateZ(100px);
+            }
+
+            .title-face {
+                transform: rotateX(-90deg) translateZ(100px);
+            }
+
+            .controls {
+                gap: 10px;
+            }
+
+            .control-btn {
+                padding: 10px 15px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+
+            .description-text h2 {
+                font-size: 1.6rem;
+            }
+        }
+        .edu-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  padding: 2rem 3rem;
+  margin: 2rem 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.edu-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--grey);
+}
+
+.bold-word {
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+.edu-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.edu-image img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .edu-text {
+    order: 2; /* texto debajo en tablets */
+  }
+
+  .edu-image {
+    order: 1;
+  }
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .edu-grid {
+    padding: 1.5rem;
+  }
+
+  .edu-text p {
+    font-size: 1rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    </style>
+<script>
+        const cube = document.getElementById('cube');
+        const descriptionText = document.getElementById('descriptionText');
+        const descTitle = document.getElementById('descTitle');
+        const descContent = document.getElementById('descContent');
+
+        let currentFace = 'reset';
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let currentRotationX = -10;
+        let currentRotationY = -165;
+        // The numbers here indicate the face that will appear
+        const faces = {
+            technology: {
+                title: 'Technology',
+                description: 'Technology has always advanced alongside science, and we must adapt to it. A modern scientist should have basic knowledge on how to take advantage of these emerging tools: AI, bioinformatics, programming, data management...',
+                rotation: { x: -10, y: -165 },
+            },
+            communication: {
+                title: 'Communication',
+                description: 'In today’s “information age”, it is crucial to know how to navigate the vast ocean of the internet and distinguish what is true and reliable from what has been designed only to manipulate our perception.',
+                rotation: { x: -10, y: -75 },
+            },
+            ethics: {
+                title: 'Ethics',
+                description: 'How far should science go? How can we regulate new techniques when they are appearing at such a rapid rate? We must keep in mind the social and ethical impact of our research, and a competent scientist should possess the capacity to assess, reason critically, and reflect upon these dimensions.',
+                rotation: { x: -10, y: 15 }
+            },
+            experimental: {
+                title: 'Experimental',
+                description: ' Laboratory skills are the first notion that comes to mind when thinking about science and synthetic biology: cells, researchers in lab coats and safety glasses peering through a microscope… And it is indeed true that this stage constitutes an exciting period in the life of a scientist.',
+                 rotation: { x: -10, y: 105 }  
+            },
+            art: {
+                title: 'Art',
+                description: 'Art and science have always been thought to be opposites, however there is both art in science (creativity, beauty, innovation…) and science in art (music theory, pigments, sculpture materials…). Even when we talk about papers and articles, we are talking about literature!',
+                rotation: { x: -75, y: 15 }
+            },
+            reset: {
+                title: 'The Many Faces of Science',
+                description: 'Use the buttons to explore each face of the cube or drag it to rotate it manually.',
+                rotation: { x: 80, y: 15 },
+            }
+        };
+
+        function showFace(faceName) {
+            currentFace = faceName;
+            const face = faces[faceName];
+            
+            // Update buttons
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Rotate cube
+            currentRotationX = face.rotation.x;
+            currentRotationY = face.rotation.y;
+            cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            
+            // Update description
+            updateDescription(faceName);
+        }
+
+        function selectFace(faceName) {
+            showFace(faceName);
+            // Update active button
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === faceName) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function updateDescription(faceName) {
+            const face = faces[faceName];
+            
+            descriptionText.classList.remove('show');
+            
+            setTimeout(() => {
+                descTitle.textContent = face.title;
+                descContent.textContent = face.description;
+                descriptionText.classList.add('show');
+            }, 200);
+        }
+           
+        function resetCube() {
+            currentRotationX = 80;
+            currentRotationY = 15;
+            cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            
+            // Hide description
+            descriptionText.classList.remove('show');
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        // Mouse interaction
+        cube.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            cube.style.transition = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            const rotationY = currentRotationY + (deltaX * 0.5);
+            const rotationX = currentRotationX - (deltaY * 0.5);
+
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                cube.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                const transform = cube.style.transform;
+                const rotateXMatch = transform.match(/rotateX\(([^)]+)\)/);
+                const rotateYMatch = transform.match(/rotateY\(([^)]+)\)/);
+                
+                if (rotateXMatch) currentRotationX = parseFloat(rotateXMatch[1]);
+                if (rotateYMatch) currentRotationY = parseFloat(rotateYMatch[1]);
+            }
+        });
+
+        // Touch events for mobile
+        cube.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            cube.style.transition = 'none';
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.touches[0].clientX - startX;
+            const deltaY = e.touches[0].clientY - startY;
+
+            const rotationY = currentRotationY + (deltaX * 0.5);
+            const rotationX = currentRotationX - (deltaY * 0.5);
+
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                cube.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                const transform = cube.style.transform;
+                const rotateXMatch = transform.match(/rotateX\(([^)]+)\)/);
+                const rotateYMatch = transform.match(/rotateY\(([^)]+)\)/);
+                
+                if (rotateXMatch) currentRotationX = parseFloat(rotateXMatch[1]);
+                if (rotateYMatch) currentRotationY = parseFloat(rotateYMatch[1]);
+            }
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            updateDescription('reset');
+            setTimeout(() => {
+                descriptionText.classList.add('show');
+            }, 500);
+        });
+    </script>
 
 {% endblock %}

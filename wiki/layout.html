@@ -4,14 +4,21 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="https://static.igem.wiki/common/icons/favicons/igem-2022.svg"/>
+    <link rel="shortcut icon" href="https://static.igem.wiki/teams/5622/images/brand/iso-red2.svg"/>
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
     <!-- Bootstrap CSS -->
     <link href="{{ url_for('static', filename = 'bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename = 'fonts.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename = 'style.css') }}" rel="stylesheet">
+
+    <!-- Custom scripts -->
+    <script src="{{ url_for('static', filename = 'sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'dropdowns.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'extra-info.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'back-to-top.js') }}"></script>
 
     <title>{% block title %}{% endblock %} | Barcelona-UB - iGEM 2025</title>
 
@@ -20,25 +27,18 @@
   <!-- Navigation -->
   {% include 'menu.html' %}
 
-  <!-- Header -->
-  <header class="bg-hero py-5 mb-5">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-lg-12">
-          <h1 class="display-4 text-white mt-5 mb-2">{{ self.title() }}</h1>
-	        <p class="lead mb-5 text-white-50">{% block lead %}{% endblock %}</p>
-        </div>
-      </div>
-    </div>
-  </header>
+ 
 
   <!-- Page Content -->
-  <div class="container">
-    {% block page_content %}{% endblock %}
-  </div>
+  {% block page_content %}{% endblock %}
+
 
   <!-- Footer: MUST mention license AND have a link to team wiki's repository on gitlab.igem.org -->
-  {% include 'footer.html' %}
+  {% if request.endpoint == 'home' %}
+    {% include 'footer-home.html' %}
+  {% else %}
+    {% include 'footer.html' %}
+  {% endif %}
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="{{ url_for('static', filename = 'bootstrap.bundle.min.js') }}"></script>
