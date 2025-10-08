@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         {
                             name: 'SCR-D as a Switch Candidate',
                             phases: {
-                                design: `or this first iteration, we attempted to design an inducible SCR by fusing the SCR-D sequence to the theophylline aptamer [5]. 
+                                design: `For this first iteration, we attempted to design an inducible SCR by fusing the SCR-D sequence to the theophylline aptamer [5]. 
                                         Our hypothesis was that we could create an ON/OFF system by disrupting a key functional structure of the SCR-D element with the aptamer.`,
                                 build: 'We joined the theophylline aptamer with the SCR-D element and designed an ON/OFF configuration in which the Diapin structure was disrupted.',
                                 test: ` We used the test in cycle 1.2.3, to observe the structural and behavioral complexity of SCR-D and determine whether we could reliably design 
