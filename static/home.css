@@ -166,6 +166,18 @@
     font-weight: var(--fw-subsemibold);
 }
 
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 .home-video{
     margin-top:5rem;
     margin-bottom:5rem;
@@ -247,13 +259,14 @@
 }
 
 .join-us{
-    font-size: 5rem;
+    font-size: 8rem;
     font-weight: var(--fw-bold);
 }
 
 .final-container {
     max-width: 800px;
     padding: 2rem;
+    padding-bottom:15rem;
     text-align: left;
 }
 
@@ -265,7 +278,7 @@
 .line {
     display: block;
     transform: translateX(-50px);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-weight:var(--fw-semibold);
 }
 
@@ -291,7 +304,7 @@
 }
 
 .line:nth-child(5) {
-    font-size: var(--fs-title);
+    font-size: 3rem;
     font-weight: var(--fw-bold);
 }
 

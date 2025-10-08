@@ -198,11 +198,36 @@
     font-size: 10px;
 }
 
+.btn-outline1{ 
+  background-color: transparent;
+  border: 2px solid var(--color-soft-3);
+  color: var(--color-soft-3);
+}
+
+.btn-outline2{
+  background-color: transparent;
+  border: 2px solid var(--color-intense-4);
+  color: var(--color-intense-4);
+}
+
+.branch-btn.active{
+  background: var(--accent-gradient);
+  box-shadow: 0 2px 10px rgba(231, 12, 0, 0.2);
+  color:var(--bg-main);
+}
+
+
+
 .content-area {
     background: white;
     border-radius: 20px;
     padding: 2rem;
     box-shadow: var(--shadow);
+    display:none;
+}
+
+.content-area.active{
+  display:block;
 }
 
 .content-section {
@@ -394,103 +419,28 @@ With the help of our <strong>Software</strong> and <strong>Model</strong> tools,
 </div>
 
 <br><br>
-<p>
+<h4 class="section-subtitle2">
 Let’s take a look at what our results revealed!
-</p>
+</h4>
 
 
 
-<p><span class="highlight-word">Click to the leaves to see each section</span></p>
+<!-- <p><span class="highlight-word">Click on the leaves to see each section</span></p> -->
    <!-- Tree Visualization -->
-    <div class="tree-container">
 
-
-        <svg class="tree-svg" viewBox="0 0 1000 700">
-            <!-- Raíces -->
-<!-- Raíces curvas -->
-<!-- Root to HEK cells (left) -->
-<path d="M500 550 C480 580, 300 620, 200 650" stroke="#8B5A2B" stroke-width="5" fill="none" stroke-linecap="round"/>
-<text x="200" y="670" font-size="14" text-anchor="middle" fill="#8B5A2B">
-  All of these results (left) were obtained in HEK cells
-</text>
-
-<!-- Root to Cell-Free (right) -->
-<path d="M500 550 C520 580, 700 620, 800 650" stroke="#8B5A2B" stroke-width="5" fill="none" stroke-linecap="round"/>
-<text x="800" y="670" font-size="14" text-anchor="middle" fill="#8B5A2B">
-  All of these results (right) were obtained in a cell-free system
-</text>
-
-  <!-- Tree Trunk -->
-  <rect class="tree-trunk" x="490" y="150" width="20" height="400" rx="10"/>
-
-  <!-- Branch 1 -  -->
-  <path class="tree-branch branch-1" d="M490 500 L280 420"/>
-
-  <!-- Branch 2 -  -->
-  <path class="tree-branch branch-2" d="M490 440 L250 350"/>  
-  <path class="tree-sub-branch sub-2a" d="M250 350 L200 250"/>
-
-  <!-- Branch 3 - aptamer -->
-  <path class="tree-branch branch-3" d="M510 300 L720 250"/>
-    <path class="tree-sub-branch sub-3b" d="M300 250 L200 150"/>
-
-  <!-- Branch 4 -  -->
-  <path class="tree-branch branch-4" d="M510 440 L750 350"/>
-
-  <!-- Branch 5 -  -->
-  <path class="tree-branch branch-5" d="M490 360 L280 250"/>
-
-    <!-- Branch 6 - -->
-<path class="tree-branch branch-4" d="M510 440 L750 450"/>
-
-  <!-- Branch 7 - Top Center (Future Steps) -->
-  <path class="tree-branch branch-6" d="M500 180 L500 140"/>
-
-  <!-- Leaves -->
-
-  <!-- Branch 1: SCR-D -->
-  <circle class="tree-leaf leaf-1" cx="280" cy="420" r="35" fill="#FF5249" onclick="showContent('branch1-main')" data-branch="1"/>
-  <text class="leaf-text" x="280" y="420" font-size="12" text-anchor="middle" dominant-baseline="middle">1-SCR-D</text>
-
-  <!-- Branch 2: SECIS -->
-  <circle class="tree-leaf leaf-2-main" cx="250" cy="350" r="30" fill="#FF1D11" onclick="showContent('branch2-main')" data-branch="2-main"/>
-  <text class="leaf-text" x="250" y="350" font-size="12" text-anchor="middle" dominant-baseline="middle">2-SECIS</text>
-
-  <!-- Branch 2 Sub-leaves -->
- 
-  <circle class="tree-leaf leaf-2a" cx="200" cy="250" r="30" fill="#CC0600" onclick="showContent('branch2-controls')" data-branch="2a"/>
-  <text class="leaf-text small" x="200" y="250" font-size="12" text-anchor="middle" dominant-baseline="middle">HEK Setup</text>
-
-  <!-- Branch 3: Aptmaer -->
-<circle class="tree-leaf leaf-5" cx="280" cy="250" r="35" fill="#ff918b" onclick="showContent('branch3-main')" data-branch="3"/>
-  <text class="leaf-text" x="280" y="250" font-size="12" text-anchor="middle" dominant-baseline="middle">3-Aptamer</text>
-<!-- Branch 3 Sub-leaves -->
- 
-  <circle class="tree-leaf leaf-2a" cx="200" cy="150" r="30" fill="#CC0600" onclick="showContent('branch2-controls')" data-branch="3a"/>
-  <text class="leaf-text small" x="200" y="150" font-size="12" text-anchor="middle" dominant-baseline="middle">HEK Setup</text>
-
-  
-  <!-- Branch 4: S Cell-Free -->
-  <circle class="tree-leaf leaf-4-main" cx="750" cy="450" r="42" fill="#9b2421" onclick="showContent('branch4-main')" data-branch="4"/>
-  <text class="leaf-text" x="750" y="450" font-size="12" text-anchor="middle" dominant-baseline="middle">4-Aptamer CF</text>
-
-  <!-- Branch 5: A Cell-Free -->
-  <circle class="tree-leaf leaf-4-main" cx="750" cy="350" r="44" fill="#9b2421" onclick="showContent('branch5-main')" data-branch="5"/>
-  <text class="leaf-text" x="750" y="350" font-size="12" text-anchor="middle" dominant-baseline="middle">5-SECIS CF</text>
-
-
- 
-  <!-- Branch 6: switch -->
-  <circle class="tree-leaf leaf-3" cx="720" cy="250" r="35" fill="#9D0800" onclick="showContent('branch6-main')" data-branch="6"/>
-  <text class="leaf-text" x="720" y="250" font-size="12" text-anchor="middle" dominant-baseline="middle">6-Switch</text>
-
-  <!-- Branch 7: Future Steps -->
-  <circle class="tree-leaf leaf-6" cx="500" cy="140" r="35" fill="#B30000" onclick="showContent('future-main')" data-branch="6"/>
-  <text class="leaf-text" x="500" y="140" fill="#9D0800" font-size="12" text-anchor="middle" dominant-baseline="middle">Future</text>
-</svg>
-
-    </div>
-<div class="branch-legend">
+  <div class="buttons-container">
+    <button class="btn btn-outline1 branch-btn" onclick="showContent('branch1-main', event)" data-branch="1">1-SCR-D</button> 
+    <button class="btn btn-outline1 branch-btn" onclick="showContent('branch2-main', event)" data-branch="2">2-SECIS</button> 
+    <button class="btn btn-outline1 branch-btn" onclick="showContent('branch3-main', event)" data-branch="3">3-Aptamer</button> 
+    <button class="btn btn-outline2 branch-btn" onclick="showContent('branch4-main', event)" data-branch="4">4-Aptamer CF</button> 
+    <button class="btn btn-outline2 branch-btn" onclick="showContent('branch5-main', event)" data-branch="5">5-SECIS CF</button> 
+    <button class="btn btn-outline2 branch-btn" onclick="showContent('branch6-main', event)" data-branch="6">6-Switch</button> 
+    <button class="btn btn-outline1 branch-btn" onclick="showContent('branch2-controls', event)" data-branch="3a">HEK Setup</button> 
+    <button class="btn btn-outline branch-btn" onclick="showContent('future-main', event)" data-branch="6">Future</button> 
+    <br><br>
+    <p section-text>Buttons with a <span class="bold-word" style="color:var(--color-soft-3)">lighter colour</span> are results in HEK cells, and buttons with a <span class="bold-word" style="color:var(--color-intense-4)">darker colour</span> are results in cell-free systems (CF)</p>
+  </div>
+<!-- <div class="branch-legend">
             <div class="legend-item">
                 <div class="legend-color" style="background: #FF5249;"></div>
                 <span>Branch 1: SCR-D Element</span>
@@ -519,11 +469,10 @@ Let’s take a look at what our results revealed!
                 <div class="legend-color" style="background: #B30000;"></div>
                 <span>Future Steps</span>
             </div>
-</div>
+</div> -->
     <!-- Content Area -->
     <div class="content-area">
-        
-        
+
         <!-- Branch 1 Content -->
         <div class="content-section" id="branch1-main">
             <section id="branch1">
@@ -1637,27 +1586,34 @@ We also tried further controls with <strong> SBP2 concentrations up to 500 ng/uL
 </div>
 
 <script>
-function showContent(contentId) {
-    // Hide all content sections
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Remove active state from all leaves
-    document.querySelectorAll('.tree-leaf').forEach(leaf => {
-        leaf.classList.remove('active');
-    });
-    
-    // Show selected content
-    const content = document.getElementById(contentId);
-    content.classList.add('active');
-    
-    // Scroll smoothly to the displayed section
-    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    // Add active state to clicked leaf
-    event.target.classList.add('active');
+function showContent(contentId, event) {
+  // Get the content-area
+  const area = document.querySelector('.content-area');
+  
+  // Hide all content sections
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  // Remove active state from all leaves
+  document.querySelectorAll('.branch-btn').forEach(button => {
+    button.classList.remove('active');
+  });
+  
+  // Show the content area (if it was hidden)
+  area.classList.add('active');
+  
+  // Show the selected section
+  const content = document.getElementById(contentId);
+  if (content) content.classList.add('active');
+  
+  // Scroll smoothly to the displayed section
+  content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  
+  // Highlight the clicked button
+  event.target.classList.add('active');
 }
+
 
 </script>
 
