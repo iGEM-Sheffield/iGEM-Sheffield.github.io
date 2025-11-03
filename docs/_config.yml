@@ -28,6 +28,7 @@ instagram_username: igem_sheffield
 
 # Build settings
 theme: jekyll-theme-clean-blog
+remote_theme: StartBootstrap/startbootstrap-clean-blog-jekyll
 plugins:
   - jekyll-feed
 
