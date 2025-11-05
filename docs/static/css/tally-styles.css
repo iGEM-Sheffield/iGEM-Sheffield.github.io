@@ -6,14 +6,15 @@
 body {
     min-height: 100 vh;
     font-family:'Times New Roman', Times, serif;
-    background-color: rgb(126, 178, 187);
+    background-color: rgb(168, 128, 214);
     margin: 0;
     background-size: cover;
 }
 
 nav{
-    background-color: rgb(102, 0, 0)
-    box-shadow 3px 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgb(235, 111, 194);
+    height: 50 px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 nav ul {
@@ -38,7 +39,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #6d2a2a;
+    background-color: rgb(235, 111, 194);
 }
 
 /* Can make the Home the first --> Could potentially do the logo as a separate thing?
@@ -63,10 +64,34 @@ nav li:first-child{
     justify-content: flex-start;
 }
 
-.sidebar li{
-    width: 100%;
+.sidebar li{width: 100%;}
+.sidebar a {width: 100%;}
+
+h1 {
+    display: inline-block;
+    background-color: rgba(211, 211, 211, 0);
+    margin:auto;
+    padding: 20px;
+    text-align:center;
 }
 
-.sidebar a {
-    width: 100%
+h2 {
+            display: inline-block;
+            background-color: lightgray;
+            font-size: 16 px;
+            color: cadetblue;
+            margin: auto;
+}
+
+h3 {
+    margin: auto;
+    font-size: 16px;
+}
+
+h4 {
+    margin: auto;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+    outline: auto;
 }
