@@ -29,4 +29,31 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
     });
+
+    // Mobile menu toggle functionality
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebarToggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebarToggle.classList.remove('active');
+                sidebar.classList.remove('active');
+            });
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                sidebarToggle.classList.remove('active');
+                sidebar.classList.remove('active');
+            }
+        });
+    }
 });

@@ -5,7 +5,15 @@
     --learn-color: #7A5195;
     --tick-color: #4CAF50;
   }
-
+  
+  .overview-container{
+    background-color: rgba(184, 0, 0, 0.08); 
+    /* margin-top:2.5em; */
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem; 
+    padding-right:2.5rem; 
+    border-radius: 8px; 
+    width: 100%;
+  }
   /* Ocultar secciones de ciclos inicialmente */
   .cycles-container {
     display: none;

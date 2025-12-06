@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}Awards{% endblock %}
+{% block lead %}{% endblock %}
+
+
+{% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='awards.css') }}">
+
+<div class = "page-container">
+    <div class="container">
+        <div class = "header">
+            <h1 class = "page-title">Awards</h1>
+            <p class = "page-desc">Grand Jamboree 2025 Results</p>
+        </div>
+        
+        
+        <section>
+            <h1 class="section-title">Awards & Special Prizes</h1>
+            <div class="cards-container">
+                <!--Medal-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Gold Medal</span>
+                    <div class="award-icon">
+                        <img class="award-image" alt="gold medal" src="https://static.igem.org/websites/jamboree/2025/medal-reveal/medal-gold.webp">
+                    </div>
+                </div>
+            
+                <!--Top 10-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Top 10</span>
+                    <div class="award-icon">
+                        <img class="h-6 w-6 award-image" alt="Top 10" src="https://static.igem.org/websites/common/2022/icons/awards/top10-color.svg">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h1 class="section-title">Nominations</h1>
+            <div class="cards-container">
+                <!--Foundational-->
+                <div class="award-card-v2 foundational">
+                    <span class="award-label gold">Best Foundational Advance Project</span>
+                    <div class="award-icon">
+                        <svg viewBox="0 0 167.65 180.72" xmlns="http://www.w3.org/2000/svg" class="text-(--villageColor) award-image" style="--villageColor: #CD6650; --villageColorLight: #CD665033; --villageColorMedium: #CD665066;color:var(--villageColor);"><g fill="currentColor"><path d="m6.26 68.6h155.14c2.15 0 3.12-2.69 1.46-4.06l-77.58-64.02c-.42-.35-.94-.52-1.46-.52s-1.04.17-1.46.52l-77.57 64.02c-1.66 1.37-.69 4.06 1.46 4.06z"></path><path d="m145.27 8.73c0-.98-.8-1.78-1.78-1.78h-20.43c-.98 0-1.78.8-1.78 1.78v12.42l23.99 19.8z"></path><rect height="30.3" rx="2.96" width="68.63" x="11.3" y="75.7"></rect><rect height="30.3" rx="2.96" width="68.63" x="87.05" y="75.7"></rect><rect height="30.3" rx="2.96" width="68.63" x="49.36" y="113.24"></rect><path d="m164.87 75.58c-1.26.34-2.2 1.48-2.2 2.84v24.39c0 1.63 1.32 2.96 2.96 2.96h1.57c.3-2.87.45-5.78.45-8.73 0-7.42-.97-14.61-2.78-21.46z"></path><path d="m3.93 103v-24.39c0-1.02-.52-1.93-1.31-2.46-1.71 6.68-2.62 13.67-2.62 20.89 0 3.01.17 5.98.48 8.91h.5c1.63 0 2.96-1.32 2.96-2.96h-.01z"></path><path d="m124.99 115.97v24.39c0 1.63 1.32 2.96 2.96 2.96h25.78c5.99-9.03 10.27-19.28 12.39-30.3h-38.17c-1.63 0-2.96 1.32-2.96 2.96z"></path><path d="m42.25 140.59v-24.39c0-1.63-1.32-2.96-2.96-2.96h-37.72c2.16 11.03 6.48 21.28 12.5 30.3h25.23c1.63 0 2.96-1.32 2.96-2.96z"></path><path d="m87.56 153.74v24.39c0 1.11.62 2.06 1.52 2.57 23.71-1.47 44.75-12.78 59.07-29.92h-57.64c-1.63 0-2.96 1.32-2.96 2.96z"></path><path d="m77.49 150.78h-58c14.39 17.21 35.55 28.55 59.39 29.94.93-.5 1.57-1.47 1.57-2.59v-24.39c0-1.63-1.32-2.96-2.96-2.96z"></path></g></svg>
+                    </div>
+                </div>
+            
+                <!--Composite part-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Best New Composite Part</span>
+                    <div class="award-icon">
+                        <img alt="Best New Composite Part icon" class="size-8 award-image" src="https://static.igem.org/websites/common/2023/icons/awards/best-new-composite-part.svg">
+                    </div>
+                </div>
+
+                <!--Software-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Best Software Tool</span>
+                    <div class="award-icon">
+                        <img alt="Best Software Tool icon" class="size-8 award-image" src="https://static.igem.org/websites/common/2023/icons/awards/best-software-tool.svg">
+                    </div>
+                </div>
+
+                <!--Presentation-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Best Presentation</span>
+                    <div class="award-icon">
+                        <img alt="Best Presentation icon" class="size-8 award-image" src="https://static.igem.org/websites/common/2023/icons/awards/best-presentation.svg">
+                    </div>
+                </div>
+
+                <!--Wiki-->
+                <div class="award-card-v2 gold-medal">
+                    <span class="award-label gold">Best Wiki</span>
+                    <div class="award-icon">
+                        <img alt="Best Wiki icon" class="size-8 award-image" src="https://static.igem.org/websites/common/2023/icons/awards/best-wiki.svg">
+                    </div>
+                </div>
+            </div>
+        </section>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="back-to-top">
+  ↑
+</div>
+
+
+
+{% endblock %}
