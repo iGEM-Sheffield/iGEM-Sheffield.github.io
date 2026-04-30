@@ -1,15 +1,43 @@
-image: python:3.6
+name: Deploy static content to Pages
 
-pages:
-  stage: build
-  script:
-    - pip install --no-cache-dir -r dependencies.txt
-    - FLASK_APP=app.py flask freeze
-  artifacts:
-    paths:
-      - public
-  rules:
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never # No runners will run on branches other than main
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: always
+on:
+  push:
+    branches: [$default-branch]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        users: actions/checkout@v3
+
+      - name: Setup Python
+        users: actions/setup-python@v4
+        wtih:
+          python-version: 3.6
+
+      - name: install dependencies
+        run: pip install --no-cache-ir -r dependencies.txt
+
+      - name: Freeze Flask app
+        run: |
+          export FLASK_APP=app.py
+          flask Freeze
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
