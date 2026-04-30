@@ -2,7 +2,8 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: [$default-branch]
+    branches:
+      - main  # Only run on main branch
 
   workflow_dispatch:
 
@@ -16,28 +17,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: 3.6
 
-      - name: install dependencies
-        run: pip install --no-cache-ir -r dependencies.txt
+      - name: Install dependencies
+        run: pip install --no-cache-dir -r dependencies.txt
 
       - name: Freeze Flask app
         run: |
           export FLASK_APP=app.py
-          flask Freeze
+          flask freeze
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
