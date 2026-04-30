@@ -21,11 +21,11 @@ jobs:
 
     steps:
       - name: Checkout repo
-        users: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Setup Python
-        users: actions/setup-python@v4
-        wtih:
+        uses: actions/setup-python@v4
+        with:
           python-version: 3.6
 
       - name: install dependencies
